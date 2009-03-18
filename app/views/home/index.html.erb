@@ -1,0 +1,23 @@
+<table id="outer">
+  <tbody>
+    <tr>
+      <td width="30%"><p><strong>Chennai Bus Routes</strong> lets you search the routes of the <a href="http://en.wikipedia.org/wiki/Metropolitan_Transport_Corporation">MTC</a> buses running in the city of <a href="http://en.wikipedia.org/wiki/Chennai">Chennai</a>.
+          Unlike the <a href="http://www.mtcbus.org">official site</a>, we also tell you where you
+          can change buses if there are no direct buses to where you want to go.</p>
+        <p>To get started, <strong>fill in your start and destination bus stops</strong>. 
+          You can also just enter one stop name to get a list of buses that go to that stop.</p>
+        <p>Type in a part of the stop name and pick from the drop-down
+          list that appears.</p>
+      <div id="route_form">
+        <% form_for :journey do |f| -%> <!-- Change to appropriate location when latter is ready -->
+          <p><%= label_tag 'From' %><br /><%= f.text_field :from %></p>
+          <p><%= label_tag 'To' %><br /><%= f.text_field :to %></p>
+	  <p><%= label_tag 'Route' %><br /><%= f.text_field :route %></p>
+          <%= submit_tag 'Go!' %>
+        <% end -%>
+      </div>
+      </td>
+      <td width="70%"><div id="mapstraction"> </div></td>
+    </tr>
+  </tbody>
+</table>
