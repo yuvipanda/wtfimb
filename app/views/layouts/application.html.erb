@@ -2,9 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <%= stylesheet_link_tag 'style' %>
+<script src="http://openlayers.org/api/OpenLayers.js"></script>
+<script src="javascripts/OpenStreetMap.js"></script>
 <title><%= @title %> | Bus Routes for Chennai</title>
 </head>
-<body>
+<body <%= "onload='#{@onload}'"%> >
 <div id="wrapper">
       <div id="topbar">
 

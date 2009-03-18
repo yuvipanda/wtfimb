@@ -268,7 +268,7 @@ button:hover {
 	height:500px;
 }
 
-#map  /* Style (size) for the non-editablemap shown everywhere else */
+#mapstraction  /* Style (size) for the non-editablemap shown everywhere else */
 {
 	width:800px;
 	height:500px;
