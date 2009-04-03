@@ -240,3 +240,422 @@ Completed in 14ms (View: 12, DB: 0) | 200 OK [http://localhost/home]
   [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
   [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
   [4;36;1mRoute Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `routes`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mRoute Columns (16.8ms)[0m   [0;1mSHOW FIELDS FROM `routes`[0m
+  [4;35;1mRoute Load (1.2ms)[0m   [0mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;36;1mRoute Load (0.3ms)[0m   [0;1mSELECT * FROM `routes` WHERE (`routes`.`id` = 1655) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mStage Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `stages`[0m
+  [4;36;1mStage Load (0.6ms)[0m   [0;1mSELECT * FROM `stages` WHERE (`stages`.`id` = 2064) [0m
+  [4;35;1mStage Load (0.4ms)[0m   [0mSELECT * FROM `stages` WHERE (`stages`.`mtc_name` = 'T.V.S') LIMIT 1[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mStage Load (12.2ms)[0m   [0mSELECT * FROM `stages` [0m
+  [4;36;1mStage Load (0.2ms)[0m   [0;1mSELECT * FROM `stages` WHERE (`stages`.`mtc_name` = 'T.V.S') LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mStage Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `stages`[0m
+  [4;36;1mStage Load (0.6ms)[0m   [0;1mSELECT * FROM `stages` WHERE (`stages`.`id` = 2604) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-03-29 21:51:46) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/prototype.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-03-29 21:51:46) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/effects.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-29 21:52:10) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 56ms (View: 54, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mStage Load (21.9ms)[0m   [0mSELECT * FROM `stages` [0m
+  [4;36;1mStage Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 02:46:18) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 14ms (View: 12, DB: 0) | 200 OK [http://localhost/home]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 02:51:06) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 21ms (View: 19, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#allstages (for 127.0.0.1 at 2009-03-30 02:51:29) [GET]
+
+SyntaxError (/home/ani/busroutes.in/wtfimb/app/controllers/api_controller.rb:5: syntax error, unexpected $end, expecting kEND):
+  
+
+Rendered rescues/_trace (40.5ms)
+Rendered rescues/_request_and_response (1.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 02:55:38) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 32ms (View: 26, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#allstages (for 127.0.0.1 at 2009-03-30 02:55:39) [GET]
+
+ActionController::UnknownAction (No action responded to allstages. Actions: all_stages):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 02:56:05) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 23ms (View: 17, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#allstages (for 127.0.0.1 at 2009-03-30 02:56:06) [GET]
+
+ActionController::UnknownAction (No action responded to allstages. Actions: all_stages):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 02:56:32) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 23ms (View: 18, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages (for 127.0.0.1 at 2009-03-30 02:56:33) [GET]
+  [4;35;1mStage Load (34.8ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+
+ActionView::MissingTemplate (Missing template api/all_stages.erb in view path app/views):
+  
+
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 02:57:04) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 11ms (View: 6, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages (for 127.0.0.1 at 2009-03-30 02:57:05) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Rendering api/all_stages
+Completed in 202ms (View: 5, DB: 1) | 200 OK [http://localhost/api/all_stages]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 02:58:25) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 11ms (View: 5, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages (for 127.0.0.1 at 2009-03-30 02:58:26) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Rendering api/all_stages
+Completed in 99ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:00:59) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 24ms (View: 18, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages (for 127.0.0.1 at 2009-03-30 03:01:07) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Rendering api/all_stages
+Completed in 150ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:01:35) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 13ms (View: 8, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages (for 127.0.0.1 at 2009-03-30 03:01:38) [GET]
+  [4;35;1mStage Load (1.1ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Rendering api/all_stages
+Completed in 162ms (View: 1, DB: 2) | 200 OK [http://localhost/api/all_stages]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:07:09) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 24ms (View: 18, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:07:26) [GET]
+
+SyntaxError (/home/ani/busroutes.in/wtfimb/app/controllers/api_controller.rb:6: syntax error, unexpected kEND, expecting '}'):
+  
+
+Rendered rescues/_trace (40.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:08:17) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 11ms (View: 6, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:08:17) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 176ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:08:54) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 11ms (View: 7, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:08:56) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 203ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:09:26) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 110ms (View: 100, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:09:28) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 125ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:10:37) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 23ms (View: 18, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:10:38) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 159ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:11:48) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 25ms (View: 18, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:11:51) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 102ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:13:30) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:13:53) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 141ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mStage Load (0.8ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+  [4;35;1mStage Load (0.6ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:18:33) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 31ms (View: 25, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:18:34) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 158ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:19:27) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 26ms (View: 20, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:19:47) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 99ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:20:40) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 60ms (View: 7, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:20:43) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (7.2ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 156ms (View: 1, DB: 8) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:22:27) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 17ms (View: 12, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:22:29) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 161ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:24:39) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 14ms (View: 8, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:24:41) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 103ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing StageController#index (for 127.0.0.1 at 2009-03-30 03:26:20) [GET]
+Rendering template within layouts/application
+Rendering stage/index
+Completed in 8ms (View: 6, DB: 0) | 200 OK [http://localhost/stage]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:26:24) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 103ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:26:43) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:26:45) [GET]
+  [4;35;1mStage Load (0.3ms)[0m   [0mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;36;1mStage Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `stages`[0m
+Completed in 180ms (View: 1, DB: 1) | 200 OK [http://localhost/api/all_stages.json]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:27:40) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 23ms (View: 18, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-03-30 03:27:57) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 24ms (View: 18, DB: 0) | 200 OK [http://localhost/home]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:27:58) [GET]
+  [4;36;1mStage Load (0.3ms)[0m   [0;1mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;35;1mStage Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `stages`[0m
+Completed in 159ms (View: 1, DB: 2) | 200 OK [http://localhost/api/all_stages.json]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing StageController#2291 (for 127.0.0.1 at 2009-03-30 03:28:17) [GET]
+
+ActionController::UnknownAction (No action responded to 2291. Actions: index):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApiController#all_stages to json (for 127.0.0.1 at 2009-03-30 03:28:26) [GET]
+  [4;36;1mStage Load (9.3ms)[0m   [0;1mSELECT name, latitude, longitude, id FROM `stages` WHERE (latitude IS NOT NULL) [0m
+  [4;35;1mStage Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `stages`[0m
+Completed in 118ms (View: 1, DB: 10) | 200 OK [http://localhost/api/all_stages.json]
