@@ -1,2 +1,0 @@
-module RouteHelper
-end
