@@ -13,7 +13,7 @@ Bus Route: {{ route.display_name }}
 	</tr>
 	{% for s in route.stages.all %}
 	<tr class='stageentry'>
-		<td> <a href="{% url basic.views.show_stage s.id %}">{{ s.display_name }}</a></td>
+		<td> <a href="{% url view.views.show_stage s.id %}">{{ s.display_name }}</a></td>
 	</tr>	
 	{% endfor %}
 </table>

@@ -14,9 +14,9 @@ Bus Stage: {{ stage.display_name }}
 	</tr>
 	{% for r in stage.route_set.all %}
 	<tr class='route_entry'>
-		<td> <a href="{% url basic.views.show_route r.id %}">{{ r.display_name }}</a></td>
-		<td> <a href="{% url basic.views.show_stage r.start.id %}">{{ r.start.display_name }}</a></td>
-		<td> <a href="{% url basic.views.show_stage r.end.id %}">{{ r.end.display_name }}</a></td>
+		<td> <a href="{% url view.views.show_route r.id %}">{{ r.display_name }}</a></td>
+		<td> <a href="{% url view.views.show_stage r.start.id %}">{{ r.start.display_name }}</a></td>
+		<td> <a href="{% url view.views.show_stage r.end.id %}">{{ r.end.display_name }}</a></td>
 	</tr>	
 	{% endfor %}
 </table>
