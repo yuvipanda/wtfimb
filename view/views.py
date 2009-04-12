@@ -1,6 +1,6 @@
 # Create your views here.
 
-from models import *
+from appmodels.models import *
 from django.shortcuts import render_to_response
 
 def index(request):
