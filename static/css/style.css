@@ -1,0 +1,275 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 0.90em;
+  font-family: Helvetica, Arial, sans-serif;
+
+  background-color: #efefff;
+}
+
+h1 {   
+    color: #532406;  
+    font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 10px;  
+  
+  border-collapse: collapse;
+}
+
+table caption {
+  margin-top: 10px;
+  padding: 0 0 0.5em 3px;
+
+  font: 400 0.8em georgia, sans-serif;
+  text-align: left;  
+}
+
+table th,
+table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.3em 0.3em;
+}
+
+thead th {
+  background-color: #F1FFE3;
+  border-bottom: 1px solid #B8E78B;
+}
+
+tbody tr.dark {
+  background-color: #F5F5F5;
+}
+
+tbody td {
+  border-bottom: 1px solid #DDD;
+}
+
+tbody tr:hover {
+  background-color: #FBFEDF;
+}
+#outer>tbody>tr:hover
+{
+  background-color: inherit;
+}
+input[type=text] {
+    padding: 2px;
+}
+
+#wrapper {
+	/* margin: 0 auto; */
+  
+  background-color: #fff;
+	text-align: left;
+	width: 100%;
+}
+
+#topbar {
+  background-color: #069;
+  padding: 0.75em 0.5em 0.5em 0.5em;
+  margin: 0;
+}
+#topbar span#location{
+	color: #FFFFFF;
+	background: #000000;
+	padding-right: 2px;
+	padding-left: 2px;
+}
+#topbar p {
+  margin: 0;
+  padding: 0;
+}
+
+#topbar .hint {
+  color: #d0dcee;
+  float: left;
+  margin-right: 0.5em;
+  line-height: 150%;
+}
+
+form {
+  padding: 0;
+  margin: 0;
+}
+
+#topbar h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5em;
+}
+
+#topbar a {
+  color: #fdfdfd;  
+  text-decoration: none;
+}
+
+#header {
+  padding: 0.5em;
+  padding-bottom: 0;
+}
+
+#header h1,
+#header h2 {
+  margin: 0;
+  padding: 0;  
+}
+
+#page, #header, #footer {  
+  padding: 0.7em;  
+}
+
+#page {
+  padding-top: 0.4em;
+}
+
+#footer {
+  font-size: 0.85em;
+  color: #bbb;
+  border-top: 1px solid #069;
+  background-color: #efefff;
+  text-align:center;
+}
+
+.hilite {
+    font-weight: bold;
+    background-color: #FBFEDF;
+}
+
+.bus {
+  background: #ffa;
+  border: 1px solid #ccc;
+  display: inline;
+  padding: 1px 2px;
+}
+
+.journey {
+  background: #f1dbe8;
+  border: 1px solid #ccc;
+  display: inline;
+  padding: 1px 2px;
+}
+
+.stop {
+  background: #F1FFE3;
+  border-bottom: 1px solid #ccc;
+  display: inline;
+  padding: 1px 2px;
+}
+
+.bus a, .stop a, .journey a {
+    color: #000;
+    border: 0;
+    text-decoration: none;
+}
+
+.bus a:visited, .stop a:visited, .journey a:visited {
+    color: #111;
+    background: transparent;
+}
+
+.bus a:hover, .stop a:hover, .journey a:hover {
+    background: transparent;
+    text-decoration: underline;
+}
+
+.buses {
+    line-height: 180%;
+}
+
+/* styles for entire widget */
+.yui-skin-sam .yui-ac {
+    position:relative;font-family:arial;font-size:100%;
+}
+
+/* styles for input field */
+.yui-skin-sam .yui-ac-input {
+    position:absolute;width:100%;
+}
+
+/* styles for results container */
+.yui-skin-sam .yui-ac-container {
+    position:absolute;width:100%;
+}
+
+/* styles for header/body/footer wrapper within container */
+.yui-skin-sam .yui-ac-content {
+    position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050;
+}
+
+
+
+/* styles for results list */
+.yui-skin-sam .yui-ac-content ul{
+    margin:0;padding:0;width:100%;
+}
+
+/* styles for result item */
+.yui-skin-sam .yui-ac-content li {
+    margin:0;padding:2px 5px;cursor:default;white-space:nowrap;
+}
+
+
+
+#topbardstautocomplete, #topbarsrcautocomplete {
+    width: 15em;
+    padding-bottom: 2em;
+    margin-right: 1em;
+    float: left;
+}
+
+/* Auto complete on the index page */
+#dstautocomplete, #srcautocomplete {
+    padding-bottom:2em;
+    margin: 1em;
+}
+
+#dstautocomplete .yui-ac-input, #srcautocomplete .yui-ac-input {
+  font-size: 100%;
+}
+
+/* Button styles based on http://particletree.com/features/ rediscovering-the-button-element/ */
+button {                    
+  padding: 0.20em;          
+  margin-left: 1em;
+
+  color: #565656;
+  background-color: #f5f5f5;
+  border: 1px solid #dedede;
+  border-top: 1px solid #eee;
+  border-left: 1px solid #eee;
+}
+
+button:hover {
+  background-color: #dff4ff;
+  border: 1px solid #c2e1ef;
+  color: #336699;
+}
+
+#topbar button {
+  padding: 0.1em;
+  margin: 0;
+}
+
+#edit-map  /* Style (size) for the map shown in the Edit-Stage data window */
+{
+	width:700px;
+	height:500px;
+}
+
+#map  /* Style (size) for the non-editablemap shown everywhere else */
+{
+	width:800px;
+	height:500px;
+}

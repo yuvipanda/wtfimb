@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Bus Route: {{ route.display_name }} 
+{% endblock %}
+
+{% block main %}
+<span>Route Name: {{ route.display_name }}</span>
+<span>Route Type: {{ route.types }}</span>
+<table id="stages">
+	<tr>
+		<th>Stage</th>
+	</tr>
+	{% for s in route.stages.all %}
+	<tr class='stageentry'>
+		<td> <a href="{% url basic.views.show_stage s.id %}">{{ s.display_name }}</a></td>
+	</tr>	
+	{% endfor %}
+</table>
+{% endblock %}
