@@ -1,0 +1,5 @@
+NAME = 'wtfimb'
+USER = 'root'
+PASSWORD = 'plasmafury'
+HOST = ''
+PORT = ''

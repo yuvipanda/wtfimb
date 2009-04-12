@@ -1,4 +1,7 @@
+import os.path
 # Django settings for wtfimb project.
+
+ROOT_DIR = os.path.dirname(__file__)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -9,12 +12,14 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+import dbsettings
+
 DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'wtfimb'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'root'             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_NAME = dbsettings.NAME             # Or path to database file if using sqlite3.
+DATABASE_USER = dbsettings.USER             # Not used with sqlite3.
+DATABASE_PASSWORD = dbsettings.PASSWORD         # Not used with sqlite3.
+DATABASE_HOST = dbsettings.HOST             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = dbsettings.PORT             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -42,6 +47,8 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = ''
 
+STATIC_DOC_ROOT = os.path.join(ROOT_DIR, 'static').replace('\\','/')
+
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
@@ -66,6 +73,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'wtfimb.urls'
 
 TEMPLATE_DIRS = (
+		os.path.join(ROOT_DIR, 'basic').replace('\\','/'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
