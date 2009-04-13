@@ -13,8 +13,12 @@ class Route(models.Model):
 	types = models.CharField(max_length=64)
 	start = models.ForeignKey(Stage, related_name='start')
 	end = models.ForeignKey(Stage, related_name='end')
-	stages = models.ManyToManyField(Stage)
+	stages = models.ManyToManyField(Stage, through="RouteStage")
 	time = models.FloatField()
 	fare = models.FloatField()
 
+class RouteStage(models.Model):
+	route = models.ForeignKey(Route)
+	stage = models.ForeignKey(Stage)
+	sequence = models.IntegerField()
 # Create your models here.
