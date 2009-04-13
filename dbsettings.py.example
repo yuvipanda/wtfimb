@@ -1,5 +1,5 @@
 NAME = 'wtfimb'
 USER = 'root'
-PASSWORD = 'root'
+PASSWORD = ''
 HOST = ''
 PORT = ''
