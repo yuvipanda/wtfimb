@@ -1,0 +1,4 @@
+#Ignore all pyc, ~ and .swp files
+*.pyc
+*.*~
+*.swp
