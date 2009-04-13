@@ -24,10 +24,10 @@ USE `wtfimb`;
 
 
 #
-# Table structure for table 'basic_route'
+# Table structure for table 'appmodels_route'
 #
 
-CREATE TABLE /*!32312 IF NOT EXISTS*/ `basic_route` (
+CREATE TABLE /*!32312 IF NOT EXISTS*/ `appmodels_route` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `display_name` varchar(64) NOT NULL,
   `mtc_name` varchar(64) NOT NULL,
@@ -39,20 +39,20 @@ CREATE TABLE /*!32312 IF NOT EXISTS*/ `basic_route` (
   PRIMARY KEY (`id`),
   KEY `basic_route_start_id` (`start_id`),
   KEY `basic_route_end_id` (`end_id`),
-  CONSTRAINT `end_id_refs_id_79f567c6` FOREIGN KEY (`end_id`) REFERENCES `basic_stage` (`id`),
-  CONSTRAINT `start_id_refs_id_79f567c6` FOREIGN KEY (`start_id`) REFERENCES `basic_stage` (`id`)
+  CONSTRAINT `end_id_refs_id_79f567c6` FOREIGN KEY (`end_id`) REFERENCES `appmodels_stage` (`id`),
+  CONSTRAINT `start_id_refs_id_79f567c6` FOREIGN KEY (`start_id`) REFERENCES `appmodels_stage` (`id`)
 ) TYPE=InnoDB AUTO_INCREMENT=1655 /*!40100 DEFAULT CHARSET=latin1*/;
 
 
 
 #
-# Dumping data for table 'basic_route'
+# Dumping data for table 'appmodels_route'
 #
 
-TRUNCATE TABLE `basic_route`;
-LOCK TABLES `basic_route` WRITE;
-/*!40000 ALTER TABLE `basic_route` DISABLE KEYS*/;
-INSERT INTO `basic_route` (`id`, `display_name`, `mtc_name`, `types`, `start_id`, `end_id`, `time`, `fare`) VALUES
+TRUNCATE TABLE `appmodels_route`;
+LOCK TABLES `appmodels_route` WRITE;
+/*!40000 ALTER TABLE `appmodels_route` DISABLE KEYS*/;
+INSERT INTO `appmodels_route` (`id`, `display_name`, `mtc_name`, `types`, `start_id`, `end_id`, `time`, `fare`) VALUES
 	(828,'1B','Y1B','Deluxe',3709,3729,'100','14'),
 	(829,'1','1NS','Night Service',3709,3738,'70','12'),
 	(830,'A1','XA1','Express',3739,3738,'50','7'),
@@ -880,35 +880,35 @@ INSERT INTO `basic_route` (`id`, `display_name`, `mtc_name`, `types`, `start_id`
 	(1652,'597','W597V','AC Volvo',3793,4423,'95','38'),
 	(1653,'599','W599V','AC Volvo',3793,4485,'95','0'),
 	(1654,'599','S599','Deluxe',3793,4485,'95','25');
-/*!40000 ALTER TABLE `basic_route` ENABLE KEYS*/;
+/*!40000 ALTER TABLE `appmodels_route` ENABLE KEYS*/;
 UNLOCK TABLES;
 
 
 #
-# Table structure for table 'basic_route_stages'
+# Table structure for table 'appmodels_route_stages'
 #
 
-CREATE TABLE /*!32312 IF NOT EXISTS*/ `basic_route_stages` (
+CREATE TABLE /*!32312 IF NOT EXISTS*/ `appmodels_route_stages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `route_id` int(11) NOT NULL,
   `stage_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `route_id` (`route_id`,`stage_id`),
   KEY `stage_id_refs_id_36e8b1cd` (`stage_id`),
-  CONSTRAINT `stage_id_refs_id_36e8b1cd` FOREIGN KEY (`stage_id`) REFERENCES `basic_stage` (`id`),
-  CONSTRAINT `route_id_refs_id_1d641a52` FOREIGN KEY (`route_id`) REFERENCES `basic_route` (`id`)
+  CONSTRAINT `route_id_refs_id_1d641a52` FOREIGN KEY (`route_id`) REFERENCES `appmodels_route` (`id`),
+  CONSTRAINT `stage_id_refs_id_36e8b1cd` FOREIGN KEY (`stage_id`) REFERENCES `appmodels_stage` (`id`)
 ) TYPE=InnoDB AUTO_INCREMENT=11974 /*!40100 DEFAULT CHARSET=latin1*/;
 
 
 
 #
-# Dumping data for table 'basic_route_stages'
+# Dumping data for table 'appmodels_route_stages'
 #
 
-TRUNCATE TABLE `basic_route_stages`;
-LOCK TABLES `basic_route_stages` WRITE;
-/*!40000 ALTER TABLE `basic_route_stages` DISABLE KEYS*/;
-INSERT INTO `basic_route_stages` (`id`, `route_id`, `stage_id`) VALUES
+TRUNCATE TABLE `appmodels_route_stages`;
+LOCK TABLES `appmodels_route_stages` WRITE;
+/*!40000 ALTER TABLE `appmodels_route_stages` DISABLE KEYS*/;
+INSERT INTO `appmodels_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(19,828,3709),
 	(20,828,3710),
 	(21,828,3711),
@@ -4908,7 +4908,8 @@ INSERT INTO `basic_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(4000,1140,3870),
 	(3994,1140,3873),
 	(3995,1140,3874),
-	(4002,1140,3890),
+	(4002,1140,3890);
+INSERT INTO `appmodels_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(4003,1140,3891),
 	(4004,1140,3892),
 	(4005,1140,3893),
@@ -5908,8 +5909,7 @@ INSERT INTO `basic_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(4991,1222,3936),
 	(4993,1222,3944),
 	(4994,1222,3945),
-	(4996,1222,4015);
-INSERT INTO `basic_route_stages` (`id`, `route_id`, `stage_id`) VALUES
+	(4996,1222,4015),
 	(4997,1222,4016),
 	(5000,1222,4028),
 	(4998,1222,4136),
@@ -8909,7 +8909,8 @@ INSERT INTO `basic_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(8004,1434,3982),
 	(8003,1434,4003),
 	(7997,1434,4072),
-	(7995,1434,4131),
+	(7995,1434,4131);
+INSERT INTO `appmodels_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(7996,1434,4132),
 	(7994,1434,4160),
 	(8006,1434,4248),
@@ -10909,8 +10910,7 @@ INSERT INTO `basic_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(9997,1567,3719),
 	(9998,1567,3720),
 	(9999,1567,3721),
-	(10000,1567,3722);
-INSERT INTO `basic_route_stages` (`id`, `route_id`, `stage_id`) VALUES
+	(10000,1567,3722),
 	(10006,1567,3739),
 	(10004,1567,3795),
 	(10008,1567,3901),
@@ -12884,15 +12884,15 @@ INSERT INTO `basic_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(11944,1654,4633),
 	(11953,1654,4634),
 	(11957,1654,4635);
-/*!40000 ALTER TABLE `basic_route_stages` ENABLE KEYS*/;
+/*!40000 ALTER TABLE `appmodels_route_stages` ENABLE KEYS*/;
 UNLOCK TABLES;
 
 
 #
-# Table structure for table 'basic_stage'
+# Table structure for table 'appmodels_stage'
 #
 
-CREATE TABLE /*!32312 IF NOT EXISTS*/ `basic_stage` (
+CREATE TABLE /*!32312 IF NOT EXISTS*/ `appmodels_stage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `display_name` varchar(255) NOT NULL,
   `lattitude` double DEFAULT NULL,
@@ -12904,13 +12904,13 @@ CREATE TABLE /*!32312 IF NOT EXISTS*/ `basic_stage` (
 
 
 #
-# Dumping data for table 'basic_stage'
+# Dumping data for table 'appmodels_stage'
 #
 
-TRUNCATE TABLE `basic_stage`;
-LOCK TABLES `basic_stage` WRITE;
-/*!40000 ALTER TABLE `basic_stage` DISABLE KEYS*/;
-INSERT INTO `basic_stage` (`id`, `display_name`, `lattitude`, `longitude`, `mtc_name`) VALUES
+TRUNCATE TABLE `appmodels_stage`;
+LOCK TABLES `appmodels_stage` WRITE;
+/*!40000 ALTER TABLE `appmodels_stage` DISABLE KEYS*/;
+INSERT INTO `appmodels_stage` (`id`, `display_name`, `lattitude`, `longitude`, `mtc_name`) VALUES
 	(3709,'Thiruvetriyur B.S',NULL,NULL,'THIRUVETRIYUR B.S'),
 	(3710,'Thiruvotriyur Temple',NULL,NULL,'THIRUVOTRIYUR TEMPLE'),
 	(3711,'Thangal','13.1457255252009','80.2973127365112','THANGAL'),
@@ -13838,6 +13838,6 @@ INSERT INTO `basic_stage` (`id`, `display_name`, `lattitude`, `longitude`, `mtc_
 	(4633,'Pattikulam Colony',NULL,NULL,'PATTIKULAM COLONY'),
 	(4634,'Illanthope',NULL,NULL,'ILLANTHOPE'),
 	(4635,'Salavankuppam/Devanori',NULL,NULL,'SALAVANKUPPAM/DEVANORI');
-/*!40000 ALTER TABLE `basic_stage` ENABLE KEYS*/;
+/*!40000 ALTER TABLE `appmodels_stage` ENABLE KEYS*/;
 UNLOCK TABLES;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS*/;
