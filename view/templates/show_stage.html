@@ -1,5 +1,22 @@
 {% extends "layout.html" %}
 
+{% block script %}
+{% if stage.lattitude %}
+$(document).ready(function() {
+	var point = OpenLayers.LonLat( {{ stage.longitude }}, {{ stage.lattitude }} );
+	var map = new OpenLayers.Map('map');
+	var layer = new OpenLayers.Layer.WMS('OpenLayers WMS',
+					'http://labs.metacarta.com/wms/vmap0',
+					{layers: 'basic'});
+	map.addLayer(layer);
+	var markers = OpenLayers.Layer.Markers('markers');
+	var mark = OpenLayers.Marker(point)
+	map.addLayer(layer);
+	map.panTo(point);
+	});						
+{% endif %}
+{% endblock %}
+
 {% block title %}
 Bus Stage: {{ stage.display_name }} 
 {% endblock %}
@@ -25,4 +42,5 @@ Bus Stage: {{ stage.display_name }}
 	</tr>	
 	{% endfor %}
 </table>
+<div id="map"></div>
 {% endblock %}
