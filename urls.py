@@ -10,7 +10,8 @@ urlpatterns = patterns('',
         {'document_root': settings.STATIC_DOC_ROOT}),
 	
 	(r'^view/', include('view.urls')),
-	(r'^edit', include('edit.urls')),
+	(r'^edit/', include('edit.urls')),
+	(r'^api/', include('api.urls')),
 		
     # Example:
     # (r'^wtfimb/', include('wtfimb.foo.urls')),
