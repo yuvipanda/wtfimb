@@ -1,6 +1,6 @@
 from django import forms
 
 class EditStageForm(forms.Form):
-	lattitude = forms.FloatField()
+	latitude = forms.FloatField()
 	longitude = forms.FloatField()
 	

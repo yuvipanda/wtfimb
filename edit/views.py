@@ -9,7 +9,7 @@ def edit_stage(request, id):
 		if form.is_valid():
 			cd = form.cleaned_data
 			s = Stage(id=id, 
-					lattitude = cd['lattitude'],
+					latitude = cd['latitude'],
 					longitude = cd['longitude']
 					)
 			s.save()
@@ -17,7 +17,7 @@ def edit_stage(request, id):
 	else:
 		s = Stage.objects.get(id=id)
 		form = EditStageForm(
-				initial = {'lattitude': s.lattitude,
+				initial = {'latitude': s.latitude,
 						   'longitude': s.longitude}
 				)
 	return render_to_response('edit_stage.html', {'form':form, 'stage':s})

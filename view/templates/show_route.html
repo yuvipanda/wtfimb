@@ -14,7 +14,7 @@ Bus Route: {{ route.display_name }}
 	{% for s in route.stages.all %}
 	<tr class='stageentry'>
 		<td> <a href="{% url view.views.show_stage s.id %}">{{ s.display_name }}</a>
-	{% if not s.lattitude %}	
+	{% if not s.latitude %}	
 		<a class="mapthis" href="{% url edit.views.edit_stage s.id %}">Map this Stage!</a>
 	{% endif %}
 	</td>

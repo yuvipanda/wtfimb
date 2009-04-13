@@ -2,7 +2,7 @@ from django.db import models
 
 class Stage(models.Model):
 	display_name = models.CharField(max_length=255)
-	lattitude = models.FloatField(null=True, blank=True)
+	latitude = models.FloatField(null=True, blank=True)
 	longitude = models.FloatField(null=True, blank=True)
 	mtc_name = models.CharField(max_length=255)
 	#routes = models.ManyToManyField('Route') #Since Route isn't yet defined

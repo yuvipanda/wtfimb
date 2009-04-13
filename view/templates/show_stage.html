@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
 {% block script %}
-{% if stage.lattitude %}
+{% if stage.latitude %}
 $(document).ready(function() {
-	var point = OpenLayers.LonLat( {{ stage.longitude }}, {{ stage.lattitude }} );
+	var point = OpenLayers.LonLat( {{ stage.longitude }}, {{ stage.latitude }} );
 	var map = new OpenLayers.Map('map');
 	var layer = new OpenLayers.Layer.WMS('OpenLayers WMS',
 					'http://labs.metacarta.com/wms/vmap0',
@@ -23,7 +23,7 @@ Bus Stage: {{ stage.display_name }}
 
 {% block main %}
 <span>Route Name: {{ stage.display_name }}</span>
-{% if not stage.lattitude %}
+{% if not stage.latitude %}
 	<span>
 		<a class="mapthis" href="{% url edit.views.edit_stage stage.id %}">Map this Stage!</a>
 	</span>

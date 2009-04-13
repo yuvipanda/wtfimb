@@ -4908,8 +4908,7 @@ INSERT INTO `appmodels_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(4000,1140,3870),
 	(3994,1140,3873),
 	(3995,1140,3874),
-	(4002,1140,3890);
-INSERT INTO `appmodels_route_stages` (`id`, `route_id`, `stage_id`) VALUES
+	(4002,1140,3890),
 	(4003,1140,3891),
 	(4004,1140,3892),
 	(4005,1140,3893),
@@ -5909,7 +5908,8 @@ INSERT INTO `appmodels_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(4991,1222,3936),
 	(4993,1222,3944),
 	(4994,1222,3945),
-	(4996,1222,4015),
+	(4996,1222,4015);
+INSERT INTO `appmodels_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(4997,1222,4016),
 	(5000,1222,4028),
 	(4998,1222,4136),
@@ -8909,8 +8909,7 @@ INSERT INTO `appmodels_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(8004,1434,3982),
 	(8003,1434,4003),
 	(7997,1434,4072),
-	(7995,1434,4131);
-INSERT INTO `appmodels_route_stages` (`id`, `route_id`, `stage_id`) VALUES
+	(7995,1434,4131),
 	(7996,1434,4132),
 	(7994,1434,4160),
 	(8006,1434,4248),
@@ -10910,7 +10909,8 @@ INSERT INTO `appmodels_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(9997,1567,3719),
 	(9998,1567,3720),
 	(9999,1567,3721),
-	(10000,1567,3722),
+	(10000,1567,3722);
+INSERT INTO `appmodels_route_stages` (`id`, `route_id`, `stage_id`) VALUES
 	(10006,1567,3739),
 	(10004,1567,3795),
 	(10008,1567,3901),
@@ -12895,7 +12895,7 @@ UNLOCK TABLES;
 CREATE TABLE /*!32312 IF NOT EXISTS*/ `appmodels_stage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `display_name` varchar(255) NOT NULL,
-  `lattitude` double DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
   `longitude` double DEFAULT NULL,
   `mtc_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
@@ -12910,7 +12910,7 @@ CREATE TABLE /*!32312 IF NOT EXISTS*/ `appmodels_stage` (
 TRUNCATE TABLE `appmodels_stage`;
 LOCK TABLES `appmodels_stage` WRITE;
 /*!40000 ALTER TABLE `appmodels_stage` DISABLE KEYS*/;
-INSERT INTO `appmodels_stage` (`id`, `display_name`, `lattitude`, `longitude`, `mtc_name`) VALUES
+INSERT INTO `appmodels_stage` (`id`, `display_name`, `latitude`, `longitude`, `mtc_name`) VALUES
 	(3709,'Thiruvetriyur B.S',NULL,NULL,'THIRUVETRIYUR B.S'),
 	(3710,'Thiruvotriyur Temple',NULL,NULL,'THIRUVOTRIYUR TEMPLE'),
 	(3711,'Thangal','13.1457255252009','80.2973127365112','THANGAL'),
