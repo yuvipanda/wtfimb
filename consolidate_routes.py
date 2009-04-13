@@ -28,14 +28,12 @@ mapping = { "Deluxe" : "D",
 def cleanup_type(type):
 	return type.replace("Cut Service", "").replace("Extension", "").replace("Not Figured Out Yet","").strip()
 
-distRoutes = Route.objects.all().distinct().order_by('display_name')
+distRoutes = Route.objects.values("display_name").distinct().order_by('display_name')
 
-for r in distRoutes:
+for dR in distRoutes:
+	r = Route.objects.filter(display_name = dR['display_name'])[0]
 	sameR = Route.objects.filter(display_name=r.display_name)
-	try:
-		types = ','.join([mapping[cleanup_type(sR.types)] for sR in sameR])
-	except:
-		r.delete()
+	types = ','.join([mapping[cleanup_type(sR.types)] for sR in sameR])
 	r.types = types
 	Route.objects.filter(display_name=r.display_name).exclude(id=r.id).delete()
 	r.save()
