@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Edit Stage: {{ stage.display_name }}
+{% endblock %}
+
+{% block main %}
+<h1>SOMEONE, PLEASE MAKE THIS PRETTY!</h1>
+Editing Data for Stage {{ stage.display_name }}
+<form action="" method="POST">
+<table id="editform">
+	{{ form.as_table }}
+</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}
