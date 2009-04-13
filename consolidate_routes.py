@@ -33,8 +33,12 @@ distRoutes = Route.objects.values("display_name").distinct().order_by('display_n
 for dR in distRoutes:
 	r = Route.objects.filter(display_name = dR['display_name'])[0]
 	sameR = Route.objects.filter(display_name=r.display_name)
-	types = ','.join([mapping[cleanup_type(sR.types)] for sR in sameR])
-	r.types = types
+	types = [mapping[cleanup_type(sR.types)] for sR in sameR]
+	ntypes = []
+	for t in types:
+		if not t in ntypes:
+			ntypes.append(t)
+	r.types = ','.join(ntypes)
 	Route.objects.filter(display_name=r.display_name).exclude(id=r.id).delete()
 	r.save()
 	print r.display_name
