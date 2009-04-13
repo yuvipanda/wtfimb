@@ -3,7 +3,7 @@
 from appmodels.models import *
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
-import simplejson
+from django.utils import simplejson
 
 def all_routes(request):
 	stages = Stage.objects.all()
