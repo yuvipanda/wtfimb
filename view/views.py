@@ -14,3 +14,8 @@ def show_stage(request, id):
 	s = Stage.objects.get(id=id)
 	return	render_to_response('show_stage.html', {'stage':s})
 
+def show_unmapped_stages(request):
+	unmapped = Stage.objects.filter(lattitude=None)
+	return render_to_response("show_unmapped_stages.html", 
+			{'unmapped_stages':unmapped})
+

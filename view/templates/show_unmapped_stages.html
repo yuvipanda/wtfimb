@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Currently Unmapped: {{ unmapped_stages.count }} Stages
+{% endblock %}
+
+{% block main %}
+<h1>List of Unmapped Stages</h1>
+<h1>SOMEONE MAKE THIS PRETTY!</h1>
+<ul>
+	{% for us in unmapped_stages %}
+	<li>
+	<a href="{% url view.views.show_stage us.id %}">{{us.display_name}}</a>
+	(<a class="mapthis" href="{% url edit.views.edit_stage us.id %}">Map This!</a>)
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}
