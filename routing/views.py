@@ -16,7 +16,7 @@ def direct_routes_between(start, end):
 
 def show_shortest_path(request, start, end):
 	G = marshal.load(open(settings.GRAPH_CACHE, 'rb'))
-	path = shortestPath(G, int(start), int(end))
+	path = shortestPath(G, int(start), int(end), weighted=False)
 	stages = [Stage.objects.get(id=sid) for sid in path]
 	changeovers = []
 	for i in xrange(0,len(stages) - 1):
