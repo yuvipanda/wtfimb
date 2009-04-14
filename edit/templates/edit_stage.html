@@ -1,5 +1,88 @@
 {% extends "layout.html" %}
 
+{% block script %}
+var lat=13.0456
+var lon=80.232
+var zoom=12
+var iconSize = new OpenLayers.Size(22,22);
+var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
+var iconSize = new OpenLayers.Size(22,22);
+var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
+var icon = new OpenLayers.Icon("/static/img/bus_stop_22.png",iconSize,iconOffset);
+var map;
+var marker;
+OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
+                defaultHandlerOptions: {
+                    'single': true,
+                    'double': false,
+                    'pixelTolerance': 0,
+                    'stopSingle': false,
+                    'stopDouble': false
+                },
+
+                initialize: function(options) {
+                    this.handlerOptions = OpenLayers.Util.extend(
+                        {}, this.defaultHandlerOptions
+                    );
+                    OpenLayers.Control.prototype.initialize.apply(
+                        this, arguments
+                    ); 
+                    this.handler = new OpenLayers.Handler.Click(
+                        this, {
+                            'click': this.trigger
+                        }, this.handlerOptions
+                    );
+                }, 
+
+                trigger: function(e) {
+                    marker.display(true);
+                    var elonlat = map.getLonLatFromViewPortPx(e.xy).transform(map.getProjectionObject(),new OpenLayers.Projection("EPSG:4326"));
+                    marker.moveTo(e.xy);
+                    document.getElementById("id_latitude").value = elonlat.lat
+                    document.getElementById("id_longitude").value = elonlat.lon
+                }
+
+            });
+$(document).ready(function() {
+            map = new OpenLayers.Map ("map", {
+                controls:[
+                    new OpenLayers.Control.Navigation(),
+                    new OpenLayers.Control.PanZoomBar(),
+                    new OpenLayers.Control.Attribution(),
+                    new OpenLayers.Control.LayerSwitcher()],
+                maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
+                maxResolution: 156543.0399,
+                numZoomLevels: 19,
+                units: 'm',
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection: new OpenLayers.Projection("EPSG:4326")
+            } );
+            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Chennai");
+            var layerStages = new OpenLayers.Layer.Markers("Stages");
+            map.addLayer(layerMapnik);
+            map.addLayer(layerStages);
+            var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+            map.setCenter(lonLat,zoom);
+            {% if stage.latitude %}
+              lat = {{ stage.latitude }};
+              lon = {{ stage.longitude }};      
+              lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+              marker = new OpenLayers.Marker(lonLat,icon.clone());
+              layerStages.addMarker(marker);
+              zoom = 17;
+            {% else %}
+              lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+              marker = new OpenLayers.Marker(lonLat,icon.clone());
+              layerStages.addMarker(marker);
+              marker.display(false);
+            {% endif %}
+            map.setCenter (lonLat, zoom);
+            var click = new OpenLayers.Control.Click();
+            map.addControl(click);
+            click.activate()
+	});
+{% endblock %}
+
 {% block title %}
 Edit Stage: {{ stage.display_name }}
 {% endblock %}
@@ -7,10 +90,22 @@ Edit Stage: {{ stage.display_name }}
 {% block main %}
 <h1>SOMEONE, PLEASE MAKE THIS PRETTY!</h1>
 Editing Data for Stage {{ stage.display_name }}
-<form action="" method="POST">
-<table id="editform">
-	{{ form.as_table }}
-</table>
-<input type="submit" value="Submit" />
-</form>
+<table id="outer">
+  <tbody>
+    <tr>
+      <td width = "30%" >
+        <form action="" method="POST">
+          <table id="editform">
+	      {{ form.as_table }}
+          </table>
+          <input type="submit" value="Submit" />
+
+        </form>
+      </td>
+      <td width = "70%" >
+        <div id="map" />
+      </td>
+    </tr>
+  </tbody>
+</table>   
 {% endblock %}
