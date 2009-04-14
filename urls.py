@@ -12,6 +12,7 @@ urlpatterns = patterns('',
 	(r'^view/', include('view.urls')),
 	(r'^edit/', include('edit.urls')),
 	(r'^api/', include('api.urls')),
+	(r'^path/', include('routing.urls')),
 		
     # Example:
     # (r'^wtfimb/', include('wtfimb.foo.urls')),

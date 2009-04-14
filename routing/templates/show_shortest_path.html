@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<h1>SOMEONE, MAKE THIS PRETTY!</h1>
+Route from {{ start_stage.display_name }} to {{ end_stage.display_name }}
+{% for co in changeovers %}
+	<h3>
+		From 
+		<a href="{% url view.views.show_stage co.start_stage.id %}">
+			{{ co.start_stage.display_name }}
+		</a> 
+		to
+		<a href="{% url view.views.show_stage co.end_stage.id %}">
+			{{ co.end_stage.display_name }}
+		</a> 
+	</h3>
+	Take:
+	{% for r in co.routes %}
+		<a href="{% url view.views.show_route r.id %}">
+			{{ r.display_name }}
+		</a> 
+	{% endfor %}
+
+{% endfor %}
+{% endblock %}

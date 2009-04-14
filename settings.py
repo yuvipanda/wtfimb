@@ -75,6 +75,7 @@ ROOT_URLCONF = 'wtfimb.urls'
 TEMPLATE_DIRS = (
 		os.path.join(ROOT_DIR, 'view\\templates').replace('\\','/'),
 		os.path.join(ROOT_DIR, 'edit\\templates').replace('\\','/'),
+		os.path.join(ROOT_DIR, 'routing\\templates').replace('\\','/'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -88,4 +89,7 @@ INSTALLED_APPS = (
 	'wtfimb.appmodels',
 	'wtfimb.view',
 	'wtfimb.edit',
+	'wtfimb.urls',
 )
+
+GRAPH_CACHE = os.path.join(ROOT_DIR, 'graph')
