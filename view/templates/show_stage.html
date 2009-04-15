@@ -52,10 +52,8 @@ Bus Stage: {{ stage.display_name }}
 		<a class="mapthis" href="{% url edit.views.edit_stage stage.id %}">Map this Stage!</a>
 	</span>
 {% endif %}
-<table id="outer">
-  <tbody>
-    <tr>
-      <td width="30%">
+<div id="view">
+<div id="table">
       <table id="stages">
 	<tr>
 		<th>Route</th>
@@ -69,11 +67,9 @@ Bus Stage: {{ stage.display_name }}
 		<td> <a href="{% url view.views.show_stage r.end.id %}">{{ r.end.display_name }}</a></td>
 	</tr>	
 	{% endfor %}
-      </table>
-      </td>
-      <td width="70%">
+      </table></div>
+      
         <div id="map"></div>
-      </td>
-   </tbody>
-</table>
+        <div class="clearfloat"></div></div>
+      
 {% endblock %}
