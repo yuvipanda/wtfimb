@@ -60,7 +60,7 @@ $(document).ready(function() {
 function addStage(lat,lon,id) {
     var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), icon.clone());
     marker.events.register("click", marker, function(e){
-        window.location="view/stage/"+id; });
+        window.location="/view/stage/"+id; });
     layerStages.addMarker(marker);
 }
 
