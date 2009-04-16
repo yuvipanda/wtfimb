@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 
 {% block main %}
-<h1>SOMEONE, MAKE THIS PRETTY!</h1>
-Route from {{ start_stage.display_name }} to {{ end_stage.display_name }}
+<div id="header"><h1>Route from {{ start_stage.display_name }} to {{ end_stage.display_name }}</h1></div>
+
 {% for co in changeovers %}
 	<h3>
 		From 
@@ -16,9 +16,9 @@ Route from {{ start_stage.display_name }} to {{ end_stage.display_name }}
 	</h3>
 	Take:
 	{% for r in co.routes %}
-		<a href="{% url view.views.show_route r.id %}">
+		<span class="bus"><a href="{% url view.views.show_route r.id %}">
 			{{ r.display_name }}
-		</a> 
+        </a></span>&nbsp;
 	{% endfor %}
 
 {% endfor %}
