@@ -41,7 +41,7 @@ CREATE TABLE /*!32312 IF NOT EXISTS*/ `appmodels_route` (
   KEY `appmodels_route_end_id` (`end_id`),
   CONSTRAINT `end_id_refs_id_39d41e10` FOREIGN KEY (`end_id`) REFERENCES `appmodels_stage` (`id`),
   CONSTRAINT `start_id_refs_id_39d41e10` FOREIGN KEY (`start_id`) REFERENCES `appmodels_stage` (`id`)
-) TYPE=InnoDB AUTO_INCREMENT=829 /*!40100 DEFAULT CHARSET=latin1*/;
+) TYPE=InnoDB AUTO_INCREMENT=828 /*!40100 DEFAULT CHARSET=latin1*/;
 
 
 
@@ -705,7 +705,7 @@ CREATE TABLE /*!32312 IF NOT EXISTS*/ `appmodels_routestage` (
   KEY `appmodels_routestage_stage_id` (`stage_id`),
   CONSTRAINT `route_id_refs_id_52c5639c` FOREIGN KEY (`route_id`) REFERENCES `appmodels_route` (`id`),
   CONSTRAINT `stage_id_refs_id_579b8715` FOREIGN KEY (`stage_id`) REFERENCES `appmodels_stage` (`id`)
-) TYPE=InnoDB AUTO_INCREMENT=11981 /*!40100 DEFAULT CHARSET=latin1*/;
+) TYPE=InnoDB AUTO_INCREMENT=11951 /*!40100 DEFAULT CHARSET=latin1*/;
 
 
 
