@@ -36,7 +36,7 @@ def NewStagesForOldRoute(id):
 
 
 #pdb.set_trace()
-oldCur.execute ("SELECT name, lattitude, longitude, mtc_name FROM stages")
+oldCur.execute ("SELECT name, latitude, longitude, mtc_name FROM stages")
 rows = oldCur.fetchall()
 print "Doing Stages"
 for r in rows:
