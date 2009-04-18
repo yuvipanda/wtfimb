@@ -3,23 +3,32 @@
 {% block main %}
 <div id="header"><h1>Route from {{ start_stage.display_name }} to {{ end_stage.display_name }}</h1></div>
 
-{% for co in changeovers %}
-	<h3>
-		From 
-		<a href="{% url view.views.show_stage co.start_stage.id %}">
-			{{ co.start_stage.display_name }}
-		</a> 
-		to
-		<a href="{% url view.views.show_stage co.end_stage.id %}">
-			{{ co.end_stage.display_name }}
-		</a> 
-	</h3>
-	Take:
-	{% for r in co.routes %}
-		<span class="bus"><a href="{% url view.views.show_route r.id %}">
-			{{ r.display_name }}
-        </a></span>&nbsp;
-	{% endfor %}
+<div id="view">
+    <div id="table">
+        {% for co in changeovers %}
+        <h3>
+            From
+            <a href="{% url view.views.show_stage co.start_stage.id %}">
+                {{ co.start_stage.display_name }}
+            </a>
+            to
+            <a href="{% url view.views.show_stage co.end_stage.id %}">
+                {{ co.end_stage.display_name }}
+            </a>
+        </h3>
+        Take:
+        {% for r in co.routes %}
+        <span class="bus">
+            <a href="{% url view.views.show_route r.id %}">
+                {{ r.display_name }}
+            </a>
+        </span>&nbsp;
+        {% endfor %}
 
-{% endfor %}
+        {% endfor %}
+    </div>
+
+    <div id="map"></div>
+    <div class="clearfloat"></div>
+</div>
 {% endblock %}
