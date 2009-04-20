@@ -8,7 +8,7 @@ from django.conf import settings
 urlpatterns = patterns('',
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.STATIC_DOC_ROOT}),
-	
+	('^$', include('home.urls')),	
 	(r'^view/', include('view.urls')),
 	(r'^edit/', include('edit.urls')),
 	(r'^api/', include('api.urls')),
