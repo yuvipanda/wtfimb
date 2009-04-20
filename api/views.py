@@ -13,3 +13,8 @@ def all_routes(request):
 		 'longitude': s.longitude}
 		) for s in stages])
 	return HttpResponse(simplejson.dumps(data))
+
+def autocomplete_stages(request):
+	stages = Stage.objects.all()
+	data = dict( [ (s.display_name, s.id) for s in stages] )
+	return HttpResponse(simplejson.dumps(data))
