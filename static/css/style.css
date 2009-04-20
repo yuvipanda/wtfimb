@@ -9,7 +9,7 @@ body {
  text-align: center;
  font-size: 0.90em;
  font-family: Helvetica, Arial, sans-serif;
- background-color: #efefff;
+ /*background-color: #efefff;*/
 }
 h1 {
 	color: #532406;
@@ -63,9 +63,11 @@ input[type=text] {
 	position:relative;
 }
 #topbar {
-	background-color: #069;
+	/* background-color: #069; */
 	padding: 0.75em 0.5em 0.5em 0.5em;
 	margin: 0;
+	margin-top:5%;
+	text-align: center;
 }
 #topbar span#location {
 	color: #FFFFFF;
@@ -109,12 +111,14 @@ form {
 }
 #page {
 	padding-top: 0.4em;
+	margin-left:25%;
 }
 #footer {
 	font-size: 0.85em;
-	color: #bbb;
-	border-top: 1px solid #069;
-	background-color: #efefff;
+	color: #bbb; 
+	/*border-top: 1px solid #069;
+	background-color: #efefff;*/
+	margin-top:5%;
 	text-align:center;
 }
 .hilite {
@@ -125,7 +129,8 @@ form {
 	background: #ffa;
 	border: 1px solid #ccc;
 	display: inline;
-	padding: 1px 2px;
+	padding: 3px;
+	font-size:95%;
 }
 .journey {
 	background: #f1dbe8;
@@ -150,7 +155,7 @@ form {
 }
 .bus a:hover, .stop a:hover, .journey a:hover {
 	background: transparent;
-	text-decoration: underline;
+	font-size:125%;	
 }
 .buses {
 	line-height: 180%;
@@ -227,13 +232,15 @@ button:hover {
 	margin: 0;
 }
 #edit-map  /* Style (size) for the map shown in the Edit-Stage data window */ {
-	width:700px;
-	height:500px;
+	width:500px;
+	height:300px;
 }
 #map  /* Style (size) for the non-editablemap shown everywhere else */ {
 	height:500px;
-	width:70%;
-	margin-left:30%;
+	width:40%;
+	margin-left:25px	!important;
+	border:1px dashed;
+	float:left;
 }
 #table {
 	float:left;
@@ -249,4 +256,32 @@ button:hover {
 	font-weight: bold;
 	margin-top: 2px;
 	margin-bottom: 2px;
+	font-size:85%;
+}
+
+.tableheader
+{
+	font-size:150%;	
+}
+
+.names
+{		
+	font-size:250%;
+	font-variant:small-caps;
+}
+
+a
+{
+	text-decoration:none;
+	color:#5fb1ff;
+}
+
+a:visited
+{
+	color:#3b9fff;
+}
+
+a:hover
+{
+	color:#138cff;
 }

@@ -88,8 +88,8 @@ Edit Stage: {{ stage.display_name }}
 {% endblock %}
 
 {% block main %}
-<h1>SOMEONE, PLEASE MAKE THIS PRETTY!</h1>
-Editing Data for Stage {{ stage.display_name }}
+<h1>Editing Stage {{ stage.display_name }}</h1>
+
 <table id="outer">
   <tbody>
     <tr>
@@ -97,8 +97,11 @@ Editing Data for Stage {{ stage.display_name }}
         <form action="" method="POST">
           <table id="editform">
 	      {{ form.as_table }}
+	      <tr>
+	      <td colspan="2" style="text-align:center"><input type="submit" value="Change Values" /></td>
+	      </tr>
           </table>
-          <input type="submit" value="Submit" />
+          
 
         </form>
       </td>

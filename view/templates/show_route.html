@@ -70,12 +70,13 @@ function addStage(lat,lon,id) {
 Bus Route: {{ route.display_name }} 
 {% endblock %}
 
-{% block main %} <span>Route Name: {{ route.display_name }}</span> <span>Route Type: {{ route.types }}</span>
+{% block main %} 
+<h1 class="names">Route: {{ route.display_name }}</h1> 
 <div id="view">
   <div id="table">
     <table id="stages">
       <tr>
-        <th>Stage</th>
+        <th>Stops At</th>
       </tr>
       {% for s in route.stages.all %}
       <tr class='stageentry'>
