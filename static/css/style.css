@@ -2,14 +2,22 @@
 html {
 	font-size:100%;
 }
-
 body {
- margin: 0;
- padding: 0;
- text-align: center;
- font-size: 0.90em;
- font-family: Helvetica, Arial, sans-serif;
- /*background-color: #efefff;*/
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-size: 0.90em;
+	font-family: Helvetica, Arial, sans-serif;/*background-color: #efefff;*/
+}
+a {
+	text-decoration:none;
+	color:#5fb1ff;
+}
+a:visited {
+	color:#3b9fff;
+}
+a:hover {
+	color:#138cff;
 }
 h1 {
 	color: #532406;
@@ -55,18 +63,17 @@ input[type=text] {
 	padding: 2px;
 }
 #wrapper {
-	/* margin: 0 auto; */
-  
-  background-color: #fff;
+	margin: 0 auto;
+	background-color: #fff;
 	text-align: left;
-	width: 100%;
+	width: 70em; /*around 80% on 1280*/
 	position:relative;
 }
 #topbar {
 	/* background-color: #069; */
-	padding: 0.75em 0.5em 0.5em 0.5em;
+	padding: 0.5em 0.5em 0.5em 0.5em;
 	margin: 0;
-	margin-top:5%;
+	margin-top:.5em;
 	text-align: center;
 }
 #topbar span#location {
@@ -111,11 +118,10 @@ form {
 }
 #page {
 	padding-top: 0.4em;
-	margin-left:25%;
 }
 #footer {
 	font-size: 0.85em;
-	color: #bbb; 
+	color: #bbb;
 	/*border-top: 1px solid #069;
 	background-color: #efefff;*/
 	margin-top:5%;
@@ -155,7 +161,7 @@ form {
 }
 .bus a:hover, .stop a:hover, .journey a:hover {
 	background: transparent;
-	font-size:125%;	
+	font-size:125%;
 }
 .buses {
 	line-height: 180%;
@@ -237,20 +243,21 @@ button:hover {
 }
 #map  /* Style (size) for the non-editablemap shown everywhere else */ {
 	height:500px;
-	width:40%;
-	margin-left:25px	!important;
+	width:70%;
+	margin-left:30% !important;
 	border:1px dashed;
-	float:left;
 }
-#table {
+/*Left column for route details, tables*/
+.leftCol {
 	float:left;
 	width:30%;
+	clear:both;
 }
 .clearfloat {
 	clear:both;
 	line-height:1px;
 }
-.mapthis {
+.mapthis, a:visited.mapthis {
 	color: #A3210E;
 	display:block;
 	font-weight: bold;
@@ -258,30 +265,10 @@ button:hover {
 	margin-bottom: 2px;
 	font-size:85%;
 }
-
-.tableheader
-{
-	font-size:150%;	
+.tableheader {
+	font-size:150%;
 }
-
-.names
-{		
+.names {
 	font-size:250%;
 	font-variant:small-caps;
-}
-
-a
-{
-	text-decoration:none;
-	color:#5fb1ff;
-}
-
-a:visited
-{
-	color:#3b9fff;
-}
-
-a:hover
-{
-	color:#138cff;
 }
