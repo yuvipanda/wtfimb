@@ -8,11 +8,9 @@ def edit_stage(request, id):
 		form = EditStageForm(request.POST)
 		if form.is_valid():
 			cd = form.cleaned_data
-			s = Stage(id=id,
-					display_name = Stage.objects.get(id=id).display_name, 
-					latitude = cd['latitude'],
-					longitude = cd['longitude']
-					)
+			s = Stage.objects.get(id=id)
+			s.latitude = cd['latitude']
+			s.longitude = cd['longitude']
 			s.save()
 			return HttpResponseRedirect('/view/stage/%s' % id)
 	else:
