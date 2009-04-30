@@ -134,9 +134,10 @@ form {
 .bus {
 	background: #ffa;
 	border: 1px solid #ccc;
-	display: inline;
+	display: inline-table;
 	padding: 3px;
 	font-size:95%;
+	margin-bottom:4px;
 }
 .journey {
 	background: #f1dbe8;
@@ -161,7 +162,7 @@ form {
 }
 .bus a:hover, .stop a:hover, .journey a:hover {
 	background: transparent;
-	font-size:125%;
+	text-decoration:underline;
 }
 .buses {
 	line-height: 180%;
