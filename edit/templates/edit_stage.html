@@ -88,27 +88,21 @@ Edit Stage: {{ stage.display_name }}
 {% endblock %}
 
 {% block main %}
-<h1>Editing Stage {{ stage.display_name }}</h1>
-
-<table id="outer">
-  <tbody>
-    <tr>
-      <td width = "30%" >
+<h1 class="names">Editing Stage {{ stage.display_name }}</h1>
+<div id="view">
+	
+	<div class="leftCol">
         <form action="" method="POST">
-          <table id="editform">
+        <table id="editform">
 	      {{ form.as_table }}
 	      <tr>
 	      <td colspan="2" style="text-align:center"><input type="submit" value="Change Values" /></td>
 	      </tr>
-          </table>
-          
-
-        </form>
-      </td>
-      <td width = "70%" >
-        <div id="map" />
-      </td>
-    </tr>
-  </tbody>
-</table>   
+        </table>         
+			</form>
+	</div>
+	
+  <div id="map" ></div>  
+  <div class="clearfloat"></div>
+</div>
 {% endblock %}
