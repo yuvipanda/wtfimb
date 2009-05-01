@@ -75,12 +75,17 @@ input[type=text] {
 	margin: 0;
 	margin-top:.5em;
 	text-align: left;
+	
 }
 #topbar span#location {
 	color: #FFFFFF;
 	background: #000000;
-	padding-right: 2px;
-	padding-left: 2px;
+	padding-right: 7px;
+	padding-left: 7px;
+	font-size:200%;
+	position:absolute;
+	top:53px;
+	left:173px;
 }
 #topbar p {
 	margin: 0;
