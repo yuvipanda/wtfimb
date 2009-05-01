@@ -30,7 +30,6 @@ table {
 	width: 100%;
 	margin-bottom: 10px;
 	border-collapse: collapse;
-	min-height:600px;
 }
 table caption {
 	margin-top: 10px;
@@ -278,3 +277,4 @@ button:hover {
 	font-size:250%;
 	font-variant:small-caps;
 }
+
