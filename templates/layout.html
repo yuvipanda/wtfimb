@@ -7,6 +7,7 @@
 	{% block style %}
 	{% endblock %}
 </style>
+<script type="text/javascript" src="/static/js/tabber.js"></script>
 <script type="text/javascript" src="/static/js/OpenLayers.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js" > </script>
 <script type="text/javascript" src="/static/js/OpenStreetMap.js"></script>
@@ -32,9 +33,10 @@ pageTracker._trackPageview();
 </head>
 <body>
 <div id="wrapper">
-      <div id="topbar">
-           <a href="http://www.busroutes.in/"><img alt="Find Bus Routes in" src="/static/images/header.png" /></a><span id="location"><a href="http://www.busroutes.in/">Chennai!</a></span>           
-      </div>
+<div id="topbar">
+	<a href="http://www.busroutes.in/"><img alt="Find Bus Routes in" src="/static/images/header.png" /></a><span id="location"><a href="http://www.busroutes.in/">Chennai!</a></span>
+	
+</div>
       <div id="page">
 		{% block main %}
 		{% endblock %}
