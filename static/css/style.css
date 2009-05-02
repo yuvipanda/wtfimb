@@ -9,6 +9,9 @@ body {
 	font-size: 0.90em;
 	font-family: Helvetica, Arial, sans-serif;/*background-color: #efefff;*/
 }
+img{
+	border:0px;
+}
 a {
 	text-decoration:none;
 	color:#5fb1ff;
@@ -28,7 +31,7 @@ h2 {
 }
 table {
 	width: 100%;
-	margin-bottom: 10px;
+/*	margin-bottom: 10px;*/
 	border-collapse: collapse;
 }
 table caption {
@@ -39,7 +42,7 @@ table caption {
 }
 table th, table td {
 	text-align: left;
-	vertical-align: top;
+/*	vertical-align: top;*/
 	padding: 0.3em 0.3em;
 }
 thead th {
@@ -86,6 +89,9 @@ input[type=text] {
 	top:53px;
 	left:173px;
 }
+#location a{
+	color: #Fdfdfd;
+}
 #topbar p {
 	margin: 0;
 	padding: 0;
@@ -96,6 +102,7 @@ input[type=text] {
 	margin-right: 0.5em;
 	line-height: 150%;
 }
+
 form {
 	padding: 0;
 	margin: 0;
@@ -104,10 +111,6 @@ form {
 	margin: 0;
 	padding: 0;
 	font-size: 1.5em;
-}
-#topbar a {
-	color: #fdfdfd;
-	text-decoration: none;
 }
 #header {
 	padding: 0.5em;
@@ -277,23 +280,24 @@ button:hover {
 	font-size:250%;
 	font-variant:small-caps;
 }
-
+#homeform{
+	margin-top:90px;
+margin-bottom:50px;
+}
+	#homeform,#homeform input
+	{
+	    font-size:28px;!important
+	}
+	#homeform input[type="text"]
+	{
+	  width:300px;    	
+		height:30px;	
+	}
 input[type="text"]
 	{
-		width:300px;    	
-		height:30px;	
-		font-size:28px;	
-		background-color: #fff2c2;
+		background-color: #f9f9f9;
 	} 
-	#homeform
-	{
-	    font-size:28px;
-	}
-	
-	#submit
-	{
-	    font-size:28px; !important	    	   
-	}
+
 	tbody tr:hover 
 	{
 	background-color: #f3f9ff;
@@ -321,8 +325,9 @@ input[type="text"]
 .tabberlive {
  margin-top:1em;
  position:absolute;
- top:20px;
- left:400px;
+ top:0px;
+ left:40%;
+ width:60%;
 }
 
 /*--------------------------------------------------
@@ -350,17 +355,17 @@ ul.tabbernav li a
  margin-left: 3px;
  border: 1px solid #778;
  border-bottom: none;
- background: #DDE;
+ background: #EFEFEF;
  text-decoration: none;
 }
 
-ul.tabbernav li a:link { color: #448; }
-ul.tabbernav li a:visited { color: #667; }
+ul.tabbernav li a:link { color: #000; }
+ul.tabbernav li a:visited { color: #000; }
 
 ul.tabbernav li a:hover
 {
  color: #000;
- background: #AAE;
+ background: #FFF;
  border-color: #227;
 }
 
