@@ -297,6 +297,7 @@ margin-bottom:50px;
 input[type="text"]
 	{
 		background-color: #f9f9f9;
+        color: #000000;
 	} 
 
 	tbody tr:hover 
