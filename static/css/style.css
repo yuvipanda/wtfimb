@@ -69,7 +69,7 @@ input[type=text] {
 	margin: 0 auto;
 	background-color: #fff;
 	text-align: left;
-	width: 70em; /*around 80% on 1280*/
+	width: 95%; /*70em around 80% on 1280*/
 	position:relative;
 }
 #topbar {
