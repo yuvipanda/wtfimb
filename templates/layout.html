@@ -7,11 +7,28 @@
 	{% block style %}
 	{% endblock %}
 </style>
+<script type="text/javascript" src="/static/js/tabber.js"></script>
 <script type="text/javascript" src="/static/js/OpenLayers.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js" > </script>
 <script type="text/javascript" src="/static/js/OpenStreetMap.js"></script>
 <script type="text/javascript" src="/static/js/jquery.autocomplete.pack.js"></script>
 <script type="text/javascript">
+var stages=Array();
+var data;
+$(document).ready(function(){
+	$.getJSON("{% url wtfimb.api.views.autocomplete_stages %}", function(json){
+		data = json;
+		jQuery.each(json, function(k,v) { stages.push(k); });
+		$("#from").autocomplete(stages);
+		$("#to").autocomplete(stages);
+	});
+
+	$("#submit").click(function(){
+		var fromId = data[$("#from").val()];
+		var toId = data[$("#to").val()];
+		top.location = "/path/" + fromId + "/" + toId;
+	});
+});
 	{% block script %}
 	{% endblock %}
 </script>
@@ -31,19 +48,81 @@ pageTracker._trackPageview();
 
 </head>
 <body>
-<div id="wrapper">
-      <div id="topbar">
-           <a href="http://www.busroutes.in/"><img alt="Find Bus Routes in" src="/static/images/header.png" /></a><span id="location"><a href="http://www.busroutes.in/">Chennai!</a></span>           
-      </div>
-      <div id="page">
-		{% block main %}
-		{% endblock %}
-	  </div>
-      <div id="footer">
-      <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/in/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/2.5/in/88x31.png" /></a><br />
-      <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" property="dc:title" rel="dc:type">India Bus Route Mapping Project</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://busroutes.in" property="cc:attributionName" rel="cc:attributionURL">Busroutes.in</a> is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/in/">Creative Commons Attribution-Share Alike 2.5 India License</a>.<br />
-      <a href="http://trac.busroutes.in/wiki/" >Project Wiki - TRAC</a> | <a href="http://trac.busroutes.in/wiki/FAQ" > FAQ </a> | <a href="http://trac.busroutes.in/wiki/Contact" >Contact </a>
-      </div>
-</div>
+	<div id="wrapper">
+		<div id="topbar">
+			<a href="http://www.busroutes.in/"><img alt="Find Bus Routes in" src="/static/images/header.png" /></a><span id="location"><a href="http://www.busroutes.in/">Chennai!</a></span>
+			<div class="tabber">
+				<div class="tabbertab" title="Plan">
+					<form autocomplete="off" id="search">
+						<table>
+							<tbody>
+								<tr>
+									<td>From</td>
+									<td><input type="text" id="from" /> </td>
+									<td>To</td>
+									<td><input type="text" id="to" /> </td>
+									<td rowspan=2><input type="button" id="submit" value="Find Route!"/></td>
+								</tr>
+								<tr>
+									<td>Mode</td>
+									<td><select name="mode">
+										<option value="Reliable">Reliable</option>
+										<option value="Comfortable">Comfortable</option>
+										<option value="Cheap">Cheap</option>
+										<option value="Auto">+Auto</option>
+										<option value="Taxi">+Taxi</option>
+									</select></td>
+									<td>Dep</td>
+									<td><input type="text" id="dep" /> </td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="tabbertab" title="Explore">
+					<form autocomplete="off" id="">
+						<table>
+							<tbody>
+								<tr>
+									<td><select name="type">
+										<option value="All">All</option>
+										<option value="Bus">Bus</option>
+										<option value="Train">Train</option>
+										<option value="Share">Share Autos</option>
+									</select></td>
+									<td>Stage</td>
+									<td><input type="text" id="" /> </td>
+									<td>Route</td>
+									<td><input type="text" id="" /> </td>
+									<td rowspan=2><input type="submit" id="" value="Go!"/></td>
+								</tr>
+								<td>
+									Filter
+								</td>
+								<td>
+									<td><select name="filter">
+										<option value="ac">AC</option>
+										<option value="n">Night</option>
+										<option value="d">Deluxe</option>
+										<option value="x">Express</option>
+									</select></td>
+								<tr>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="page">
+			{% block main %}
+			{% endblock %}
+		</div>
+		<div id="footer">
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/in/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/2.5/in/88x31.png" /></a><br />
+			<span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" property="dc:title" rel="dc:type">India Bus Route Mapping Project</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://busroutes.in" property="cc:attributionName" rel="cc:attributionURL">Busroutes.in</a> is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/in/">Creative Commons Attribution-Share Alike 2.5 India License</a>.<br />
+			<a href="http://trac.busroutes.in/wiki/" >Project Wiki - TRAC</a> | <a href="http://trac.busroutes.in/wiki/FAQ" > FAQ </a> | <a href="http://trac.busroutes.in/wiki/Contact" >Contact </a>
+		</div>
+	</div>
 </body>
 </html>

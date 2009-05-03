@@ -1,55 +1,9 @@
 {% extends "layout.html" %}
 
 {% block style %}
-    input[type="text"]
-	{
-		width:300px;    	
-		height:30px;	
-		font-size:28px;	
-		background-color: #fff2c2;
-	} 
-	
-	#homeform
-	{
-	    font-size:28px;
-	}
-	
-	#submit
-	{
-	    font-size:28px; !important	    	   
-	}
-	
-	table
-	{
-	width:auto;
-	}
-	
-	tbody tr:hover 
-	{
-	background-color: #f3f9ff;
-    }
 {% endblock %}
 
 {% block script %}
-
-var stages=Array();
-var data;
-$(document).ready(function(){
-	$.getJSON("{% url wtfimb.api.views.autocomplete_stages %}", function(json){
-        data = json;
-	    jQuery.each(json, function(k,v) { stages.push(k); });		
-		$("#from").autocomplete(stages);
-		$("#to").autocomplete(stages);		
-		});
-		
-$("#submit").click(function(){
-    var fromId = data[$("#from").val()];
-    var toId = data[$("#to").val()];
-    top.location = "/path/" + fromId + "/" + toId;
-    });
-    
-    });
-
 {% endblock %}
 
 {% block title %}
@@ -59,18 +13,18 @@ Home
 {% block main %}
 
 <form autocomplete="off" id="homeform">
-    <table>
-    	<tbody>
-    <tr>
-	<td>From</td>
-	<td><input type="text" id="from" /> </td>		
-	
-	<td>To</td>
-	<td><input type="text" id="to" /> </td>
-	
-	<td><input type="button" id="submit" value="Find Route!"/></td>
-	</tr>
-</tbody>
+	<table>
+		<tbody>
+			<tr>
+				<td>From</td>
+				<td><input type="text" id="from" /> </td>
+
+				<td>To</td>
+				<td><input type="text" id="to" /> </td>
+
+				<td><input type="submit" id="submit" value="Find Route!"/></td>
+			</tr>
+		</tbody>
 	</table>
 </form>
 {% endblock %}

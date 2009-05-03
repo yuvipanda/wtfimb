@@ -8,6 +8,10 @@ body {
 	text-align: center;
 	font-size: 0.90em;
 	font-family: Helvetica, Arial, sans-serif;/*background-color: #efefff;*/
+	color:#000;
+}
+img{
+	border:0px;
 }
 a {
 	text-decoration:none;
@@ -28,7 +32,7 @@ h2 {
 }
 table {
 	width: 100%;
-	margin-bottom: 10px;
+/*	margin-bottom: 10px;*/
 	border-collapse: collapse;
 }
 table caption {
@@ -39,7 +43,7 @@ table caption {
 }
 table th, table td {
 	text-align: left;
-	vertical-align: top;
+/*	vertical-align: top;*/
 	padding: 0.3em 0.3em;
 }
 thead th {
@@ -86,6 +90,9 @@ input[type=text] {
 	top:53px;
 	left:173px;
 }
+#location a{
+	color: #Fdfdfd;
+}
 #topbar p {
 	margin: 0;
 	padding: 0;
@@ -96,6 +103,7 @@ input[type=text] {
 	margin-right: 0.5em;
 	line-height: 150%;
 }
+
 form {
 	padding: 0;
 	margin: 0;
@@ -104,10 +112,6 @@ form {
 	margin: 0;
 	padding: 0;
 	font-size: 1.5em;
-}
-#topbar a {
-	color: #fdfdfd;
-	text-decoration: none;
 }
 #header {
 	padding: 0.5em;
@@ -277,4 +281,173 @@ button:hover {
 	font-size:250%;
 	font-variant:small-caps;
 }
+#homeform{
+	margin-top:90px;
+margin-bottom:50px;
+}
+	#homeform,#homeform input
+	{
+	    font-size:28px;!important
+	}
+	#homeform input[type="text"]
+	{
+	  width:300px;    	
+		height:30px;	
+	}
+input[type="text"]
+	{
+		background-color: #f9f9f9;
+        color: #000000;
+	} 
 
+	tbody tr:hover 
+	{
+	background-color: #f3f9ff;
+  }
+
+/* begin css tabs */
+/* http://www.barelyfitz.com/projects/tabber/ */
+
+/* $Id: example.css,v 1.5 2006/03/27 02:44:36 pat Exp $ */
+
+/*--------------------------------------------------
+  REQUIRED to hide the non-active tab content.
+  But do not hide them in the print stylesheet!
+  --------------------------------------------------*/
+.tabberlive .tabbertabhide {
+ display:none;
+}
+
+/*--------------------------------------------------
+  .tabber = before the tabber interface is set up
+  .tabberlive = after the tabber interface is set up
+  --------------------------------------------------*/
+.tabber {
+	display:none;
+}
+.tabberlive {
+ margin-top:1em;
+ position:absolute;
+ top:0px;
+ left:40%;
+ width:60%;
+}
+
+/*--------------------------------------------------
+  ul.tabbernav = the tab navigation list
+  li.tabberactive = the active tab
+  --------------------------------------------------*/
+ul.tabbernav
+{
+ margin:0;
+ padding: 3px 0;
+ border-bottom: 1px solid #778;
+ font: bold 12px Verdana, sans-serif;
+}
+
+ul.tabbernav li
+{
+ list-style: none;
+ margin: 0;
+ display: inline;
+}
+
+ul.tabbernav li a
+{
+ padding: 3px 0.5em;
+ margin-left: 3px;
+ border: 1px solid #778;
+ border-bottom: none;
+ background: #EFEFEF;
+ text-decoration: none;
+}
+
+ul.tabbernav li a:link { color: #000; }
+ul.tabbernav li a:visited { color: #000; }
+
+ul.tabbernav li a:hover
+{
+ color: #000;
+ background: #FFF;
+ border-color: #227;
+}
+
+ul.tabbernav li.tabberactive a
+{
+ background-color: #fff;
+ border-bottom: 1px solid #fff;
+}
+
+ul.tabbernav li.tabberactive a:hover
+{
+ color: #000;
+ background: white;
+ border-bottom: 1px solid white;
+}
+
+/*--------------------------------------------------
+  .tabbertab = the tab content
+  Add style only after the tabber interface is set up (.tabberlive)
+  --------------------------------------------------*/
+.tabberlive .tabbertab {
+ padding:5px;
+ border:1px solid #aaa;
+ border-top:0;
+
+ /* If you don't want the tab size changing whenever a tab is changed
+    you can set a fixed height */
+
+ /* height:200px; */
+
+ /* If you set a fix height set overflow to auto and you will get a
+    scrollbar when necessary */
+
+ /* overflow:auto; */
+}
+
+/* If desired, hide the heading since a heading is provided by the tab */
+.tabberlive .tabbertab h2 {
+ display:none;
+}
+.tabberlive .tabbertab h3 {
+ display:none;
+}
+
+/* Example of using an ID to set different styles for the tabs on the page */
+.tabberlive#tab1 {
+}
+.tabberlive#tab2 {
+}
+.tabberlive#tab2 .tabbertab {
+ height:200px;
+ overflow:auto;
+}
+/* end css tabs */
+
+
+/*search form*/
+#searchform div {
+    /* This div will have the left image as a background */
+    background: url(search1.gif) no-repeat left top;
+    padding: 0 10px;
+    margin: 0;
+    line-height: 1;
+}
+#searchform #search {
+    /* Im going to apply a top and bottom border to this input so that it fits with my images and give it the gradient background */
+    border-top:2px solid #999;
+    border-bottom:2px solid #999;
+    border-left:0;
+    border-right:0;
+    background: #fff url(search2.gif) repeat-x top;
+    padding: 3px 2px 2px 0;
+    height: 15px;
+}
+#searchform input {
+    /* Some reset styles to make my form elements play nice */
+    vertical-align: top;
+    margin: 0 !important;
+    line-height: 1;
+    outline:0 !important;
+}
+/* end earch form*/
