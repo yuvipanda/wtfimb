@@ -259,7 +259,7 @@ button:hover {
 /*Left column for route details, tables*/
 .leftCol {
 	float:left;
-	width:30%;
+	width:29%;
 	clear:both;
 }
 .clearfloat {
