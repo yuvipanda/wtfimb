@@ -4,6 +4,22 @@
 {% endblock %}
 
 {% block script %}
+var stages=Array();
+var data;
+$(document).ready(function(){
+	$.getJSON("{% url wtfimb.api.views.autocomplete_stages %}", function(json){
+		data = json;
+		jQuery.each(json, function(k,v) { stages.push(k); });
+		$("#from").autocomplete(stages);
+		$("#to").autocomplete(stages);
+	});
+
+	$("#submit").click(function(){
+		var fromId = data[$("#from").val()];
+		var toId = data[$("#to").val()];
+		top.location = "/path/" + fromId + "/" + toId;
+	});
+});
 {% endblock %}
 
 {% block title %}
