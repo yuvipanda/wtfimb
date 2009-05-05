@@ -36,10 +36,14 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
 
                 trigger: function(e) {
                     marker.display(true);
-                    var elonlat = map.getLonLatFromViewPortPx(e.xy).transform(map.getProjectionObject(),new OpenLayers.Projection("EPSG:4326"));
-                    marker.moveTo(e.xy);
-                    document.getElementById("id_latitude").value = elonlat.lat
-                    document.getElementById("id_longitude").value = elonlat.lon
+                    var ll = map.getLonLatFromViewPortPx(e.xy);
+                    var elonlat = map.getLonLatFromViewPortPx(e.xy);
+                    var xy = map.getLayerPxFromLonLat(ll);
+                    xy.y += 11; //Offset, so that center of the marker is placed where the user clicked
+                    marker.moveTo(xy);
+                    ll.transform(map.getProjectionObject(),new OpenLayers.Projection("EPSG:4326"));
+                    document.getElementById("id_latitude").value = ll.lat;
+                    document.getElementById("id_longitude").value = ll.lon;
                 }
 
             });
