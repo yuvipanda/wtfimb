@@ -15,3 +15,8 @@ PASSWORD = ''       # MySQL user password
 
 HOST = ''            
 PORT = ''           
+
+# DEBUG = True to get detailed Debug information
+# Set DEBUG = False in production system
+
+DEBUG = True

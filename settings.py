@@ -3,7 +3,9 @@ import os.path
 
 ROOT_DIR = os.path.dirname(__file__)
 
-DEBUG = True
+import localsettings
+
+DEBUG = localsettings.DEBUG
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -12,14 +14,13 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-import dbsettings
 
 DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = dbsettings.NAME             # Or path to database file if using sqlite3.
-DATABASE_USER = dbsettings.USER             # Not used with sqlite3.
-DATABASE_PASSWORD = dbsettings.PASSWORD         # Not used with sqlite3.
-DATABASE_HOST = dbsettings.HOST             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = dbsettings.PORT             # Set to empty string for default. Not used with sqlite3.
+DATABASE_NAME = localsettings.NAME             # Or path to database file if using sqlite3.
+DATABASE_USER = localsettings.USER             # Not used with sqlite3.
+DATABASE_PASSWORD = localsettings.PASSWORD         # Not used with sqlite3.
+DATABASE_HOST = localsettings.HOST             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = localsettings.PORT             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
