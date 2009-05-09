@@ -4,4 +4,6 @@
 *.swp
 dbsettings.py
 dbsettings.py.sample
+localsettings.py
+localsettings.py.sample
 
