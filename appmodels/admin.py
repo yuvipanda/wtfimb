@@ -1,8 +1,14 @@
 from appmodels.models import *
 from django.contrib import admin
 
+class RouteStageInline(admin.TabularInline):
+	model = RouteStage 
+	extra = 1 
+
 class StageAdmin(admin.ModelAdmin):
 	list_display = ('display_name', 'latitude', 'longitude')
+
+	inlines = (RouteStageInline, )
 
 class RouteAdmin(admin.ModelAdmin):
 	list_display = ('display_name', 'types', 'start', 'end', 'has_unmapped_stages')
@@ -13,6 +19,10 @@ class RouteAdmin(admin.ModelAdmin):
 				return True
 		return False
 	has_unmapped_stages.boolean = True
+
+	inlines = (RouteStageInline, )
+
+
 
 class StageRevisionAdmin(admin.ModelAdmin):
 	pass
