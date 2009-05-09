@@ -81,15 +81,15 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-#    'django.contrib.auth',
-#    'django.contrib.contenttypes',
-#    'django.contrib.sessions',
-#    'django.contrib.sites',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
 	'wtfimb.appmodels',
 	'wtfimb.view',
 	'wtfimb.edit',
 	'wtfimb.routing',
 	'wtfimb.home',
+	'django.contrib.admin',
 )
 
 GRAPH_CACHE = os.path.join(ROOT_DIR, 'graph')

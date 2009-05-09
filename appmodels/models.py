@@ -17,6 +17,9 @@ class Stage(models.Model):
 						  )
 		sh.save()												
 		super(Stage, self).save()
+	
+	def __unicode__(self):
+		return self.display_name
 
 class Route(models.Model):
 	display_name = models.CharField(max_length=64)
@@ -27,6 +30,9 @@ class Route(models.Model):
 	stages = models.ManyToManyField(Stage, through="RouteStage")
 	time = models.FloatField()
 	fare = models.FloatField()
+
+	def __unicode__(self):
+		return self.display_name
 
 class RouteStage(models.Model):
 	route = models.ForeignKey(Route)
