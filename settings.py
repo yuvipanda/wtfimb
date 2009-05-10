@@ -84,12 +84,19 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+	'django.contrib.admin',
+	'django.contrib.humanize',
+
 	'wtfimb.appmodels',
 	'wtfimb.view',
 	'wtfimb.edit',
 	'wtfimb.routing',
 	'wtfimb.home',
-	'django.contrib.admin',
+
+	'registration',
 )
 
 GRAPH_CACHE = os.path.join(ROOT_DIR, 'graph')
+
+#Number of Days Activate Link is valid
+ACCOUNT_ACTIVATION_DAYS = 30

@@ -7,7 +7,8 @@ class Stage(models.Model):
 	mtc_name = models.CharField(max_length=255)
 	#routes = models.ManyToManyField('Route') #Since Route isn't yet defined
 
-	def save(self, comment=""):
+	def save(self, comment=""):			
+		super(Stage, self).save()
 		sh = StageRevision(
 							stage = self, 
 							display_name = self.display_name,
@@ -16,7 +17,6 @@ class Stage(models.Model):
 							comment = comment
 						  )
 		sh.save()												
-		super(Stage, self).save()
 	
 	def __unicode__(self):
 		return self.display_name
@@ -46,3 +46,4 @@ class StageRevision(models.Model):
 	latitude = models.FloatField(null=True, blank=True)
 	longitude = models.FloatField(null=True, blank=True)
 	comment = models.CharField(max_length=1024, blank=True, null=True)
+

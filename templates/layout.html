@@ -35,6 +35,16 @@ pageTracker._trackPageview();
 	<div id="wrapper">
 		<div id="topbar">
 			<a href="http://www.busroutes.in/"><img alt="Find Bus Routes in" src="/static/images/header.png" /></a><span id="location"><a href="http://www.busroutes.in/">Chennai!</a></span>
+			<div id="LoginBar" style="float:right; text-align:right">
+				{% if user.is_authenticated %}
+					Hi, <strong>{{ user.username }}</strong>
+				{% else %}
+					<a href="{% url django.contrib.auth.views.login %}">Log In</a> |
+					<a href="{% url registration.views.register %}">Register</a>
+				{% endif %}
+
+
+			</div>
 		</div>
 		<div id="page">
 			{% block main %}
