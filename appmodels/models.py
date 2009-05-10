@@ -5,6 +5,7 @@ class Stage(models.Model):
 	latitude = models.FloatField(null=True, blank=True)
 	longitude = models.FloatField(null=True, blank=True)
 	mtc_name = models.CharField(max_length=255)
+	alternate_name = models.CharField(max_length=255, null=True, blank=True)
 	#routes = models.ManyToManyField('Route') #Since Route isn't yet defined
 
 	def save(self, comment=""):			

@@ -6,7 +6,8 @@ class RouteStageInline(admin.TabularInline):
 	extra = 1 
 
 class StageAdmin(admin.ModelAdmin):
-	list_display = ('display_name', 
+	list_display = ('display_name',
+					'alternate_name',
 					'latitude', 
 					'longitude', 
 					)

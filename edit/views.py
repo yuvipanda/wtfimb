@@ -1,7 +1,6 @@
-from django.shortcuts import render_to_response
 from edit.forms import EditStageForm
 from appmodels.models import Stage
-from django.http import HttpResponseRedirect
+from django.views.generic.simple import direct_to_template, redirect_to
 from django.http import HttpResponse
 
 def edit_stage(request, id):
@@ -16,7 +15,7 @@ def edit_stage(request, id):
             if 'redirect' in cd and cd['redirect'] == 'false':
                 return HttpResponse()
             else:
-                return HttpResponseRedirect('/view/stage/%s' % id)
+                return redirect_to(request, '/view/stage/%s' % id)
                 
     else:
         s = Stage.objects.get(id=id)
@@ -24,7 +23,7 @@ def edit_stage(request, id):
                 initial = {'latitude': s.latitude,
                            'longitude': s.longitude}
                 )
-        return render_to_response('edit_stage.html', {'form':form, 'stage':s})
+        return direct_to_template(request, 'edit_stage.html', {'form':form, 'stage':s})
     return HttpResponse()
     #Ideally, the above return should be under the else, but django complains, maybe use a variable
     # to store which response and return only that var.
