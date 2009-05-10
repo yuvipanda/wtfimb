@@ -46,7 +46,7 @@ Bus Stage: {{ stage.display_name }}
 {% endblock %}
 
 {% block main %}
-<h1 class="names">Stage: {{ stage.display_name }}</h1>
+<h1 class="names">Stage: {{ stage.display_name }} {% if stage.alternate_name %} ( {{stage.alternate_name }} ) {% endif %}</h1>
 {% if not stage.latitude %}
 	<span>
 		<a class="mapthis" href="{% url edit.views.edit_stage stage.id %}">Map this Stage!</a>
