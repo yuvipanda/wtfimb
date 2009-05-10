@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 	(r'^edit/', include('edit.urls')),
 	(r'^api/', include('api.urls')),
 	(r'^path/', include('routing.urls')),
+	(r'^accounts/', include('registration.urls')),
 		
     # Example:
     # (r'^wtfimb/', include('wtfimb.foo.urls')),
