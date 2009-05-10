@@ -1,14 +1,19 @@
 from appmodels.models import *
 from django.contrib import admin
+from reversion.admin import VersionAdmin
 
 class RouteStageInline(admin.TabularInline):
 	model = RouteStage 
 	extra = 1 
 
 class StageAdmin(admin.ModelAdmin):
-	list_display = ('display_name', 'latitude', 'longitude')
+	list_display = ('display_name', 
+					'latitude', 
+					'longitude', 
+					)
 
 	inlines = (RouteStageInline, )
+
 
 class RouteAdmin(admin.ModelAdmin):
 	list_display = ('display_name', 'types', 'start', 'end', 'has_unmapped_stages')
@@ -23,10 +28,5 @@ class RouteAdmin(admin.ModelAdmin):
 	inlines = (RouteStageInline, )
 
 
-
-class StageRevisionAdmin(admin.ModelAdmin):
-	pass
-
 admin.site.register(Route, RouteAdmin)
 admin.site.register(Stage, StageAdmin)
-admin.site.register(StageRevision, StageRevisionAdmin)
