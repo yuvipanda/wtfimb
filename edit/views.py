@@ -1,7 +1,7 @@
-from django.shortcuts import render_to_response
 from edit.forms import EditStageForm
 from appmodels.models import Stage
-from django.http import HttpResponseRedirect
+from django.views.generic.simple import direct_to_template, redirect_to
+
 
 def edit_stage(request, id):
 	if request.method == 'POST':
@@ -12,13 +12,13 @@ def edit_stage(request, id):
 			s.latitude = cd['latitude']
 			s.longitude = cd['longitude']
 			s.save()
-			return HttpResponseRedirect('/view/stage/%s' % id)
+			return redirect_to(request, '/view/stage/%s' % id)
 	else:
 		s = Stage.objects.get(id=id)
 		form = EditStageForm(
 				initial = {'latitude': s.latitude,
 						   'longitude': s.longitude}
 				)
-	return render_to_response('edit_stage.html', {'form':form, 'stage':s})
+	return direct_to_template(request, 'edit_stage.html', {'form':form, 'stage':s})
 
 

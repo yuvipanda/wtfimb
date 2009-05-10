@@ -1,6 +1,6 @@
 from django.conf import settings
 from appmodels.models import *
-from django.shortcuts import render_to_response
+from django.views.generic.simple import direct_to_template
 import marshal
 
 from dijkstra import shortestPath
@@ -27,7 +27,7 @@ def show_shortest_path(request, start, end):
 				end_stage = endStage,
 				routes=direct_routes_between(startStage, endStage))
 		changeovers.append(rc)
-	return render_to_response("show_shortest_path.html",
+	return direct_to_template(request, "show_shortest_path.html",
 			{
 				'changeovers':changeovers,
 				'start_stage':Stage.objects.get(id=start),
