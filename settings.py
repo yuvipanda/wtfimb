@@ -100,3 +100,9 @@ GRAPH_CACHE = os.path.join(ROOT_DIR, 'graph')
 
 #Number of Days Activate Link is valid
 ACCOUNT_ACTIVATION_DAYS = 30
+
+# Email Settings
+
+EMAIL_HOST = localsettings.EMAIL_HOST
+EMAIL_HOST_USER = localsettings.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = localsettings.EMAIL_HOST_PASSWORD
