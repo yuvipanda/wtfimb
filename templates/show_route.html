@@ -1,16 +1,19 @@
 {% extends "layout.html" %}
 
 {% block script %}
-var lat=13.0456
-var lon=80.232
-var zoom=12
+var lat=13.0456;
+var lon=80.232;
+var zoom=12;
 var iconSize = new OpenLayers.Size(22,22);
 var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
 var iconSize = new OpenLayers.Size(22,22);
 var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
 var icon = new OpenLayers.Icon("/static/img/bus_stop_22.png",iconSize,iconOffset);
 var map;
+var editMarker = null;
+var editLL = null;
 var layerStages;
+var edit = 0; //Check if a stage is already being edited 0-no 1-yes
 
 // Change info below to style the route line
 var style_black = {
@@ -21,6 +24,47 @@ var style_black = {
     pointRadius: 15,
     pointerEvents: "visiblePainted"
                 };
+
+OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
+                defaultHandlerOptions: {
+                    'single': true,
+                    'double': false,
+                    'pixelTolerance': 0,
+                    'stopSingle': false,
+                    'stopDouble': false
+                },
+
+                initialize: function(options) {
+                    this.handlerOptions = OpenLayers.Util.extend(
+                        {}, this.defaultHandlerOptions
+                    );
+                    OpenLayers.Control.prototype.initialize.apply(
+                        this, arguments
+                    ); 
+                    this.handler = new OpenLayers.Handler.Click(
+                        this, {
+                            'click': this.trigger
+                        }, this.handlerOptions
+                    );
+                }, 
+
+                trigger: function(e) {
+                    editLL = map.getLonLatFromViewPortPx(e.xy);
+                    var xy = map.getLayerPxFromLonLat(editLL);
+                    xy.y += 11; //Offset, so that center of the marker is placed where the user clicked
+                    if(editMarker == null) {
+                        editMarker = new OpenLayers.Marker(editLL,icon.clone());
+                        layerStages.addMarker(editMarker);
+                    }
+                    editMarker.moveTo(xy);
+                    editLL.transform(map.getProjectionObject(),new OpenLayers.Projection("EPSG:4326"));
+                    //document.getElementById("id_latitude").value = ll.lat;
+                    //document.getElementById("id_longitude").value = ll.lon;
+                }
+
+            });
+
+var click = new OpenLayers.Control.Click();
 
 $(document).ready(function() {
             map = new OpenLayers.Map ("map", {
@@ -64,6 +108,42 @@ function addStage(lat,lon,id) {
     layerStages.addMarker(marker);
 }
 
+function enableMapClick(enable) {
+    if(enable == 1) {
+        map.addControl(click);
+        click.activate();
+    } else {
+        map.removeControl(click);
+        click.deactivate();
+    }
+}
+
+function updateStage(stage_id) {
+    console.log('updateStage', stage_id);
+    enableMapClick(0);
+    document.getElementById(stage_id).innerHTML = '<a class="mapthis" >Please Reload the page to see your changes.</a>';
+    console.log('after getting ele');
+    if (editMarker != null){
+        $.post("/edit/stage/"+stage_id+"/", { latitude: editLL.lat, longitude: editLL.lon, redirect: 'false' } );
+        editMarker = null
+    }
+    edit = 0;
+}
+
+function editStage(id) {
+    console.log('editSTage');
+    if(edit == 1 ) {
+        alert("You seem to be mapping another stage. Please finish that first!");
+    }
+    else {
+        edit = 1;
+        document.getElementById(id).innerHTML = '<a class="mapthis" href="#" onClick="return updateStage('+id+')" >Place the Marker correctly, and click here to update.</a>';
+        editMarker = null;
+        enableMapClick(1);
+
+    }
+}
+
 {% endblock %}
 
 {% block title %}
@@ -80,7 +160,7 @@ Bus Route: {{ route.display_name }}
       </tr>
       {% for s in route.stages.all %}
       <tr class='stageentry'>
-        <td><a href="{% url view.views.show_stage s.id %}">{{ s.display_name }}</a> {% if not s.latitude %} <a class="mapthis" href="{% url edit.views.edit_stage s.id %}">Map this Stage!</a> {% endif %} </td>
+        <td><a href="{% url view.views.show_stage s.id %}">{{ s.display_name }}</a> {% if not s.latitude %} <span id = "{{ s.id }}" ><a class="mapthis" href="#" onClick="return editStage({{ s.id }});" >Map this Stage!</a></span> {% endif %} </td>
       </tr>
       {% endfor %}
     </table></div>
