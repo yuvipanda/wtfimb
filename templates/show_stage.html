@@ -54,12 +54,12 @@ Bus Stage: {{ stage.display_name }}
 {% endif %}
 <div id="view">
 <div class="leftCol">
-      <table id="stages">
+      <table id="stages"><thead>
 	<tr>
 		<th>Route</th>
 		<th>From</th>
 		<th>To</th>
-	</tr>
+	</tr></thead>
 	{% for r in stage.route_set.all %}
 	<tr class='route_entry'>
 		<td> <a href="{% url view.views.show_route r.id %}">{{ r.display_name }}</a></td>

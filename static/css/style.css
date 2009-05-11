@@ -50,6 +50,10 @@ thead th {
 	background-color: #F1FFE3;
 	border-bottom: 1px solid #B8E78B;
 }
+thead a{
+	font-size:80%;
+	text-align:right;
+}
 tbody tr.dark {
 	background-color: #F5F5F5;
 }
@@ -80,6 +84,12 @@ input[type=text] {
 	text-align: left;
 	
 }
+#LoginBar
+{
+	position:absolute;
+	top:5px;
+	right:5px;
+	}
 #topbar span#location {
 	color: #FFFFFF;
 	background: #000000;
@@ -87,7 +97,7 @@ input[type=text] {
 	padding-left: 7px;
 	font-size:200%;
 	position:absolute;
-	top:53px;
+	top:36px;
 	left:173px;
 }
 #location a{
@@ -278,7 +288,7 @@ button:hover {
 	font-size:150%;
 }
 .names {
-	font-size:250%;
+	font-size:150%;
 	font-variant:small-caps;
 }
 #homeform{

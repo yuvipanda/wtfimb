@@ -35,7 +35,7 @@ pageTracker._trackPageview();
 	<div id="wrapper">
 		<div id="topbar">
 			<a href="http://www.busroutes.in/"><img alt="Find Bus Routes in" src="/static/images/header.png" /></a><span id="location"><a href="http://www.busroutes.in/">Chennai!</a></span>
-			<div id="LoginBar" style="float:right; text-align:right">
+			<div id="LoginBar">
 				{% if user.is_authenticated %}
 					Hi, <strong>{{ user.username }}</strong>
 				{% else %}
