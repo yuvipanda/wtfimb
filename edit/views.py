@@ -2,7 +2,9 @@ from edit.forms import EditStageForm
 from appmodels.models import Stage
 from django.views.generic.simple import direct_to_template, redirect_to
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def edit_stage(request, id):
     if request.method == 'POST':
         form = EditStageForm(request.POST)
@@ -11,7 +13,7 @@ def edit_stage(request, id):
             s = Stage.objects.get(id=id)
             s.latitude = cd['latitude']
             s.longitude = cd['longitude']
-            s.save()
+            s.save(user=request.user)
             if 'redirect' in cd and cd['redirect'] == 'false':
                 return HttpResponse()
             else:

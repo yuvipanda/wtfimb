@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Stage(models.Model):
 	display_name = models.CharField(max_length=255)
@@ -8,13 +9,14 @@ class Stage(models.Model):
 	alternate_name = models.CharField(max_length=255, null=True, blank=True)
 	#routes = models.ManyToManyField('Route') #Since Route isn't yet defined
 
-	def save(self, comment=""):			
+	def save(self, user, comment=""):			
 		super(Stage, self).save()
 		sh = StageRevision(
 							stage = self, 
 							display_name = self.display_name,
 							latitude = self.latitude,
 							longitude = self.longitude,
+							user = user,
 							comment = comment
 						  )
 		sh.save()												
@@ -46,5 +48,6 @@ class StageRevision(models.Model):
 	display_name = models.CharField(max_length=255)
 	latitude = models.FloatField(null=True, blank=True)
 	longitude = models.FloatField(null=True, blank=True)
+	user = models.ForeignKey(User)
 	comment = models.CharField(max_length=1024, blank=True, null=True)
 
