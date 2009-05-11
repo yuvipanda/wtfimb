@@ -119,10 +119,8 @@ function enableMapClick(enable) {
 }
 
 function updateStage(stage_id) {
-    console.log('updateStage', stage_id);
     enableMapClick(0);
     document.getElementById(stage_id).innerHTML = '<a class="mapthis" >Please Reload the page to see your changes.</a>';
-    console.log('after getting ele');
     if (editMarker != null){
         $.post("/edit/stage/"+stage_id+"/", { latitude: editLL.lat, longitude: editLL.lon, redirect: 'false' } );
         editMarker = null
@@ -131,7 +129,6 @@ function updateStage(stage_id) {
 }
 
 function editStage(id) {
-    console.log('editSTage');
     if(edit == 1 ) {
         alert("You seem to be mapping another stage. Please finish that first!");
     }
