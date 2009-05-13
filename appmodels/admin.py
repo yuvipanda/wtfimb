@@ -16,7 +16,7 @@ class StageAdmin(admin.ModelAdmin):
 
 
 class RouteAdmin(admin.ModelAdmin):
-	list_display = ('display_name', 'types', 'start', 'end', 'has_unmapped_stages')
+	list_display = ('display_name', 'route_view_link', 'types', 'start', 'end', 'has_unmapped_stages')
 
 	def has_unmapped_stages(self, obj):
 		for s in obj.stages.all():
@@ -25,7 +25,15 @@ class RouteAdmin(admin.ModelAdmin):
 		return False
 	has_unmapped_stages.boolean = True
 
+	def route_view_link(self, obj):
+		return '<a href="/view/route/%s">View</a>' % obj.id
+
+	route_view_link.allow_tags = True
+	route_view_link.short_description = "Link to Site"
+
 	inlines = (RouteStageInline, )
+
+
 
 
 admin.site.register(Route, RouteAdmin)
