@@ -66,7 +66,6 @@ $(document).ready(function() {
             layerRoute.addFeatures(new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(points),null,style_black));
             map.zoomToExtent(layerRoute.getDataExtent());
             var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-            map.setCenter (lonLat, zoom);
     });
 
 function addStage(lat,lon,id) {
