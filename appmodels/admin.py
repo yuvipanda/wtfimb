@@ -7,10 +7,16 @@ class RouteStageInline(admin.TabularInline):
 
 class StageAdmin(admin.ModelAdmin):
 	list_display = ('display_name',
+					'view_stage_link',
 					'alternate_name',
 					'latitude', 
 					'longitude', 
 					)
+	def view_stage_link(self, obj):
+		return '<a href="/view/stage/%s">View</a>'
+
+	view_stage_link.allow_tags = True
+	view_stage_link.short_description = "Link to Site"
 
 	inlines = (RouteStageInline, )
 
