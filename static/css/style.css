@@ -341,3 +341,7 @@ input[type="text"]
     outline:0 !important;
 }
 /* end earch form*/
+
+#editForm {
+    margin-bottom: 10px;
+}
