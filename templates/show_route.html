@@ -78,12 +78,20 @@ $(document).ready(function() {
                 projection: new OpenLayers.Projection("EPSG:900913"),
                 displayProjection: new OpenLayers.Projection("EPSG:4326")
             } );
+                    
             var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Chennai");
+            var layerGmap = new OpenLayers.Layer.Google("Google", {sphericalMercator:true});
             layerStages = new OpenLayers.Layer.Markers("Stages");
             var layerRoute = new OpenLayers.Layer.Vector("Route");
             map.addLayer(layerMapnik);
+            map.addLayer(layerGmap);
             map.addLayer(layerRoute);
             map.addLayer(layerStages);
+            
+            // create an overview map control with the default options http://openlayers.org/dev/examples/overviewmap.html
+		        var overview1 = new OpenLayers.Control.OverviewMap();
+		        map.addControl(overview1);        
+                
             var points = [];
             {% for s in route.stages.all %}
                 {% if s.latitude %}
