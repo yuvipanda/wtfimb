@@ -1,5 +1,7 @@
 # Create your views here.
 
+from django.http import HttpResponse
+
 from appmodels.models import *
 from django.views.generic.simple import direct_to_template
 
