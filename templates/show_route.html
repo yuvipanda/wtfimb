@@ -78,18 +78,26 @@ $(document).ready(function() {
                 projection: new OpenLayers.Projection("EPSG:900913"),
                 displayProjection: new OpenLayers.Projection("EPSG:4326")
             } );
+                    
             var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Chennai");
+            var layerGmap = new OpenLayers.Layer.Google("Google", {sphericalMercator:true});
             layerStages = new OpenLayers.Layer.Markers("Stages");
             var layerRoute = new OpenLayers.Layer.Vector("Route");
             map.addLayer(layerMapnik);
+            map.addLayer(layerGmap);
             map.addLayer(layerRoute);
             map.addLayer(layerStages);
+            
+            // create an overview map control with the default options http://openlayers.org/dev/examples/overviewmap.html
+		        var overview1 = new OpenLayers.Control.OverviewMap();
+		        map.addControl(overview1);        
+                
             var points = [];
             {% for s in route.stages.all %}
                 {% if s.latitude %}
                     var tempLat = {{s.latitude}};
                     var tempLon = {{s.longitude}};
-                    addStage(tempLat, tempLon, {{s.id}});
+					addStage(tempLat, tempLon, {{s.id}}, {{s.display_name}});
                     points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
                 {% endif %}
             {% endfor %}
@@ -98,10 +106,13 @@ $(document).ready(function() {
             var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
 	});
 
-function addStage(lat,lon,id) {
+function addStage(lat,lon,id, name) {
     var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), icon.clone());
-    marker.events.register("click", marker, function(e){
-        window.location="/view/stage/"+id; });
+    marker.events.register("mousedown", marker, function(e){
+		//window.location="/view/stage/"+id; 
+		alert(name);
+		OpenLayers.Event.stop(e);
+	});
     layerStages.addMarker(marker);
 }
 
