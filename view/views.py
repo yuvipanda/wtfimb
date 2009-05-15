@@ -54,3 +54,7 @@ def show_mapped_stages(request):
     return direct_to_template(request, "show_mapped_stages.html",
             {'mapped_stages':mapped})
 
+def show_unmapped_routes(request):
+	unmapped = Route.objects.filter(stages__latitude=None)
+	return direct_to_template(request, 'show_unmapped_routes.html',
+			{'unmapped_routes':unmapped})
