@@ -29,7 +29,7 @@ def show_stage(request, id):
             s.longitude = cd['longitude']
             s.save(user=request.user)
             #if 'redirect' in cd and cd['redirect'] == 'false':
-            #return HttpResponse()
+            return HttpResponse()
             #else:
             #    return redirect_to(request, '/view/stage/%s' % id)
                 
