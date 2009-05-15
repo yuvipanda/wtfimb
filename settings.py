@@ -93,7 +93,6 @@ INSTALLED_APPS = (
 
 	'wtfimb.appmodels',
 	'wtfimb.view',
-	'wtfimb.edit',
 	'wtfimb.routing',
 	'wtfimb.home',
 
