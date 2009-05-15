@@ -97,7 +97,7 @@ $(document).ready(function() {
                 {% if s.latitude %}
                     var tempLat = {{s.latitude}};
                     var tempLon = {{s.longitude}};
-					addStage(tempLat, tempLon, {{s.id}}, {{s.display_name}});
+					addStage(tempLat, tempLon, {{s.id}}, '{{s.display_name}}');
                     points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
                 {% endif %}
             {% endfor %}
@@ -110,7 +110,7 @@ function addStage(lat,lon,id, name) {
     var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), icon.clone());
     marker.events.register("mousedown", marker, function(e){
 		//window.location="/view/stage/"+id; 
-		alert(name);
+		window.status = name;
 		OpenLayers.Event.stop(e);
 	});
     layerStages.addMarker(marker);
