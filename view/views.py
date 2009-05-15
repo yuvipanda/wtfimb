@@ -1,5 +1,7 @@
 # Create your views here.
 
+from django.http import HttpResponse
+
 from appmodels.models import *
 from django.views.generic.simple import direct_to_template
 
@@ -27,7 +29,7 @@ def show_stage(request, id):
             s.longitude = cd['longitude']
             s.save(user=request.user)
             #if 'redirect' in cd and cd['redirect'] == 'false':
-            return HttpResponse()
+            #return HttpResponse()
             #else:
             #    return redirect_to(request, '/view/stage/%s' % id)
                 
