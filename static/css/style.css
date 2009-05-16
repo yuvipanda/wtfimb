@@ -344,4 +344,13 @@ input[type="text"]
 
 #editForm {
     margin-bottom: 10px;
+    position:relative;
+}
+.osmLinks{
+	position:absolute;
+	right:0px;
+	top:0px;
+	font-size:130%;
+	padding:4px;
+	background:#EDDDFF;
 }
