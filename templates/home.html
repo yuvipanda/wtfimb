@@ -7,7 +7,7 @@
 var stages=Array();
 var data;
 $(document).ready(function(){
-	$.getJSON("{% url wtfimb.api.views.autocomplete_stages %}", function(json){
+	$.getJSON("{% url api.views.autocomplete_stages %}", function(json){
 		data = json;
 		jQuery.each(json, function(k,v) { stages.push(k); });
 		$("#from").autocomplete(stages);

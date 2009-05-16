@@ -42,29 +42,29 @@ $(document).ready(function() {
 function addStage(lat,lon,id) {
     var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), icon.clone());
     marker.events.register("click", marker, function(e){
-        window.location="/view/stage/"+id; });
+	window.location="{% url main.views.show_stage %}"+id; });
     layerStages.addMarker(marker);
 }
 
 {% endblock %}
 
 {% block title %}
-Currently Unmapped: {{ unmapped_stages.count }} Stages
+Currently Mapped: {{ unmapped_stages.count }} Stages
 {% endblock %}
 
 {% block main %}
-<h1>List of Unmapped Stages</h1>
+<h1>List of Mapped Stages</h1>
 <div id="view">
 <div class="leftCol">
                 <table id="stages">
                     <tr>
                         <th>Stage</th>
-                    </tr>	{% for us in unmapped_stages %}
+                    </tr>	{% for s in mapped_stages %}
                     
                     <tr class='route_entry'>
                     <td>
 	
-  <a href="{% url view.views.show_stage us.id %}">{{us.display_name}}</a>	<a class="mapthis" href="{% url view.views.show_stage us.id %}">Map This Stage!</a></td>
+  <a href="{% url main.views.show_stage s.id %}">{{s.display_name}}</a></td>
   
   </tr>	
 	{% endfor %}
