@@ -273,7 +273,7 @@ button:hover {
 	float:left;
 	width:29%;
 	overflow-x:none;
-	overflow-y:scroll;
+	overflow-y:auto;
 	height:500px;
 	border:1px dashed grey;
 }
