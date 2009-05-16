@@ -60,9 +60,13 @@ $(document).ready(function() {
                 projection: new OpenLayers.Projection("EPSG:900913"),
                 displayProjection: new OpenLayers.Projection("EPSG:4326")
             } );
-            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Chennai");
-            var layerStages = new OpenLayers.Layer.Markers("Stages");
+            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Openstreetmap Mapnik");
+            var layerOsmarender = new OpenLayers.Layer.OSM.Osmarender("Openstreetmap Osmarender");
+            var layerGmap = new OpenLayers.Layer.Google("Google", {sphericalMercator:true});
+						var layerStages = new OpenLayers.Layer.Markers("Stages");
             map.addLayer(layerMapnik);
+            map.addLayer(layerOsmarender);
+            map.addLayer(layerGmap);
             map.addLayer(layerStages);
             var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
             map.setCenter(lonLat,zoom);
@@ -108,7 +112,7 @@ Bus Stage: {{ stage.display_name }}
 		{{ form.latitude }}
 		<label for="id_longitude">Longitude:</label>
 		{{ form.longitude }}
-		<input type="submit" value="Save" />
+		<input type="submit" value="Update Position" />
 		<input type="button" value="Reset" onclick="resetForm();" />
 	</form>
 	<a class="osmLinks" target='_blank' href="http://www.openstreetmap.org/?lat={{ stage.latitude }}&lon={{ stage.longitude }}&zoom=17">Edit the Map! &rarr;</a>	
