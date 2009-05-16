@@ -13,7 +13,7 @@ def index(request):
 
 def show_route(request, id):
     r = Route.objects.get(id=id)
-    return direct_to_template(request, 'show_route.html', {'route':r})
+    return direct_to_template(request, 'routes/show_route.html', {'route':r})
 
 #def show_stage(request, id):
 #    s = Stage.objects.get(id=id)
@@ -39,22 +39,22 @@ def show_stage(request, id):
                 initial = {'latitude': s.latitude,
                            'longitude': s.longitude}
                 )
-        return direct_to_template(request, 'show_stage.html', {'form':form, 'stage':s})
+        return direct_to_template(request, 'stages/show_stage.html', {'form':form, 'stage':s})
     return HttpResponse()
     #Ideally, the above return should be under the else, but django complains, maybe use a variable
     # to store which response and return only that var.
 
 def show_unmapped_stages(request):
     unmapped = Stage.objects.filter(latitude=None)
-    return direct_to_template(request,"show_unmapped_stages.html", 
+    return direct_to_template(request,"stages/show_unmapped_stages.html", 
             {'unmapped_stages':unmapped})
 
 def show_mapped_stages(request):
     mapped = Stage.objects.filter(latitude__isnull=False)
-    return direct_to_template(request, "show_mapped_stages.html",
+    return direct_to_template(request, "stages/show_mapped_stages.html",
             {'mapped_stages':mapped})
 
 def show_unmapped_routes(request):
 	unmapped = Route.objects.filter(stages__latitude=None)
-	return direct_to_template(request, 'show_unmapped_routes.html',
+	return direct_to_template(request, 'routes/show_unmapped_routes.html',
 			{'unmapped_routes':unmapped})
