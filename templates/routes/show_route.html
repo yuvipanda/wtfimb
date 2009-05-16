@@ -111,7 +111,6 @@ $(document).ready(function() {
 function addStage(lat,lon,id, name) {
     var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), icon.clone());
     marker.events.register("mousedown", marker, function(e){
-		//window.location="/view/stage/"+id; 
 		window.status = name;
 		OpenLayers.Event.stop(e);
 	});
@@ -132,7 +131,7 @@ function updateStage(stage_id) {
     enableMapClick(0);
     document.getElementById(stage_id).innerHTML = '<a class="mapthis" >Please Reload the page to see your changes.</a>';
     if (editMarker != null){
-        $.post("/view/stage/"+stage_id+"/", { latitude: editLL.lat, longitude: editLL.lon, redirect: 'false' } );
+	$.post("{% url main.views.show_stage %}"+stage_id+"/", { latitude: editLL.lat, longitude: editLL.lon, redirect: 'false' } );
         editMarker = null
     }
     edit = 0;
@@ -167,7 +166,7 @@ Bus Route: {{ route.display_name }}
       </tr></thead>
       {% for s in route.stages.all %}
       <tr class='stageentry'>
-        <td><a href="{% url view.views.show_stage s.id %}">{{ s.display_name }}</a> {% if not s.latitude %} <span id = "{{ s.id }}" ><a class="mapthis" href="#" onClick="return editStage({{ s.id }});" >Map this Stage!</a></span> {% endif %} </td>
+        <td><a href="{% url main.views.show_stage s.id %}">{{ s.display_name }}</a> {% if not s.latitude %} <span id = "{{ s.id }}" ><a class="mapthis" href="#" onClick="return editStage({{ s.id }});" >Map this Stage!</a></span> {% endif %} </td>
       </tr>
       {% endfor %}
     </table></div>

@@ -89,18 +89,18 @@ function addStage(lat,lon,id) {
 		{% for co in changeovers %}
 		<h3>
 			From
-			<a href="{% url view.views.show_stage co.start_stage.id %}">
+			<a href="{% url main.views.show_stage co.start_stage.id %}">
 				{{ co.start_stage.display_name }}
 			</a>
 			to
-			<a href="{% url view.views.show_stage co.end_stage.id %}">
+			<a href="{% url main.views.show_stage co.end_stage.id %}">
 				{{ co.end_stage.display_name }}
 			</a>
 		</h3>
 		Take:
 		{% for r in co.routes %}
 		<span class="bus">
-			<a href="{% url view.views.show_route r.id %}">
+			<a href="{% url main.views.show_route r.id %}">
 				{{ r.display_name }}
 			</a>
 		</span>&nbsp;

@@ -92,7 +92,7 @@ INSTALLED_APPS = (
 	'django.contrib.humanize',
 
 	'wtfimb.appmodels',
-	'wtfimb.view',
+	'wtfimb.main',
 	'wtfimb.routing',
 	'wtfimb.home',
 
