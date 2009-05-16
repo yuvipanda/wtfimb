@@ -1,6 +1,8 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 
+from django.views.generic.simple import redirect_to
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -14,6 +16,7 @@ urlpatterns = patterns('',
 	(r'^chennai/', include('main.urls')),
 	(r'^chennai/api/', include('api.urls')),
 	(r'^chennai/path/', include('routing.urls')),
+	(r'^$', lambda req: redirect_to(req,'/chennai')),
 		
     # Example:
     # (r'^wtfimb/', include('wtfimb.foo.urls')),
