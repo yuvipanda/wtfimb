@@ -1,25 +1,25 @@
-# Copy this file to dbsettings.py and edit appropriately
+# copy to localsettings.py and modify accordingly
 
-NAME = 'wtfimb'     # The name of the database
+DATABASE_NAME = 'wtfimb'     # The name of the database
 
 ##### CHANGE THESE #####
 
-USER = ''           # MySQL user name
+DATABASE_USER = ''           # MySQL user name
 
-PASSWORD = ''       # MySQL user password
+DATABASE_PASSWORD = ''       # MySQL user password
 
 ########################
 
 # THESE CAN BE LEFT AS THEY ARE
 # IF DEVELOPING ON A LOCAL SYSTEM.
 
-HOST = ''            
-PORT = ''           
+DATABASE_HOST = ''            
+DATABASE_PORT = ''           
 
 # DEBUG = True to get detailed Debug information
 # Set DEBUG = False in production system
 
-DEBUG = True
+DEBUG = False
 
 # Email Settings, for Account Verification
 EMAIL_HOST = 'mail.busroutes.in'
