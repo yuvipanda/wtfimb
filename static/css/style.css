@@ -26,6 +26,7 @@ a:hover {
 h1 {
 	color: #532406;
 	font-size: 2em;
+	display:inline;
 }
 h2 {
 	font-size: 1.5em;
@@ -136,6 +137,7 @@ form {
 }
 #page {
 	padding-top: 0.4em;
+	position:relative;
 }
 #footer {
 	font-size: 0.85em;
@@ -264,13 +266,16 @@ button:hover {
 	height:500px;
 	width:70%;
 	margin-left:30% !important;
-	border:1px dashed;
+	border:1px dashed grey;
 }
 /*Left column for route details, tables*/
 .leftCol {
 	float:left;
 	width:29%;
-	clear:both;
+	overflow-x:none;
+	overflow-y:scroll;
+	height:500px;
+	border:1px dashed grey;
 }
 .clearfloat {
 	clear:both;
@@ -288,7 +293,7 @@ button:hover {
 	font-size:150%;
 }
 .names {
-	font-size:150%;
+	font-size:200%;
 	font-variant:small-caps;
 }
 #homeform{
@@ -344,9 +349,17 @@ input[type="text"]
 
 #editForm {
     margin-bottom: 10px;
+    margin-left:30%;
     position:relative;
+    border:1px dashed grey;
+    padding:2px;
 }
+#editForm form{
+	display:inline;
+}
+	
 .osmLinks{
+	color:black;
 	position:absolute;
 	right:0px;
 	top:0px;
