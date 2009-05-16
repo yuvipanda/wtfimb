@@ -60,9 +60,13 @@ $(document).ready(function() {
                 projection: new OpenLayers.Projection("EPSG:900913"),
                 displayProjection: new OpenLayers.Projection("EPSG:4326")
             } );
-            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Chennai");
-            var layerStages = new OpenLayers.Layer.Markers("Stages");
+            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Openstreetmap Mapnik");
+            var layerOsmarender = new OpenLayers.Layer.OSM.Osmarender("Openstreetmap Osmarender");
+            var layerGmap = new OpenLayers.Layer.Google("Google", {sphericalMercator:true});
+						var layerStages = new OpenLayers.Layer.Markers("Stages");
             map.addLayer(layerMapnik);
+            map.addLayer(layerOsmarender);
+            map.addLayer(layerGmap);
             map.addLayer(layerStages);
             var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
             map.setCenter(lonLat,zoom);
@@ -102,35 +106,39 @@ Bus Stage: {{ stage.display_name }}
 {% block main %}
 <h1 class="names">Stage: {{ stage.display_name }} {% if stage.alternate_name %} ( {{stage.alternate_name }} ) {% endif %}</h1>
 {% if user.is_authenticated %}
-    <div id="editForm">
-        <form action="" method="POST">
-            <label for="id_latitude">Latitude:</label>
-            {{ form.latitude }}
-            <label for="id_longitude">Longitude:</label>
-            {{ form.longitude }}
-            <input type="submit" value="Save" />
-            <input type="button" value="Reset" onclick="resetForm();" />
-        </form>
-    </div>
+<div id="editForm">
+	<form action="" method="POST">
+		<label for="id_latitude">Latitude:</label>
+		{{ form.latitude }}
+		<label for="id_longitude">Longitude:</label>
+		{{ form.longitude }}
+		<input type="submit" value="Update" />
+		<input type="button" value="Reset" onclick="resetForm();" />
+	</form>
+	<a class="osmLinks" target='_blank' href="http://www.openstreetmap.org/?lat={{ stage.latitude }}&lon={{ stage.longitude }}&zoom=17">Edit the Map! &rarr;</a>	
+</div>
 {% endif %}
 <div id="view">
-<div class="leftCol">
-      <table id="stages"><thead>
-	<tr>
-		<th>Route</th>
-		<th>From</th>
-		<th>To</th>
-	</tr></thead>
-	{% for r in stage.route_set.all %}
-	<tr class='route_entry'>
-		<td> <a href="{% url view.views.show_route r.id %}">{{ r.display_name }}</a></td>
-		<td> <a href="{% url view.views.show_stage r.start.id %}">{{ r.start.display_name }}</a></td>
-		<td> <a href="{% url view.views.show_stage r.end.id %}">{{ r.end.display_name }}</a></td>
-	</tr>	
-	{% endfor %}
-      </table></div>
-      
-        <div id="map"></div>
-        <div class="clearfloat"></div></div>
+	<div class="leftCol">
+		<table id="stages">
+			<thead>
+				<tr>
+					<th>Route</th>
+					<th>From</th>
+					<th>To</th>
+				</tr>
+			</thead>
+			{% for r in stage.route_set.all %}
+			<tr class='route_entry'>
+				<td> <a href="{% url view.views.show_route r.id %}">{{ r.display_name }}</a></td>
+				<td> <a href="{% url view.views.show_stage r.start.id %}">{{ r.start.display_name }}</a></td>
+				<td> <a href="{% url view.views.show_stage r.end.id %}">{{ r.end.display_name }}</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	<div id="map" ></div>
+	<div class="clearfloat" />
+</div>
       
 {% endblock %}
