@@ -10,7 +10,10 @@ urlpatterns = patterns('',
         {'document_root': settings.STATIC_DOC_ROOT}),
 	(r'^accounts/', include('registration.urls')),
 
-	(r'^chennai/', include('urls.chennai')),
+	(r'^chennai/$', include('home.urls')),
+	(r'^chennai/', include('main.urls')),
+	(r'^chennai/api/', include('api.urls')),
+	(r'^chennai/path/', include('routing.urls')),
 		
     # Example:
     # (r'^wtfimb/', include('wtfimb.foo.urls')),
@@ -21,4 +24,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
+
 )

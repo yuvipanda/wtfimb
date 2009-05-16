@@ -131,7 +131,7 @@ function updateStage(stage_id) {
     enableMapClick(0);
     document.getElementById(stage_id).innerHTML = '<a class="mapthis" >Please Reload the page to see your changes.</a>';
     if (editMarker != null){
-	$.post("{% url main.views.show_stage %}"+stage_id+"/", { latitude: editLL.lat, longitude: editLL.lon, redirect: 'false' } );
+	$.post("/chennai/stage/"+stage_id+"/", { latitude: editLL.lat, longitude: editLL.lon, redirect: 'false' } );
         editMarker = null
     }
     edit = 0;

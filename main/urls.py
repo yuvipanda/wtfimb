@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('wtfimb.view.views',
+urlpatterns = patterns('wtfimb.main.views',
         (r'^$', 'index'),
         (r'route/(?P<id>\d+)/$', 'show_route'),
         (r'stage/(?P<id>\d+)/$', 'show_stage'),
