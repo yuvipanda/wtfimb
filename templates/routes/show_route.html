@@ -110,10 +110,14 @@ $(document).ready(function() {
 
 function addStage(lat,lon,id, name) {
     var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), icon.clone());
-    marker.events.register("mousedown", marker, function(e){
+    marker.events.register("mouseover", marker, function(e){
 		window.status = name;
 		OpenLayers.Event.stop(e);
-	});
+		});
+	marker.events.register("mousedown", marker, function(e){
+		window.location = "/chennai/stage/" + id;
+		OpenLayers.Event.stop(e);
+		});
     layerStages.addMarker(marker);
 }
 
