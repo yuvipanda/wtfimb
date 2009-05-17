@@ -20,6 +20,9 @@ class StageAdmin(admin.ModelAdmin):
 
 	inlines = (RouteStageInline, )
 
+	def save_model(self, request, obj, form, change):
+		obj.save(user=request.user)
+
 
 class RouteAdmin(admin.ModelAdmin):
 	list_display = ('display_name', 'route_view_link', 'types', 'start', 'end', 'has_unmapped_stages')
