@@ -165,17 +165,19 @@ Bus Route: {{ route.display_name }}
 <div id="view">
   <div class="leftCol">
     <table id="stages"><thead>
-      <tr>
-        <th>Stops At <a href=#>Reverse Direction</a></th>
-      </tr></thead>
+			<thead>
+				<tr>
+        <th>Stops At: <a href=#>(Reverse Direction)</a></th>
+				</tr>
+			</thead>
       {% for s in route.stages.all %}
       <tr class='stageentry'>
         <td><a href="{% url main.views.show_stage s.id %}">{{ s.display_name }}</a> {% if not s.latitude %} <span id = "{{ s.id }}" ><a class="mapthis" href="#" onClick="return editStage({{ s.id }});" >Map this Stage!</a></span> {% endif %} </td>
       </tr>
       {% endfor %}
-    </table></div>
-    <div id="map" />
-  </div>
-  <div class="clearfloat"></div>
+		</table>
+	</div>
+	<div id="map" ></div>
+	<div class="clearfloat" />
 </div>
 {% endblock %} 
