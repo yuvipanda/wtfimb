@@ -35,7 +35,7 @@ class RouteAdmin(admin.ModelAdmin):
 	has_unmapped_stages.boolean = True
 
 	def route_view_link(self, obj):
-		return '<a href="/view/route/%s">View</a>' % obj.id
+		return '<a href="/chennai/route/%s">View</a>' % obj.id
 
 	route_view_link.allow_tags = True
 	route_view_link.short_description = "Link to Site"
