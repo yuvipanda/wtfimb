@@ -161,23 +161,23 @@ Bus Route: {{ route.display_name }}
 {% endblock %}
 
 {% block main %} 
-<h1 class="names">Route: {{ route.display_name }}</h1> 
+<h1 class="names">Route: {{ route.display_name }}</h1>
 <div id="view">
-  <div class="leftCol">
-    <table id="stages"><thead>
+	<div class="leftCol">
+		<table id="stages">
 			<thead>
 				<tr>
-        <th>Stops At: <a href=#>(Reverse Direction)</a></th>
+					<th>Stops At: <a href=#>(Reverse Direction)</a></th>
 				</tr>
 			</thead>
-      {% for s in route.stages.all %}
-      <tr class='stageentry'>
-        <td><a href="{% url main.views.show_stage s.id %}">{{ s.display_name }}</a> {% if not s.latitude %} <span id = "{{ s.id }}" ><a class="mapthis" href="#" onClick="return editStage({{ s.id }});" >Map this Stage!</a></span> {% endif %} </td>
-      </tr>
-      {% endfor %}
+			{% for s in route.stages.all %}
+			<tr class='stageentry'>
+				<td><a href="{% url main.views.show_stage s.id %}">{{ s.display_name }}</a> {% if not s.latitude %} <span id = "{{ s.id }}" ><a class="mapthis" href="#" onClick="return editStage({{ s.id }});" >Map this Stage!</a></span> {% endif %} </td>
+			</tr>
+			{% endfor %}
 		</table>
 	</div>
 	<div id="map" ></div>
-	<div class="clearfloat" />
+	<div class="clearfloat"></div>
 </div>
-{% endblock %} 
+{% endblock %}

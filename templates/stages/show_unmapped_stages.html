@@ -55,21 +55,23 @@ Currently Unmapped: {{ unmapped_stages.count }} Stages
 {% block main %}
 <h1>List of Unmapped Stages</h1>
 <div id="view">
-<div class="leftCol">
-                <table id="stages">
-                    <tr>
-                        <th>Stage</th>
-                    </tr>	{% for us in unmapped_stages %}
-                    
-                    <tr class='route_entry'>
-                    <td>
-	
-  <a href="{% url main.views.show_stage us.id %}">{{us.display_name}}</a>	<a class="mapthis" href="{% url main.views.show_stage us.id %}">Map This Stage!</a></td>
-  
-  </tr>	
-	{% endfor %}
-      </table></div>
-      
-    
-    <div id="map"></div><div class="clearfloat"</div></div>
+	<div class="leftCol">
+		<table id="stages">
+			<thead>
+				<tr>
+					<th>Stage</th>
+				</tr>
+			</thead>
+			{% for us in unmapped_stages %}
+			<tr class='route_entry'>
+				<td>
+					<a href="{% url main.views.show_stage us.id %}">{{us.display_name}}</a>	<a class="mapthis" href="{% url main.views.show_stage us.id %}">Map This Stage!</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	<div id="map"></div>
+	<div class="clearfloat"></div>
+</div>
 {% endblock %}

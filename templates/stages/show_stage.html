@@ -115,7 +115,7 @@ Bus Stage: {{ stage.display_name }}
 		<input type="submit" value="Update" />
 		<input type="button" value="Reset" onclick="resetForm();" />
 	</form>
-	<a class="osmLinks" target='_blank' href="http://www.openstreetmap.org/?lat={{ stage.latitude }}&lon={{ stage.longitude }}&zoom=17">Edit the Map! &rarr;</a>	
+	<a class="osmLinks" target='_blank' href="http://www.openstreetmap.org/?lat={{ stage.latitude }}&lon={{ stage.longitude }}&zoom=17">Edit the Map! &rarr;</a>
 </div>
 {% endif %}
 <div id="view">
@@ -138,7 +138,6 @@ Bus Stage: {{ stage.display_name }}
 		</table>
 	</div>
 	<div id="map" ></div>
-	<div class="clearfloat" />
+	<div class="clearfloat"></div>
 </div>
-      
 {% endblock %}
