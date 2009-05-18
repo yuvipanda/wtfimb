@@ -114,6 +114,10 @@ function addStage(lat,lon,id, name) {
 		window.status = name;
 		OpenLayers.Event.stop(e);
 		});
+		marker.events.register("mouseout", marker, function(e){
+		window.status = ' ';
+		OpenLayers.Event.stop(e);
+		});
 	marker.events.register("mousedown", marker, function(e){
 		window.location = "/chennai/stage/" + id;
 		OpenLayers.Event.stop(e);
