@@ -13,7 +13,7 @@ class StageAdmin(admin.ModelAdmin):
 					'longitude', 
 					)
 	def view_stage_link(self, obj):
-		return '<a href="chennai/stage/%s">View</a>' % obj.id
+		return '<a href="/chennai/stage/%s">View</a>' % obj.id
 
 	view_stage_link.allow_tags = True
 	view_stage_link.short_description = "Link to Site"
