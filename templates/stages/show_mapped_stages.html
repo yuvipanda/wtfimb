@@ -34,12 +34,12 @@ $(document).ready(function() {
             {% for s in mapped_stages %}
                 var tempLat = {{s.latitude}};
                 var tempLon = {{s.longitude}};
-                addStage(tempLat, tempLon, {{s.id}});
+					addStage(tempLat, tempLon, {{s.id}}, '{{s.display_name}}');
             {% endfor %}
             map.zoomToExtent(layerStages.getDataExtent());            
     });
 
-function addStage(lat,lon,id) {
+function addStage(lat,lon,id, name) {
     var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), icon.clone());
     marker.events.register("mouseover", marker, function(e){
 		window.status = name;
