@@ -41,8 +41,18 @@ $(document).ready(function() {
 
 function addStage(lat,lon,id) {
     var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), icon.clone());
-    marker.events.register("click", marker, function(e){
-	window.location="/chennai/stage/"+id; });
+    marker.events.register("mouseover", marker, function(e){
+		window.status = name;
+		OpenLayers.Event.stop(e);
+		});
+		marker.events.register("mouseout", marker, function(e){
+		window.status = ' ';
+		OpenLayers.Event.stop(e);
+		});
+	marker.events.register("mousedown", marker, function(e){
+		window.location = "/chennai/stage/" + id;
+		OpenLayers.Event.stop(e);
+		});
     layerStages.addMarker(marker);
 }
 
