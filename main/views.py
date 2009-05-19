@@ -13,7 +13,13 @@ def index(request):
 
 def show_route(request, id):
     r = Route.objects.get(id=id)
-    return direct_to_template(request, 'routes/show_route.html', {'route':r})
+    return direct_to_template	(
+			request, 
+			'routes/show_route.html', 
+			{
+				'route':r,
+				'stages':r.stages.order_by('routestage__sequence')
+				})
 
 #def show_stage(request, id):
 #    s = Stage.objects.get(id=id)

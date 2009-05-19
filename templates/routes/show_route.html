@@ -95,7 +95,7 @@ $(document).ready(function() {
 		        map.addControl(overview1);        
                 
             var points = [];
-            {% for s in route.stages.all %}
+            {% for s in stages %}
                 {% if s.latitude %}
                     var tempLat = {{s.latitude}};
                     var tempLon = {{s.longitude}};
@@ -175,7 +175,7 @@ Bus Route: {{ route.display_name }}
 					<th>Stops At: <a href=#>(Reverse Direction)</a></th>
 				</tr>
 			</thead>
-			{% for s in route.stages.all %}
+			{% for s in stages %}
 			<tr class='stageentry'>
 				<td><a href="{% url main.views.show_stage s.id %}">{{ s.display_name }}</a> {% if not s.latitude %} <span id = "{{ s.id }}" ><a class="mapthis" href="#" onClick="return editStage({{ s.id }});" >Map this Stage!</a></span> {% endif %} </td>
 			</tr>
