@@ -105,6 +105,7 @@ Bus Stage: {{ stage.display_name }}
 
 {% block main %}
 <h1 class="names">Stage: {{ stage.display_name }} {% if stage.alternate_name %} ( {{stage.alternate_name }} ) {% endif %}</h1>
+<a class="edit" target="_blank" href="http://www.busroutes.in/admin/appmodels/stage/{{ stage.id }}/">Edit</a>
 {% if user.is_authenticated %}
 <div id="editForm">
 	<form action="" method="POST">

@@ -165,7 +165,8 @@ Bus Route: {{ route.display_name }}
 {% endblock %}
 
 {% block main %} 
-<h1 class="names">Route: {{ route.display_name }}</h1>
+<h1 class="names">Route: {{ route.display_name }} </h1>
+<a class="edit" target="_blank" href="http://www.busroutes.in/admin/appmodels/route/{{ route.id }}/">Edit</a>/<a class="view" target="_blank" href="http://mtcbus.org/Routes.asp?cboRouteCode={{ route.mtc_name }}&submit=Search">Check Official Site</a>
 <div id="view">
 	<div class="leftCol">
 		<table id="stages">
