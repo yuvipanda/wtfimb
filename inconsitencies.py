@@ -15,7 +15,7 @@ from appmodels.models import *
 
 from math import *
 
-MAX_DISTANCE = 8000
+MAX_DISTANCE = 3
 
 def haversine(lon1, lat1, lon2, lat2):
     # convert to radians 
@@ -25,10 +25,10 @@ def haversine(lon1, lat1, lon2, lat2):
     lat2 = radians(lat2)
     # haversine formula 
     dlon = lon2 - lon1 
-    dlat = lat2 - lat1 
+    dlat = lat2 - lat1
     a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
     c = 2 * atan2(sqrt(a), sqrt(1-a)) 
-    km = 6367 * c 
+    km = 6367 * c
     return km 
 
 if __name__ == '__main__':
@@ -41,10 +41,14 @@ if __name__ == '__main__':
 						stages[i].longitude, 
 						stages[i].latitude,
 						stages[i+1].longitude,
-						stages[i+1].longitude
+						stages[i+1].latitude
 						)
 				if dist > MAX_DISTANCE:
 					print r.display_name
+					print stages[i].mtc_name
+					print stages[i+1].mtc_name
+					print stages[i].longitude , stages[i].latitude,
+					print stages[i+1].longitude,
+					print stages[i+1].longitude
 					print dist
-					break
 
