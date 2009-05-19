@@ -266,7 +266,7 @@ button:hover {
 	height:500px;
 	width:70%;
 	margin-left:30% !important;
-	border:1px dashed grey;
+	border:1px dashed gray;
 }
 /*Left column for route details, tables*/
 .leftCol {
@@ -275,7 +275,7 @@ button:hover {
 	overflow-x:none;
 	overflow-y:auto;
 	height:500px;
-	border:1px dashed grey;
+	border:1px dashed gray;
 }
 .clearfloat {
 	clear:both;
@@ -351,7 +351,7 @@ input[type="text"]
     margin-bottom: 10px;
     margin-left:30%;
     position:relative;
-    border:1px dashed grey;
+    border:1px dashed gray;
     padding:2px;
 }
 #editForm form{
