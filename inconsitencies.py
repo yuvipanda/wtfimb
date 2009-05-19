@@ -47,8 +47,6 @@ if __name__ == '__main__':
 					print r.display_name
 					print stages[i].mtc_name
 					print stages[i+1].mtc_name
-					print stages[i].longitude , stages[i].latitude,
-					print stages[i+1].longitude,
-					print stages[i+1].longitude
 					print dist
+					print 
 
