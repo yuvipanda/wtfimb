@@ -46,21 +46,21 @@ $(document).ready(function() {
             {% if start_stage.latitude %}
                     var tempLat = {{start_stage.latitude}};
                     var tempLon = {{start_stage.longitude}};
-                    addStage(tempLat, tempLon, {{start_stage.id}});
+                    addStage(tempLat, tempLon, {{start_stage.id}},'{{start_stage.display_name}}');
                     points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
             {% endif %}
             {% for co in changeovers %}
                 {% if co.start_stage.latitude %}
                     var tempLat = {{co.start_stage.latitude}};
                     var tempLon = {{co.start_stage.longitude}};
-                    addStage(tempLat, tempLon, {{co.start_stage.id}});
+                    addStage(tempLat, tempLon, {{co.start_stage.id}},'{{co.display_name}}');
                     points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
                 {% endif %}
             {% endfor %}
             {% if end_stage.latitude %}
                     var tempLat = {{end_stage.latitude}};
                     var tempLon = {{end_stage.longitude}};
-                    addStage(tempLat, tempLon, {{end_stage.id}});
+                    addStage(tempLat, tempLon, {{end_stage.id}},'{{end_stage.display_name}}');
                     points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
             {% endif %}
             layerRoute.addFeatures(new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(points),null,style_black));
@@ -68,10 +68,20 @@ $(document).ready(function() {
             var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
     });
 
-function addStage(lat,lon,id) {
+function addStage(lat,lon,id,name) {
     var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), icon.clone());
-    marker.events.register("click", marker, function(e){
-        window.location="/view/stage/"+id; });
+    marker.events.register("mouseover", marker, function(e){
+		window.status = name;
+		OpenLayers.Event.stop(e);
+		});
+		marker.events.register("mouseout", marker, function(e){
+		window.status = ' ';
+		OpenLayers.Event.stop(e);
+		});
+	marker.events.register("mousedown", marker, function(e){
+		window.location = "/chennai/stage/" + id;
+		OpenLayers.Event.stop(e);
+		});
     layerStages.addMarker(marker);
 }
 
@@ -102,14 +112,12 @@ function addStage(lat,lon,id) {
 		<span class="bus">
 			<a href="{% url main.views.show_route r.id %}">
 				{{ r.display_name }}
-			</a>
-		</span>&nbsp;
+			</a>&nbsp;
+		</span>
 		{% endfor %}
-
 		{% endfor %}
 	</div>
-
 	<div id="map" /></div>
-	<div class="clearfloat" />
+	<div class="clearfloat"></div>
 </div>
 {% endblock %}

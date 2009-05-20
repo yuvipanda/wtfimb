@@ -99,7 +99,7 @@ $(document).ready(function() {
                 {% if s.latitude %}
                     var tempLat = {{s.latitude}};
                     var tempLon = {{s.longitude}};
-					addStage(tempLat, tempLon, {{s.id}}, '{{s.display_name}}');
+					addStage(tempLat, tempLon, {{s.id}},'{{s.display_name}}');
                     points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
                 {% endif %}
             {% endfor %}

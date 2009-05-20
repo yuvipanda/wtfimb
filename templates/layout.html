@@ -39,7 +39,9 @@
 <body>
 	<div id="wrapper">
 		<div id="topbar">
+			<div id="logo">
 			<a href="http://www.busroutes.in/"><img alt="Find Bus Routes in" src="/static/images/header.png" /></a><span id="location"><a href="http://www.busroutes.in/Chennai">Chennai!</a></span>
+		</div>
 			<div id="LoginBar">
 				{% if user.is_authenticated %}
 				Hi, <strong><a href="http://www.busroutes.in/admin/">{{ user.username }}</a></strong>/<a href="http://www.busroutes.in/admin/logout/">Logout</a>
@@ -48,6 +50,13 @@
 				<a href="{% url registration.views.register %}">Register</a>
 				{% endif %}
 			</div>
+			<div id="searchbar">
+				<form id="search">
+				<input type="text" id="from1" size="20"  />
+				<input type="text" id="to1" size="20"  />
+				<input type="image" id="submit1" src="/static/img/submitbus.png" value="Find Route!"/>
+				</form>
+				</div>
 		</div>
 		<div id="page">
 			{% block main %}

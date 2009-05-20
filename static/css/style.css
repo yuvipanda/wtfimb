@@ -79,27 +79,38 @@ input[type=text] {
 }
 #topbar {
 	/* background-color: #069; */
-	padding: 0.5em 0.5em 0.5em 0.5em;
+	/*padding: 0.5em 0.5em 0.5em 0.5em;*/
 	margin: 0;
 	margin-top:.5em;
 	text-align: left;
+	height:100px;
+	position:relative;
 	
 }
 #LoginBar
 {
-	position:absolute;
+	position:relative;
+	float:right;
 	top:5px;
 	right:5px;
+	z-index:2;
 	}
-#topbar span#location {
+	#logo{
+		position:relative;
+		float:left;
+		width:300px;
+		top:0px;
+		left:0px;
+	}
+#location {
 	color: #FFFFFF;
 	background: #000000;
 	padding-right: 7px;
 	padding-left: 7px;
 	font-size:200%;
 	position:absolute;
-	top:36px;
-	left:173px;
+	top:29px;
+	left:170px;
 }
 #location a{
 	color: #Fdfdfd;
@@ -346,7 +357,34 @@ input[type="text"]
     outline:0 !important;
 }
 /* end earch form*/
-
+#searchbar{
+	width:600px;
+	height:100px;
+	position:absolute;
+	top:0px;
+	right:0px;
+	float:right;
+	background-image:url(/static/img/searchback.png);
+}
+#searchbar input[type="text"]{
+	border:1px dashed gray;
+	background:none;
+}
+#from1{
+	position:relative;
+	top:30px;
+	left:40px;
+}
+#to1{
+	position:relative;
+	top:30px;
+	left:100px;
+}
+#submit1{
+	position:relative;
+	top:40px;
+	left:250px;
+}
 #editForm {
     margin-bottom: 10px;
     margin-left:30%;
@@ -366,4 +404,11 @@ input[type="text"]
 	font-size:130%;
 	padding:4px;
 	background:#EDDDFF;
+}
+#helpbar{
+	position:relative;
+	z-index:2000;
+}
+#view{
+
 }
