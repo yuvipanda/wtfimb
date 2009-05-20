@@ -84,8 +84,7 @@ input[type=text] {
 	margin-top:.5em;
 	text-align: left;
 	height:100px;
-	position:relative;
-	
+	position:relative;	
 }
 #LoginBar
 {
@@ -98,7 +97,7 @@ input[type=text] {
 	#logo{
 		position:relative;
 		float:left;
-		width:300px;
+		width:350px;
 		top:0px;
 		left:0px;
 	}
@@ -371,19 +370,19 @@ input[type="text"]
 	background:none;
 }
 #from1{
-	position:relative;
-	top:30px;
+	position:absolute;
+	top:60px;
 	left:40px;
 }
 #to1{
-	position:relative;
-	top:30px;
-	left:100px;
+	position:absolute;
+	top:60px;
+	left:240px;
 }
 #submit1{
-	position:relative;
+	position:absolute;
 	top:40px;
-	left:250px;
+	left:540px;
 }
 #editForm {
     margin-bottom: 10px;
