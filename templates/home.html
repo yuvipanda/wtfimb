@@ -13,8 +13,8 @@ $(document).ready(function(){
 	$.getJSON("{% url api.views.autocomplete_stages %}", function(json){
 		data = json;
 		jQuery.each(json, function(k,v) { stages.push(k); });
-		$("#from").autocomplete(stages);
-		$("#to").autocomplete(stages);
+		$("#from").autocomplete(stages, {matchContains:true});
+		$("#to").autocomplete(stages, {matchContains:true});
 	});
 
 	$("#submit").click(function(){
