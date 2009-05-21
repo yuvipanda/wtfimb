@@ -18,8 +18,13 @@ $(document).ready(function(){
 	});
 
 	$("#submit").click(function(){
+		if ($("#to").val() == "") {
+		 var fromId = data[$("#from").val()];
+		 top.location = "/chennai/stage/" + fromId;
+		 return;
+		 }
 		var fromId = data[$("#from").val()];
-		var toId = data[$("#to").val()];
+		var toId = data[$("#to").val()];		
 		top.location = "/chennai/path/" + fromId + "/" + toId;
 	});
 });
