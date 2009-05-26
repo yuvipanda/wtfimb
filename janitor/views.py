@@ -49,11 +49,15 @@ def find_inconsistencies(max_distance):
                     break
     return fixables
 
-def inconsistent_routes(request, maxdist=5):
+def inconsistent_routes(request, maxdist):
+    if not maxdist:
+        maxdist = 5
+    incs = find_inconsistencies(int(maxdist))
+    incs.sort(key=lambda x: x.stage.display_name)
     return direct_to_template   (
             request, 
             'janitor/routes.html', 
             {
-                'inconsistencies':find_inconsistencies(int(maxdist))
+                'inconsistencies':incs
                 })
 
