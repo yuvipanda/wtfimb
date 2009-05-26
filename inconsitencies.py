@@ -32,21 +32,21 @@ def haversine(lon1, lat1, lon2, lat2):
     return km 
 
 if __name__ == '__main__':
-	routes = Route.objects.all()
-	for r in routes:
-		stages = r.stages.order_by('routestage__sequence')
-		for i in xrange(0, len(stages) - 1):
-			if stages[i].latitude and stages[i+1].latitude:
-				dist = haversine(
-						stages[i].longitude, 
-						stages[i].latitude,
-						stages[i+1].longitude,
-						stages[i+1].latitude
-						)
-				if dist > MAX_DISTANCE:
-					print r.display_name
-					print stages[i].mtc_name
-					print stages[i+1].mtc_name
-					print dist
-					print 
+    routes = Route.objects.all()
+    for r in routes:
+        stages = r.stages.order_by('routestage__sequence')
+        for i in xrange(0, len(stages) - 1):
+            if stages[i].latitude and stages[i+1].latitude:
+                dist = haversine(
+                        stages[i].longitude, 
+                        stages[i].latitude,
+                        stages[i+1].longitude,
+                        stages[i+1].latitude
+                        )
+                if dist > MAX_DISTANCE:
+                    print r.display_name
+                    print stages[i].mtc_name
+                    print stages[i+1].mtc_name
+                    print dist
+                    print 
 

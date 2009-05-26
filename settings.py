@@ -66,8 +66,8 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-		'django.core.context_processors.auth',
-		)
+        'django.core.context_processors.auth',
+        )
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -78,7 +78,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'wtfimb.urls'
 
 TEMPLATE_DIRS = (
-		os.path.join(ROOT_DIR, 'templates').replace('\\','/'),
+        os.path.join(ROOT_DIR, 'templates').replace('\\','/'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -88,15 +88,15 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-	'django.contrib.admin',
-	'django.contrib.humanize',
+    'django.contrib.admin',
+    'django.contrib.humanize',
 
-	'wtfimb.appmodels',
-	'wtfimb.main',
-	'wtfimb.routing',
-	'wtfimb.home',
+    'wtfimb.appmodels',
+    'wtfimb.main',
+    'wtfimb.routing',
+    'wtfimb.home',
 
-	'registration',
+    'registration',
 )
 
 GRAPH_CACHE = os.path.join(ROOT_DIR, 'graph')

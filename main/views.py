@@ -13,13 +13,13 @@ def index(request):
 
 def show_route(request, id):
     r = Route.objects.get(id=id)
-    return direct_to_template	(
-			request, 
-			'routes/show_route.html', 
-			{
-				'route':r,
-				'stages':r.stages.order_by('routestage__sequence')
-				})
+    return direct_to_template   (
+            request, 
+            'routes/show_route.html', 
+            {
+                'route':r,
+                'stages':r.stages.order_by('routestage__sequence')
+                })
 
 #def show_stage(request, id):
 #    s = Stage.objects.get(id=id)
@@ -61,6 +61,6 @@ def show_mapped_stages(request):
             {'mapped_stages':mapped})
 
 def show_unmapped_routes(request):
-	unmapped = Route.objects.filter(stages__latitude=None)
-	return direct_to_template(request, 'routes/show_unmapped_routes.html',
-			{'unmapped_routes':unmapped})
+    unmapped = Route.objects.filter(stages__latitude=None)
+    return direct_to_template(request, 'routes/show_unmapped_routes.html',
+            {'unmapped_routes':unmapped})
