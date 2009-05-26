@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     (r'^chennai/', include('main.urls')),
     (r'^chennai/api/', include('api.urls')),
     (r'^chennai/path/', include('routing.urls')),
+    (r'^chennai/janitor/', include('janitor.urls')),
     (r'^$', lambda req: redirect_to(req,'/chennai')),
         
     # Example:

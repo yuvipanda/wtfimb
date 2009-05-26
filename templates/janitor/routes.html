@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block style %}
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+{% block title %}
+Inconsistent Routes
+{% endblock %}
+
+{% block main %}
+<table>
+{% for ic in inconsistencies %}
+    <tr>
+        <td>
+            {{ic.route.display_name}}
+        </td>
+        <td>
+            <a href="/chennai/route/{{ic.route.id }}">Map</a>
+        </td>
+        <td>
+            <a href="/admin/appmodels/route/{{ic.route.id}}">Admin</a>
+        </td>
+        <td>
+            <a href="/chennai/stage/{{ic.stage.id }}">{{ic.stage.display_name}}</a>
+        </td>
+{% endfor %}
+</table>
+
+{% endblock %}
