@@ -11,6 +11,7 @@ Inconsistent Routes
 {% endblock %}
 
 {% block main %}
+Total Inconsistencies found: {{ inconsistencies|length }}
 <table>
 {% for ic in inconsistencies %}
     <tr>

@@ -46,13 +46,14 @@ def find_inconsistencies(max_distance):
                     ic.stage = stages[i+1]
                     ic.distance = dist
                     fixables.append(ic)
+                    break
     return fixables
 
-def inconsistent_routes(request):
+def inconsistent_routes(request, maxdist=5):
     return direct_to_template   (
             request, 
             'janitor/routes.html', 
             {
-                'inconsistencies':find_inconsistencies(5)
+                'inconsistencies':find_inconsistencies(int(maxdist))
                 })
 
