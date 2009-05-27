@@ -342,6 +342,7 @@ input[type="text"]
   }
 .links{
 	margin-bottom:10px;
+	text-align:center;
 }
 /*search form*/
 #searchform div {
