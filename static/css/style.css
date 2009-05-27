@@ -13,15 +13,17 @@ body {
 img{
 	border:0px;
 }
-a {
+a{
+	outline:none;
 	text-decoration:none;
 	color:#5fb1ff;
 }
-a:visited {
-	color:#3b9fff;
+a:link,a:visited{
+	text-decoration:none;
 }
-a:hover {
+a:hover{
 	color:#138cff;
+	text-decoration:underline;
 }
 h1 {
 	color: #532406;
@@ -30,6 +32,11 @@ h1 {
 }
 h2 {
 	font-size: 1.5em;
+}
+h3{
+	display:inline;
+	font-size:1em;
+	margin-bottom:5px;
 }
 table {
 	width: 100%;
@@ -161,25 +168,29 @@ form {
 	font-weight: bold;
 	background-color: #FBFEDF;
 }
-.bus {
-	background: #ffa;
+.box{
 	border: 1px solid #ccc;
 	display: inline-table;
 	padding: 3px;
 	font-size:95%;
 	margin-bottom:4px;
+	color:black;
+}
+.bus {
+	background: #ffa;
+}
+.page {
+	background: #f1dbe8;
 }
 .journey {
 	background: #f1dbe8;
-	border: 1px solid #ccc;
-	display: inline;
-	padding: 1px 2px;
+}
+.link {
+	font-size:80%;
+	background: #efefef;
 }
 .stop {
 	background: #F1FFE3;
-	border-bottom: 1px solid #ccc;
-	display: inline;
-	padding: 1px 2px;
 }
 .bus a, .stop a, .journey a {
 	color: #000;
@@ -329,7 +340,9 @@ input[type="text"]
 	{
 	background-color: #f3f9ff;
   }
-
+.links{
+	margin-bottom:10px;
+}
 /*search form*/
 #searchform div {
     /* This div will have the left image as a background */
