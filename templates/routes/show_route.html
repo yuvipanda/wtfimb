@@ -164,22 +164,24 @@ function editStage(id) {
 Bus Route: {{ route.display_name }} 
 {% endblock %}
 
-{% block main %} 
+{% block main %}
 <h1 class="names">Route: {{ route.display_name }} </h1>
-<a class="edit" target="_blank" href="http://www.busroutes.in/admin/appmodels/route/{{ route.id }}/">Edit</a>/<a class="view" target="_blank" href="http://mtcbus.org/Routes.asp?cboRouteCode={{ route.mtc_name }}&submit=Search">Check Official Site</a>
+<a class="edit" target="_blank" href="http://www.busroutes.in/admin/appmodels/route/{{ route.id }}/">Edit</a>/<a class="view" target="_blank" href="http://mtcbus.org/Routes.asp?cboRouteCode={{ route.mtc_name }}&amp;submit=Search">Check Official Site</a>
 <div id="view">
 	<div class="leftCol">
 		<table id="stages">
 			<thead>
 				<tr>
-					<th>Stops At: <a href=#>(Reverse Direction)</a></th>
+					<th>Stops At: <a href="#">(Reverse Direction)</a></th>
 				</tr>
 			</thead>
-			{% for s in stages %}
-			<tr class='stageentry'>
-				<td><a href="{% url main.views.show_stage s.id %}">{{ s.display_name }}</a> {% if not s.latitude %} <span id = "{{ s.id }}" ><a class="mapthis" href="#" onClick="return editStage({{ s.id }});" >Map this Stage!</a></span> {% endif %} </td>
-			</tr>
-			{% endfor %}
+			<tbody>
+				{% for s in stages %}
+				<tr class='stageentry'>
+					<td><a href="{% url main.views.show_stage s.id %}">{{ s.display_name }}</a> {% if not s.latitude %} <span id = "{{ s.id }}" ><a class="mapthis" href="#" onclick="return editStage({{ s.id }});" >Mark this Stage!</a></span> {% endif %} </td>
+				</tr>
+				{% endfor %}
+			</tbody>
 		</table>
 	</div>
 	<div id="map" ></div>
