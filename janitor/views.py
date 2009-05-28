@@ -44,7 +44,7 @@ def find_inconsistencies(max_distance):
                     ic = Inconsistency()
                     ic.route = r
                     ic.stage = stages[i+1]
-                    ic.distance = dist
+                    ic.distance = ceil(dist)
                     fixables.append(ic)
                     break
     return fixables

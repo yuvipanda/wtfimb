@@ -116,7 +116,7 @@ Bus Stage: {{ stage.display_name }}
 		<input type="submit" value="Update" />
 		<input type="button" value="Reset" onclick="resetForm();" />
 	</form>
-	<a class="osmLinks" target='_blank' href="http://www.openstreetmap.org/?lat={{ stage.latitude }}&lon={{ stage.longitude }}&zoom=17">Edit the Map! &rarr;</a>
+	<a class="osmLinks" target='_blank' href="http://www.openstreetmap.org/?lat={{ stage.latitude }}&amp;lon={{ stage.longitude }}&amp;zoom=17">Edit the Map! &rarr;</a>
 </div>
 {% endif %}
 <div id="view">
@@ -129,6 +129,7 @@ Bus Stage: {{ stage.display_name }}
 					<th>To</th>
 				</tr>
 			</thead>
+            <tbody>
 			{% for r in stage.route_set.all %}
 			<tr class='route_entry'>
 				<td> <a href="{% url main.views.show_route r.id %}">{{ r.display_name }}</a></td>
@@ -136,6 +137,7 @@ Bus Stage: {{ stage.display_name }}
 				<td> <a href="{% url main.views.show_stage r.end.id %}">{{ r.end.display_name }}</a></td>
 			</tr>
 			{% endfor %}
+            </tbody>
 		</table>
 	</div>
 	<div id="map" ></div>

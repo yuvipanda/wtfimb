@@ -34,6 +34,7 @@ h2 {
 	font-size: 1.5em;
 }
 h3{
+	color:#3e3e3e;
 	display:inline;
 	font-size:1em;
 	margin-bottom:5px;
@@ -186,8 +187,8 @@ form {
 	background: #f1dbe8;
 }
 .link {
-	font-size:80%;
-	background: #efefef;
+	font-size:70%;
+	background: #fefefe;
 }
 .stop {
 	background: #F1FFE3;

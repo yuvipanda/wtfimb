@@ -13,19 +13,23 @@ Inconsistent Routes
 {% block main %}
 Total Inconsistencies found: {{ inconsistencies|length }}
 <table>
+	<thead>
+		<tr><th>Admin</th><th>Route</th><th>Errenous Stage</th><th>Error (Km)</th>
+		</tr>
+	</thead>
 {% for ic in inconsistencies %}
     <tr>
-        <td>
-            {{ic.route.display_name}}
+    	<td>
+            <a href="/admin/appmodels/route/{{ic.route.id}}">Edit</a>
         </td>
         <td>
-            <a href="/chennai/route/{{ic.route.id }}">Map</a>
-        </td>
-        <td>
-            <a href="/admin/appmodels/route/{{ic.route.id}}">Admin</a>
+            <a href="/chennai/route/{{ic.route.id }}">{{ic.route.display_name}}</a>
         </td>
         <td>
             <a href="/chennai/stage/{{ic.stage.id }}">{{ic.stage.display_name}}</a>
+        </td>
+        <td>
+        	{{ic.distance}}
         </td>
 {% endfor %}
 </table>
