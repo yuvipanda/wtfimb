@@ -4,11 +4,11 @@ from django.contrib import admin
 class RouteStageInline(admin.TabularInline):
     model = RouteStage 
     extra = 1 
+    ordering = ['stage__display_name']
 
 class StageAdmin(admin.ModelAdmin):
     list_display = ('display_name',
                     'view_stage_link',
-                    'alternate_name',
                     'latitude', 
                     'longitude', 
                     )
@@ -41,9 +41,6 @@ class RouteAdmin(admin.ModelAdmin):
     route_view_link.short_description = "Link to Site"
 
     inlines = (RouteStageInline, )
-
-
-
 
 admin.site.register(Route, RouteAdmin)
 admin.site.register(Stage, StageAdmin)
