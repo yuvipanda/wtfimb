@@ -17,7 +17,7 @@ Routes with unmapped stages: {{ unmapped_routes.count }} Routes
 			{% for ur in unmapped_routes %}
 			<tr class='route_entry'>
 				<td>
-					<a href="{% url main.views.show_route ur.id %}">
+					<a href="{% url main.views.show_route ur.display_name %}">
 						{{ur.display_name}}
 					</a>
 				</td>

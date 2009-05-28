@@ -15,3 +15,15 @@ for ext in exts:
     ext.display_name = ext.display_name.replace(' ','')
     ext.save()
     print "Done %s" % ext.display_name
+    
+exts = Route.objects.filter(display_name__contains='Cut')
+for ext in exts:
+    ext.display_name = ext.display_name.replace(' ','')
+    ext.save()
+    print "Done %s" % ext.display_name
+
+exts = Route.objects.filter(display_name__contains='/')
+for ext in exts:
+    ext.display_name = ext.display_name.replace('/','')
+    ext.save()
+    print "Done %s" % ext.display_name
