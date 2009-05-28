@@ -110,7 +110,7 @@ function addStage(lat,lon,id,name) {
 		Take:
 		{% for r in co.routes %}
 		<span class="box bus">
-			<a href="{% url main.views.show_route r.id %}">
+			<a href="{% url main.views.show_route r.display_name %}">
 				{{ r.display_name }}
 			</a>&nbsp;
 		</span>
