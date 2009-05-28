@@ -6,13 +6,12 @@ from appmodels.models import *
 from django.views.generic.simple import direct_to_template
 
 from forms import EditStageForm
-from appmodels.models import Stage
 
 def index(request):
     pass
 
-def show_route(request, id):
-    r = Route.objects.get(id=id)
+def show_route(request, name):
+    r = Route.objects.get(display_name__iexact=name)
     return direct_to_template   (
             request, 
             'routes/show_route.html', 
