@@ -151,7 +151,7 @@ function editStage(id) {
     }
     else {
         edit = 1;
-        document.getElementById(id).innerHTML = '<a class="mapthis" href="#" onClick="return updateStage('+id+')" >Place the Marker correctly, and click here to update.</a>';
+        document.getElementById(id).innerHTML = '<a class="mapthis" href="#" onclick="return updateStage('+id+')" >Place the Marker correctly, and click here to update.</a>';
         editMarker = null;
         enableMapClick(1);
 
