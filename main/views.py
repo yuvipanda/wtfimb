@@ -64,7 +64,16 @@ def show_unmapped_routes(request):
     return direct_to_template(request, 'routes/show_unmapped_routes.html',
             {'unmapped_routes':unmapped})
 
+ROUTE_TYPE_MAPPING = {
+        'D': 'Deluxe',
+        'AC': 'Air Conditioned',
+        'X': 'Express',
+        'N': 'Night Service',
+        'M': 'M Service',
+        'O': 'Ordinary',
+        'LSS': 'Limited Stop Service',
+        }
 def show_routes_with_type(request, type):
     routes = Route.objects.filter(types__contains=type)
     return direct_to_template(request, "routes/show_routes_with_type.html",
-            {"routes": routes, "type": type})
+            {"routes": routes, "type": ROUTE_TYPE_MAPPING[type]})
