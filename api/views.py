@@ -14,6 +14,19 @@ def all_routes(request):
         ) for s in stages])
     return HttpResponse(simplejson.dumps(data))
 
+def single_route(request, route_name):
+    r = Route.objects.get(display_name__iexact=route_name)
+    return HttpResponse(simplejson.dumps(
+            {'id': r.id,
+            'display_name': r.display_name,
+            'stages': [ { 'id': s.id,
+                          'name': s.display_name,
+                          'latitude': s.latitude,
+                          'longitude': s.longitude                          
+                        }
+                        for s in r.stages.all()]
+                        }))
+
 def autocomplete_stages(request):
     stages = Stage.objects.all()
     data = dict( [ (s.display_name, s.id) for s in stages] )
