@@ -17,10 +17,9 @@ def all_routes(request):
 def single_route(request, route_name):
     r = Route.objects.get(display_name__iexact=route_name)
     return HttpResponse(simplejson.dumps(
-            {'id': r.id,
-            'display_name': r.display_name,
-            'stages': [ { 'id': s.id,
-                          'name': s.display_name,
+            {
+            'name': r.display_name,
+            'stages': [ { 'name': s.display_name,
                           'latitude': s.latitude,
                           'longitude': s.longitude                          
                         }
