@@ -70,9 +70,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
         )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'wtfimb.urls'
@@ -111,3 +113,6 @@ EMAIL_HOST_USER = localsettings.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = localsettings.EMAIL_HOST_PASSWORD
 
 DEFAULT_FROM_EMAIL = 'admin@busroutes.in'
+
+# Caching
+CACHE_BACKEND = localsettings.CACHE_BACKEND

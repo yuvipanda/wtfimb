@@ -25,3 +25,7 @@ DEBUG = False
 EMAIL_HOST = 'mail.busroutes.in'
 EMAIL_HOST_USER = 'account-verify@busroutes.in'
 EMAIL_HOST_PASSWORD = ''
+
+# Caching
+
+CACHE_BACKEND = "dummy:///"
