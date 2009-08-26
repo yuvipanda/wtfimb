@@ -1,5 +1,6 @@
 from django.conf import settings
-from appmodels.models import *
+from stages.models import *
+from routes.models import *
 from django.views.generic.simple import direct_to_template
 import marshal
 

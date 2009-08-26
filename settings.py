@@ -97,7 +97,9 @@ INSTALLED_APPS = (
     'wtfimb.main',
     'wtfimb.routing',
     'wtfimb.home',
-
+    'wtfimb.routes',
+    'wtfimb.stages',
+    
     'registration',
 )
 

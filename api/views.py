@@ -1,6 +1,7 @@
 # Create your views here.
 
-from appmodels.models import *
+from stages.models import *
+from routes.models import *
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.utils import simplejson
