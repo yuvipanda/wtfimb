@@ -132,9 +132,9 @@ Bus Stage: {{ stage.display_name }}
             <tbody>
 			{% for r in stage.route_set.all %}
 			<tr class='route_entry'>
-				<td> <a href="{% url main.views.show_route r.display_name %}">{{ r.display_name }}</a></td>
-				<td> <a href="{% url main.views.show_stage r.start.id %}">{{ r.start.display_name }}</a></td>
-				<td> <a href="{% url main.views.show_stage r.end.id %}">{{ r.end.display_name }}</a></td>
+				<td> <a href="{% url show-route r.display_name %}">{{ r.display_name }}</a></td>
+				<td> <a href="{% url show-stage r.start.id %}">{{ r.start.display_name }}</a></td>
+				<td> <a href="{% url show-stage r.end.id %}">{{ r.end.display_name }}</a></td>
 			</tr>
 			{% endfor %}
             </tbody>

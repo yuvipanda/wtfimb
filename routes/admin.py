@@ -1,4 +1,4 @@
-from models import Route RouteStage
+from models import Route, RouteStage
 from django.contrib import admin
 
 class RouteStageInline(admin.TabularInline):

@@ -378,10 +378,13 @@ input[type="text"]
 	top:0px;
 	right:0px;
 	float:right;
-	background-image:url(/static/img/searchback.png);
 }
+
+#searchbar desc {
+    color:DarkGrey;
+    }
 #searchbar input[type="text"]{
-	border:1px dashed gray;
+	border:1px solid gray;
 	background:none;
 }
 #from1{

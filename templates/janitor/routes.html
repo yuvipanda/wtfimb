@@ -23,10 +23,10 @@ Total Inconsistencies found: {{ inconsistencies|length }}
             <a href="/admin/appmodels/route/{{ic.route.id}}">Edit</a>
         </td>
         <td>
-            <a href="/chennai/route/{{ic.route.display_name }}">{{ic.route.display_name}}</a>
+            <a href="{% url show-route ic.route.display_name %}">{{ic.route.display_name}}</a>
         </td>
         <td>
-            <a href="/chennai/stage/{{ic.stage.id }}">{{ic.stage.display_name}}</a>
+            <a href="{% url show-stage ic.stage.id %}">{{ic.stage.display_name}}</a>
         </td>
         <td>
         	{{ic.distance}}

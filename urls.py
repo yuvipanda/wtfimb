@@ -8,25 +8,18 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': settings.STATIC_DOC_ROOT}),
-    (r'^accounts/', include('registration.urls')),
-
-    (r'^chennai/$', include('home.urls')),
-    (r'^chennai/', include('main.urls')),
-    (r'^chennai/api/', include('api.urls')),
-    (r'^chennai/path/', include('routing.urls')),
-    (r'^chennai/janitor/', include('janitor.urls')),
-    (r'^$', lambda req: redirect_to(req,'/chennai')),
+                       (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+                        {'document_root': settings.STATIC_DOC_ROOT}),
+                       (r'^accounts/', include('registration.urls')),
+                       
+                       (r'^chennai/$', include('home.urls')),
+                       (r'^chennai/', include('stages.urls')),
+                       (r'^chennai/', include('routes.urls')),
+                       (r'^chennai/api/', include('api.urls')),
+                       (r'^chennai/path/', include('routing.urls')),
+                       (r'^chennai/janitor/', include('janitor.urls')),
+                       (r'^$', lambda req: redirect_to(req,'/chennai')),
         
-    # Example:
-    # (r'^wtfimb/', include('wtfimb.foo.urls')),
-
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-    # to INSTALLED_APPS to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    (r'^admin/(.*)', admin.site.root),
+                       (r'^admin/(.*)', admin.site.root),
 
 )
