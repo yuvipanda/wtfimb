@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'wtfimb.stages',
     
     'registration',
+    'south',
 )
 
 GRAPH_CACHE = os.path.join(ROOT_DIR, 'graph')

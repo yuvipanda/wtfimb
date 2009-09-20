@@ -4,8 +4,8 @@ class Route(models.Model):
     display_name = models.CharField(max_length=64)
     mtc_name = models.CharField(max_length=64)
     types = models.CharField(max_length=64)
-    start = models.ForeignKey('stages.Stage', related_name='start')
-    end = models.ForeignKey('stages.Stage', related_name='end')
+    start = models.ForeignKey('stages.Stage', related_name='start_for_routes')
+    end = models.ForeignKey('stages.Stage', related_name='end_for_routes')
     stages = models.ManyToManyField('stages.Stage', through="RouteStage")
     time = models.FloatField()
     fare = models.FloatField()
@@ -15,6 +15,6 @@ class Route(models.Model):
 
 class RouteStage(models.Model):
     route = models.ForeignKey(Route)
-    stage = models.ForeignKey('stages.Stage')
+    stage = models.ForeignKey('stages.Stage', related_name='routelinks')
     sequence = models.IntegerField()
 

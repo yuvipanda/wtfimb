@@ -8,18 +8,19 @@ class Stage(models.Model):
     longitude = models.FloatField(null=True, blank=True)
     mtc_name = models.CharField(max_length=255, null=True, blank=True)
     #routes = models.ManyToManyField('Route') #Since Route isn't yet defined
+    importance = models.FloatField(null=True, blank=True)
 
-    def save(self, user, comment=""):           
+    def save(self, user=None, comment=""):           
         super(Stage, self).save()
-        sh = StageRevision(
-                            stage = self, 
-                            display_name = self.display_name,
-                            latitude = self.latitude,
-                            longitude = self.longitude,
-                            user = user,
-                            comment = comment
-                          )
-        sh.save()                                               
+        if user:
+            sh = StageRevision(stage = self, 
+                               display_name = self.display_name,
+                               latitude = self.latitude,
+                               longitude = self.longitude,
+                               user = user,
+                               comment = comment
+                               )
+            sh.save()                                               
     
     def __unicode__(self):
         return self.display_name
