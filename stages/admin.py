@@ -1,5 +1,5 @@
 from models import Stage
-
+from django.contrib import admin
 class StageAdmin(admin.ModelAdmin):
     list_display = ('display_name',
                     'view_stage_link',

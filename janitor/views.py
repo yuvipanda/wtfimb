@@ -5,8 +5,6 @@ from django.http import HttpResponse
 from routes.models import *
 from django.views.generic.simple import direct_to_template
 
-from appmodels.models import *
-
 from math import *
 
 
