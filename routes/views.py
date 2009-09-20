@@ -12,7 +12,7 @@ def show_route(request, name):
             'routes/show_route.html', 
             {
                 'route':r,
-                'stages':r.stages.order_by('routestage__sequence')
+                'stages':r.stages.order_by('routelinks__sequence')
                 })
 
 

@@ -14,11 +14,6 @@ def show_stage(request, id):
             s.latitude = cd['latitude']
             s.longitude = cd['longitude']
             s.save(user=request.user)
-            #if 'redirect' in cd and cd['redirect'] == 'false':
-            #return HttpResponse()
-            #else:
-            #    return redirect_to(request, '/view/stage/%s' % id)
-                
     else:
         s = Stage.objects.get(id=id)
         form = EditStageForm(
