@@ -24,4 +24,6 @@ class RouteAdmin(admin.ModelAdmin):
 
     inlines = (RouteStageInline, )
 
+    prepopulated_fields = {"slug": ("display_name",)}
+
 admin.site.register(Route, RouteAdmin)

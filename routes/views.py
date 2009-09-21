@@ -6,7 +6,7 @@ from django.views.generic.simple import direct_to_template
 
 
 def show_route(request, name):
-    r = Route.objects.get(display_name__iexact=name)
+    r = Route.objects.get(slug__iexact=name)
     return direct_to_template   (
             request, 
             'routes/show_route.html', 
