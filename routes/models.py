@@ -1,4 +1,4 @@
-from django.db import models
+from django.contrib.gis.db import models
 from django.template.defaultfilters import slugify
 
 ROUTE_TYPE_CHOICES = (

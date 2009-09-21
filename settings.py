@@ -92,6 +92,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.admin',
     'django.contrib.humanize',
+    'django.contrib.gis',
 
     'wtfimb.routing',
     'wtfimb.home',
@@ -117,3 +118,5 @@ DEFAULT_FROM_EMAIL = 'admin@busroutes.in'
 
 # Caching
 CACHE_BACKEND = localsettings.CACHE_BACKEND
+
+GEOS_LIBRARY_PATH = 'w:\\program files\\geodjango\\bin\\geos_c.dll'
