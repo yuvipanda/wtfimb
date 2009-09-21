@@ -9,6 +9,7 @@ class Stage(models.Model):
     mtc_name = models.CharField(max_length=255, null=True, blank=True)
     #routes = models.ManyToManyField('Route') #Since Route isn't yet defined
     importance = models.FloatField(null=True, blank=True)
+    softlinks = models.ManyToManyField('self')
 
     def save(self, user=None, comment=""):           
         super(Stage, self).save()

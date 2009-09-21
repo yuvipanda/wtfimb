@@ -1,6 +1,11 @@
 from models import Stage
 from django.contrib import admin
-from routes.admin import RouteStageInlin
+from routes.models import RouteStage
+
+class RouteStageInline(admin.TabularInline):
+    model = RouteStage 
+    extra = 1 
+    ordering = ['stage__display_name']
 
 class StageAdmin(admin.ModelAdmin):
     list_display = ('display_name',
@@ -15,6 +20,8 @@ class StageAdmin(admin.ModelAdmin):
     view_stage_link.short_description = "Link to Site"
 
     inlines = (RouteStageInline, )
+
+    search_fields = ['display_name']
 
     def save_model(self, request, obj, form, change):
         obj.save(user=request.user)
