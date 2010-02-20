@@ -119,4 +119,3 @@ DEFAULT_FROM_EMAIL = 'admin@busroutes.in'
 # Caching
 CACHE_BACKEND = localsettings.CACHE_BACKEND
 
-GEOS_LIBRARY_PATH = 'w:\\program files\\geodjango\\bin\\geos_c.dll'
