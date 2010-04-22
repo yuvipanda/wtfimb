@@ -11,11 +11,12 @@ def setup_environment():
 
 setup_environment()
 
-from appmodels.models import *
+from stages.models import Stage
+from routes.models import Route
 
 from math import *
 
-MAX_DISTANCE = 3
+MAX_DISTANCE = 2
 
 def haversine(lon1, lat1, lon2, lat2):
     # convert to radians 
@@ -34,15 +35,16 @@ def haversine(lon1, lat1, lon2, lat2):
 if __name__ == '__main__':
     routes = Route.objects.all()
     for r in routes:
-        stages = r.stages.order_by('routestage__sequence')
+        stages = r.stages.order_by('routelinks__sequence')
         for i in xrange(0, len(stages) - 1):
-            if stages[i].latitude and stages[i+1].latitude:
+            if stages[i].location and stages[i+1].location:
                 dist = haversine(
-                        stages[i].longitude, 
-                        stages[i].latitude,
-                        stages[i+1].longitude,
-                        stages[i+1].latitude
+                        stages[i].location.x, 
+                        stages[i].location.y,
+                        stages[i+1].location.x,
+                        stages[i+1].location.y
                         )
+                print dist
                 if dist > MAX_DISTANCE:
                     print r.display_name
                     print stages[i].mtc_name

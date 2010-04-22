@@ -8,7 +8,6 @@ class Stage(models.Model):
     longitude = models.FloatField(null=True, blank=True)
     location = models.PointField(null=True, blank=True)
     mtc_name = models.CharField(max_length=255, null=True, blank=True)
-    #routes = models.ManyToManyField('Route') #Since Route isn't yet defined
     importance = models.FloatField(null=True, blank=True)
     softlinks = models.ManyToManyField('self')
 
@@ -19,8 +18,7 @@ class Stage(models.Model):
         if user:
             sh = StageRevision(stage = self, 
                                display_name = self.display_name,
-                               latitude = self.latitude,
-                               longitude = self.longitude,
+                               location=self.location,
                                user = user,
                                comment = comment
                                )
@@ -33,7 +31,9 @@ class StageRevision(models.Model):
     stage = models.ForeignKey(Stage)
     edited_at = models.DateTimeField(auto_now_add=True)
     display_name = models.CharField(max_length=255)
+    location = models.PointField(null=True, blank=True)
+    user = models.ForeignKey(User)
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
-    user = models.ForeignKey(User)
+
     comment = models.CharField(max_length=1024, blank=True, null=True)

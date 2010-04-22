@@ -2,28 +2,33 @@
 from south.db import db
 from django.db import models
 from wtfimb.stages.models import *
-from django.contrib.gis.geos import *
 
 class Migration:
     
     def forwards(self, orm):
-        for s in orm.Stage.objects.filter(latitude__isnull=False):
-            s.location = Point(s.longitude, s.latitude)
-            s.save()
+        
+        # Deleting field 'StageRevision.latitude'
+        db.delete_column('stages_stagerevision', 'latitude')
+        
+        # Deleting field 'StageRevision.longitude'
+        db.delete_column('stages_stagerevision', 'longitude')
+        
     
     
     def backwards(self, orm):
-        for s in orm.Stage.objects.filter(location__isnull=False):
-            s.latitude = s.location.y
-            s.longitude = s.location.x
-            s.save()
-
+        
+        # Adding field 'StageRevision.latitude'
+        db.add_column('stages_stagerevision', 'latitude', orm['stages.stagerevision:latitude'])
+        
+        # Adding field 'StageRevision.longitude'
+        db.add_column('stages_stagerevision', 'longitude', orm['stages.stagerevision:longitude'])
+        
     
     
     models = {
         'auth.group': {
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '80', 'unique': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '80'}),
             'permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'blank': 'True'})
         },
         'auth.permission': {
@@ -46,7 +51,7 @@ class Migration:
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
             'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'blank': 'True'}),
-            'username': ('django.db.models.fields.CharField', [], {'max_length': '30', 'unique': 'True'})
+            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
         },
         'contenttypes.contenttype': {
             'Meta': {'unique_together': "(('app_label', 'model'),)", 'db_table': "'django_content_type'"},
@@ -70,8 +75,7 @@ class Migration:
             'display_name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'edited_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'latitude': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'longitude': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'location': ('django.contrib.gis.db.models.fields.PointField', [], {'null': 'True', 'blank': 'True'}),
             'stage': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['stages.Stage']"}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
         }
