@@ -37,7 +37,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -56,7 +56,7 @@ STATIC_DOC_ROOT = os.path.join(ROOT_DIR, 'static').replace('\\','/')
 ADMIN_MEDIA_PREFIX = '/static/admin-media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'hs#xo8_e6hxi747-vz_7!=xzui*!$#ds3)x-hxfpfqc704edxd'
+SECRET_KEY = localsettings.SECRET_KEY
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -98,6 +98,10 @@ INSTALLED_APPS = (
     'wtfimb.home',
     'wtfimb.routes',
     'wtfimb.stages',
+    'wtfimb.routes.admin',
+    'wtfimb.stages.admin',
+    'wtfimb.api',
+    'wtfimb.janitor',
     
     'registration',
     'south',
