@@ -1,55 +1,31 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Sign up{% endblock %}
+{% block head %}
 
-{% block main %}
 
-  {% if form.errors %}
-  <p class="errors">Please correct the errors below: {{ form.non_field_errors }}</p>
-  {% endif %}
-
-  <h1>Create an account</h1>
-  <form method="post" action="" class="wide">
-    <p>
-      <label for="id_username">Username:</label>
-      {% if form.username.errors %}
-        <p class="errors">{{ form.username.errors.as_text }}</p>
-      {% endif %}
-      {{ form.username }}
-    </p>
-    <p>
-      <label for="id_email">Email address:</label>
-      {% if form.email.errors %}
-        <p class="errors">{{ form.email.errors.as_text }}</p>
-      {% endif %}
-      {{ form.email }}
-    </p>
-    <p>
-      <label for="id_password1">Password:</label>
-      {% if form.password1.errors %}
-        <p class="errors">{{ form.password1.errors.as_text }}</p>
-      {% endif %}
-      {{ form.password1 }}
-    </p>
-    <p>
-      <label for="id_password2">Password (type again to catch typos):</label>
-      {% if form.password2.errors %}
-        <p class="errors">{{ form.password2.errors.as_text }}</p>
-      {% endif %}
-      {{ form.password2 }}
-    </p>
-    <p class="submit"><input type="submit" value="Register &rarr;"></p>
-  </form>
-  
 {% endblock %}
 
-{% block content-related %}
-<p>Creating an account lets you map routes and edit stage details. This way we can track all the changes made to the database. Please note that this feature is still in its early stage of development and you may face a few bugs. Let us know if you are having any trouble <b>admin@busroutes.in</b>
- </p>
- 
-<p>Fill out the form to the left (all fields are required), and your
-account will be created; you'll be sent an email with the account activation link. Your email id will be used only for this purpose, we hate spam as much as you do.</p>
 
-<p>This account will let you log into the ticket tracker, claim tickets,
-and be exempt from spam filtering.</p>
+{% block content %}
+{% if form.errors %}
+    <div class="errors">
+        <p>Error while submitting form</p>
+        
+    </div>
+    <br>
+{% endif %}
+
+<h2>Make a choice:</h2>
+<p> <a href="{% url registration_register %}">Register</a> | <a href="{% url user_signin %}">Sign-In</a></p>
+
+<form action="" method="post">
+    <fieldset>
+	    <legend>{% trans "Create a new account" %}</legend>
+	    <table>
+		    {{ form.as_table }}
+	    </table>
+	    <p><input type="submit" name="bsignup'" value="{% trans "Sign up" %}"> </p>
+	 </fieldset>
+</form>
 {% endblock %}

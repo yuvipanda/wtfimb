@@ -1,5 +1,6 @@
-import os.path
 # Django settings for wtfimb project.
+import os.path
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
 ROOT_DIR = os.path.dirname(__file__)
 
@@ -41,14 +42,12 @@ USE_I18N = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(ROOT_DIR, 'static')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
-
-STATIC_DOC_ROOT = os.path.join(ROOT_DIR, 'static').replace('\\','/')
+MEDIA_URL = '/static'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -67,6 +66,11 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
         'django.core.context_processors.auth',
+        'django.core.context_processors.debug',
+        'django.core.context_processors.i18n',
+        'django.core.context_processors.media',
+        'django.core.context_processors.request',
+        'django_authopenid.context_processors.authopenid',
         )
 
 MIDDLEWARE_CLASSES = (
@@ -75,21 +79,37 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
+    'django.middleware.doc.XViewMiddleware',
+    'django_authopenid.middleware.OpenIDMiddleware',
 )
 
 ROOT_URLCONF = 'wtfimb.urls'
+ACCOUNT_ACTIVATION_DAYS = 10
+OPENID_SREG = {
+    "required": ['fullname', 'country']
+}
 
 TEMPLATE_DIRS = (
-        os.path.join(ROOT_DIR, 'templates').replace('\\','/'),
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+        os.path.join(ROOT_DIR, 'templates'),
 )
+
+LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_ACTIVATION_DAYS = 30
+
+OPENID_SREG = {
+    "required": ['fullname', 'country']
+}
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+     'django.core.context_processors.request',
+) 
 
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.humanize',
     'django.contrib.gis',
@@ -104,13 +124,11 @@ INSTALLED_APPS = (
     'wtfimb.janitor',
     
     'registration',
+    'django_authopenid',
     'south',
 )
 
 GRAPH_CACHE = os.path.join(ROOT_DIR, 'graph')
-
-#Number of Days Activate Link is valid
-ACCOUNT_ACTIVATION_DAYS = 30
 
 # Email Settings
 

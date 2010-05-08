@@ -1,1 +1,1 @@
-Activate your busroutes.in account
+{{ site }}. Confirm your registration

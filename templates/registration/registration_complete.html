@@ -1,8 +1,17 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Registration complete{% endblock %}
+{% block head %}
 
-{% block main %}
-<h1>Check your email</h1>
-<p>An activation link has been sent to the email address you supplied, along with instructions for activating your account.</p>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% blocktrans %}
+<h1>Thank you</h1>
+<p>An email has been sent to you. You need to click link in it to activate your account.</p>
+{% endblocktrans %}
+
 {% endblock %}

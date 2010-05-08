@@ -1,8 +1,6 @@
-{% load humanize %}
-Someone, hopefully you, signed up for a new account at busroutes.in with this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar:
+Hi,
 
-http://busroutes.in/accounts/activate/{{ activation_key }}/
+Thank you for your registration. To activate your account click on the link below :
 
-This account will let you make changes to the database and help you to share your knowledge with the community.
+<a href="http://openid-example.e-engura.org{% url registration_activate activation_key %}">{% url registration_activate activation_key %}</a>.
 
-If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in {{ expiration_days|apnumber }} days.
