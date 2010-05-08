@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <title>django-authopenid Example App</title>
+        <title>Login/Register Page</title>
         <!--[if IE]>
 
         <script>
@@ -30,7 +30,7 @@
     </head>
     <body>
         <header id="top">
-            <h1>django-authopenid Example App</h1>
+            <h1>Login/Register</h1>
         </header>
         
         {% block content %}{% endblock %}
@@ -38,10 +38,5 @@
         <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery-1.3.2.min.js"></script>
 
     	{% block extra_scripts %}{% endblock %}
-    	
-    	<footer id="bottom">
-        <p>This is an example of how to use <strong>django-authopenid</strong> with modified  
-        <a href="http://code.google.com/p/openid-selector/">Javascript OpenID-Selector</a> in a <a href="http://djangoproject.com">django</a> application. <a href="http://bitbucket.org/benoitc/django-authopenid/">More...</a>
-        </footer>
     </body>
 </html>
