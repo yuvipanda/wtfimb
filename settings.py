@@ -101,9 +101,6 @@ OPENID_SREG = {
     "required": ['fullname', 'country']
 }
 
-TEMPLATE_CONTEXT_PROCESSORS += (
-     'django.core.context_processors.request',
-) 
 
 INSTALLED_APPS = (
     'django.contrib.auth',
