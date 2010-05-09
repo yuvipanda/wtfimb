@@ -9,7 +9,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
                        (r'^static/(?P<path>.*)$', 'django.views.static.serve',
-                        {'document_root': settings.MEDIA_ROOT,'show_indexes':True}),
+                        {'document_root': settings.MEDIA_ROOT}),
                        (r'^account/', include('django_authopenid.urls')),
                        (r'^chennai/$', include('home.urls')),
                        (r'^chennai/', include('stages.urls')),

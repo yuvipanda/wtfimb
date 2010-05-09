@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('wtfimb.janitor.views',
+urlpatterns = patterns('janitor.views',
         (r'^inconsistent/routes/(?P<maxdist>\d+)?$', 'inconsistent_routes'),
         )

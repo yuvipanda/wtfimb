@@ -378,6 +378,7 @@ input[type="text"]
 	top:0px;
 	right:0px;
 	float:right;
+/*	background: url(/static/images/searchback.png); */
 }
 
 #searchbar desc {

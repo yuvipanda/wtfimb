@@ -39,12 +39,13 @@
 	<fieldset>
 		<legend>{% trans "Sign In Using Your OpenID" %}</legend>
         <div class="form-row"><label for="id_openid_ul">{% trans "OpenId URL :" %}</label><br />
-        <input id="id_openid_url" type="text" class="required openid" style="background-color: #fff; background-image: url(/media/css/images/logo_openid_whitewash.png); background-repeat: no-repeat;"  name="openid_url" maxlength="255" />
+        <input id="id_openid_url" type="text" class="required openid" style="background-color: #fff; background-image: url(/static/images/openid-inputicon.gif); padding-left:20px; background-repeat: no-repeat;"  name="openid_url" maxlength="255" />
         </div>
         <div class="submit-row "><input name="bsignin" type="submit" value="{% trans "Sign in with OPENID" %}"></div>
 		
 	</fieldset>
 </form>	
+
 </div>	
 {% endblock %}
 

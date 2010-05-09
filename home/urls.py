@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('wtfimb.home.views',
+urlpatterns = patterns('home.views',
         (r'^$', 'home'),
         )

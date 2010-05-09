@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- This is used as a template by authentication Pages only -->
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
@@ -23,8 +24,8 @@
         <meta http-equiv="X-XRDS-Location" content="http://{{ request.get_host }}{% url oid_xrdf %}" />  
         {% endif %}
 
-        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/base.css" />
-        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/openid.css" />
+        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/Authentication/base.css" />
+        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/Authentication/openid.css" />
         {% block head %}
         {% endblock %}
     </head>
