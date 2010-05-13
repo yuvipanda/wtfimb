@@ -176,6 +176,7 @@ form {
 	font-size:95%;
 	margin-bottom:4px;
 	color:black;
+	vertical-align:middle;
 }
 .bus {
 	background: #ffa;
