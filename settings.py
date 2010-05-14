@@ -125,7 +125,7 @@ INSTALLED_APPS = (
     'south',
 )
 
-GRAPH_CACHE = os.path.join(ROOT_DIR, 'graph')
+GRAPH_CACHE = os.path.join(ROOT_DIR, 'distancegraph')
 
 # Email Settings
 

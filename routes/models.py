@@ -25,3 +25,6 @@ class RouteStage(models.Model):
     route = models.ForeignKey(Route)
     stage = models.ForeignKey('stages.Stage', related_name='routelinks')
     sequence = models.IntegerField()
+
+    def __unicode__(self):
+        return (str)(self.route)+'|'+(str)(self.sequence)+'.'+(str)(self.stage)
