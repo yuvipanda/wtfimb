@@ -29,7 +29,7 @@ def find_inconsistencies(max_distance):
     routes = Route.objects.all()
     fixables = []
     for r in routes:
-        stages = r.stages.order_by('routestage__sequence')
+        stages = r.stages.all()
         for i in xrange(0, len(stages) - 1):
             if stages[i].latitude and stages[i+1].latitude:
                 dist = haversine(
@@ -51,7 +51,7 @@ def inconsistent_routes(request, maxdist):
     if not maxdist:
         maxdist = 5
     incs = find_inconsistencies(int(maxdist))
-    incs.sort(key=lambda x: x.stage.display_name)
+    incs.sort(key=lambda x: x.distance,reverse=True)
     return direct_to_template   (
             request, 
             'janitor/routes.html', 

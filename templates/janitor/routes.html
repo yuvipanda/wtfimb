@@ -20,7 +20,7 @@ Total Inconsistencies found: {{ inconsistencies|length }}
 {% for ic in inconsistencies %}
     <tr>
     	<td>
-            <a href="/admin/appmodels/route/{{ic.route.id}}">Edit</a>
+            <a href="/admin/routes/route/{{ic.route.id}}">Edit</a>
         </td>
         <td>
             <a href="{% url show-route ic.route.display_name %}">{{ic.route.display_name}}</a>
