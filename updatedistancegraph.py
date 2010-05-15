@@ -4,8 +4,6 @@ import sys
 from datetime import datetime
 from math import *
 
-from stages.models import Stage
-
 def haversine(lon1, lat1, lon2, lat2):
     # convert to radians 
     lon1 = radians(lon1)
@@ -26,10 +24,9 @@ def setup_environment():
     sys.path.append(os.path.normpath(os.path.join(os.path.abspath(pathname), '../')))
     os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
-setup_environment()
-
 def update_graph():
    distancegraph = {}
+   from stages.models import Stage
    for src in Stage.objects.order_by('id'):
       if not distancegraph.has_key(src.id):
          distancegraph[src.id] = {}
@@ -41,6 +38,7 @@ def update_graph():
    marshal.dump(distancegraph, open("distancegraph", "wb"))
 
 if __name__ == "__main__":
+    setup_environment()
     starttime = datetime.now()
     update_graph()
     timedelta = datetime.now() - starttime
