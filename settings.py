@@ -131,8 +131,8 @@ GRAPH_CACHE = os.path.join(ROOT_DIR, 'distancegraph')
 # Email Settings
 
 EMAIL_HOST = localsettings.EMAIL_HOST
-EMAIL_HOST_USER = localsettings.EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = localsettings.EMAIL_HOST_PASSWORD
+#EMAIL_HOST_USER = localsettings.EMAIL_HOST_USER
+#EMAIL_HOST_PASSWORD = localsettings.EMAIL_HOST_PASSWORD
 
 DEFAULT_FROM_EMAIL = 'admin@busroutes.in'
 
