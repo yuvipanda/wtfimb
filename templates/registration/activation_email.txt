@@ -1,6 +1,6 @@
 Hi,
 
-Thank you for your registration. To activate your account click on the link below :
+Thank you for your registration. To activate your account follow the link:
 
-<a href="http://openid-example.e-engura.org{% url registration_activate activation_key %}">{% url registration_activate activation_key %}</a>.
+{{ site }}{% url registration_activate activation_key %}
 

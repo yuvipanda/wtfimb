@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block head %}
-
-{% endblock %}
+{% block title %} Sign In {% endblock %}
 
 {% block content %}
 {% if msg %}
 <br />
 	<p class="warning">{{ msg }}</p>
 {% endif %}
+<h1>Authenticate</h1>
 {% if form2.errors %}
 <p class="errors">{% trans "Please correct errors below:" %}<br />
 	{% if form2.username.errors %} 
@@ -21,31 +20,31 @@
 </p>
 {% endif %}
 <div class="login">
-
-    <form name="fauth" action="{% url user_signin %}" method="post">
-        {{ form2.next }}
+<form name="fopenid" action="{% url user_signin %}" method="post">
+   {{ form1.next }}
+	<fieldset>
+		<legend>{% trans "Authenticate Your OpenID" %}</legend>
+        <div class="form-row"><label for="id_openid_ul">{% trans "OpenId URL :" %}</label><br />
+        <input id="id_openid_url" type="text" class="required openid" style="background-color: #fff; background-image: url(/static/images/openid-inputicon.gif); padding-left:20px; background-repeat: no-repeat;"  name="openid_url" maxlength="255" />
+        </div>
+        <div class="submit-row "><input name="bsignin" type="submit" value="{% trans "Authenticate OpenID" %}"></div>
+		
+	</fieldset>
+</form>	
+<br />
+<form name="fauth" action="{% url user_signin %}" method="post">
+   {{ form2.next }}
 	<fieldset>
 		<legend>{% trans "Sign In Using Your Account ID" %}</legend>
 		<div class="form-row"><label for="id_username">{% trans "Username:" %}</label><br />{{ form2.username }}</div>
 		<div class="form-row"><label for="id_password">{% trans "Password:" %}</label><br />{{ form2.password }}</div>
-        <div class="submit-row"><input type="submit" name="blogin" value="{% trans "Sign in" %}"> </div>
-        <div>&nbsp;&nbsp;<a href="{{ sendpw_url }}">{% trans "Lost your password ?" %}</a></div>
+      <div class="submit-row"><input type="submit" name="blogin" value="{% trans "Sign in" %}"> </div>
+      <input type="hidden" name="next" value="{{ next }}">
+      <div>&nbsp;&nbsp;<a href="/account/password/reset">{% trans "Lost your password ?" %}</a></div>
 	</fieldset>	
 </form>
-
-<br />
-<form name="fopenid" action="{% url user_signin %}" method="post">
-    {{ form1.next }}
-	<fieldset>
-		<legend>{% trans "Sign In Using Your OpenID" %}</legend>
-        <div class="form-row"><label for="id_openid_ul">{% trans "OpenId URL :" %}</label><br />
-        <input id="id_openid_url" type="text" class="required openid" style="background-color: #fff; background-image: url(/static/images/openid-inputicon.gif); padding-left:20px; background-repeat: no-repeat;"  name="openid_url" maxlength="255" />
-        </div>
-        <div class="submit-row "><input name="bsignin" type="submit" value="{% trans "Sign in with OPENID" %}"></div>
-		
-	</fieldset>
-</form>	
-
+<br/>
+<p><a href="/">Back to Home</a></p>
 </div>	
 {% endblock %}
 

@@ -19,30 +19,26 @@
 	
 
 
-    <h4><strong>{{ user.username }}</strong> {% trans "Settings" %}</h4>
+    <h4><strong>{{ user.username }}</strong>'s {% trans "Settings" %}</h4>
     {% blocktrans %}
     <p>This is where you can make changes to your account.</p>
 
     {% endblocktrans %}
 </div>
-
 <div id="settings-options">
 	{% if msg %}
 		<p class="error">{{ msg }}</p>
 	{% endif %}
-    <h5>{% trans "Account" %}</h5>
+    <h3>{% trans "Account" %}</h3>
 	<dl>
-        <dt>» <a href="{% url user_changepw %}">{% trans "change password" %}</a></dt>
+        <dt>» <a href="/account/password_change/">{% trans "Change password" %}</a></dt>
         <dd>{% trans "Give your  account a new password." %}</dd>
-        <dt>» <a href="{% url user_changeemail %}">{% trans "change email" %}</a></dt>
-        <dd>{% trans "Add or update the email address associated with your account." %}</dd>
-        {% if is_openid %}
-        <dt>» <a href="{% url user_changeopenid %}">{% trans "change openid url" %}</a></dt>
-        <dd>{% trans "Change openid associated to your account" %}</dd>
-        {% endif %}
-        
-        <dt>» <a href="{% url user_delete %}">{% trans "delete account" %}</a></dt>
-        <dd>{% trans "Erase your username and all your data from website" %}</dd>
+        <dt>» <a href="/account/associate">{% trans "Associate openid url" %}</a></dt>
+        <dd>{% trans "Associate an OpenID to your account" %}</dd>
+        <dt>» <a href="/account/dissociate">{% trans "Dissociate openid url" %}</a></dt>
+        <dd>{% trans "Dissociate an OpenID from your account" %}</dd>
 	</dl>
 </div>
+<br/>
+<p><a href="/">Back to Home</a></p>
 {% endblock %}

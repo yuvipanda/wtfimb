@@ -1,18 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
-
-{% block head %}
-
-
-{% endblock %}
-
+{% block title %} Activation {% endblock %}
 
 {% block content %}
-
-{% blocktrans %}
 <h1>Activation</h1>
-<p>Your account is now activated. Go <a href="/">here</a> to continue.</p>
-
-{% endblocktrans %}
-
+<p>Your account is now activated. Click <a href="{% url user_signin %}">here</a> to Sign In with your New account.</p>
 {% endblock %}

@@ -92,7 +92,8 @@ OPENID_SREG = {
 TEMPLATE_DIRS = (
         os.path.join(ROOT_DIR, 'templates'),
 )
-
+LOGIN_URL = '/account/signin'
+LOGOUT_URL = '/account/signout'
 LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_ACTIVATION_DAYS = 30

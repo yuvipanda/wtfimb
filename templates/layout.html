@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" version="XHTML+RDFa 1.0" xml:lang="en">
 <head>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
@@ -38,7 +39,7 @@
   <div id="topbar">
     <div id="logo"> <a href="/"><img alt="Find Bus Routes in" src="/static/images/header.png" /></a> <span id="location"><a href="/chennai">Chennai!</a></span> </div>
     <div id="LoginBar"> {% if user.is_authenticated %}
-      Hi, <strong>{{ user.username }}/ </strong><a href="/account/signout?next={{request.get_full_path}}">Logout</a> {% else %} <a href="/account/signin?next={{request.get_full_path}}">Log In / Register</a> {% endif %} </div>
+      Hi, <strong><a href="/account/settings/">{{ user.username }}</a> | </strong><a href="/account/signout?next={{request.get_full_path}}">Logout</a> {% else %} <a href="/account/signin/?next={{request.get_full_path}}">Log In</a> | <a href="/account/signup/?next={{request.get_full_path}}">Register</a> {% endif %} </div>
     <form id="search" action="#">
       <div id="searchbar">
         <input type="text" id="from1" size="20" />
