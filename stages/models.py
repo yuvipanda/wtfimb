@@ -1,7 +1,5 @@
 from django.contrib.gis.db import models
 
-from django.contrib.auth.models import User
-
 class Stage(models.Model):
     display_name = models.CharField(max_length=255)
     latitude = models.FloatField(null=True, blank=True)
