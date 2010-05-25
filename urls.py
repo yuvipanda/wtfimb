@@ -23,6 +23,6 @@ urlpatterns = patterns('',
                        (r'^$', lambda req: redirect_to(req,'/chennai')),
         
                        (r'^robots.txt$', lambda req: redirect_to(req,'/static/robots.txt')),
-                       (r'^admin/(.*)', admin.site.root),
+                       (r'^admin/', include(admin.site.urls)),
 
 )

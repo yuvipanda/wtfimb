@@ -1,5 +1,6 @@
 from models import Stage
 from django.contrib.gis import admin
+from reversion.admin import VersionAdmin
 from routes.models import RouteStage
 
 class RouteStageInline(admin.TabularInline):
@@ -7,7 +8,7 @@ class RouteStageInline(admin.TabularInline):
     extra = 1 
     ordering = ['stage__display_name']
 
-class StageAdmin(admin.OSMGeoAdmin):
+class StageAdmin(admin.OSMGeoAdmin,VersionAdmin):
     list_display = ('display_name',
                     'view_stage_link',
                     'latitude', 

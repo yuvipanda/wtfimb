@@ -1,12 +1,13 @@
 from models import Route, RouteStage
-from django.contrib import admin
+from django.contrib.gis import admin
+from reversion.admin import VersionAdmin
 
 class RouteStageInline(admin.TabularInline):
     model = RouteStage 
     extra = 1 
     ordering = ['stage__display_name']
 
-class RouteAdmin(admin.ModelAdmin):
+class RouteAdmin(admin.OSMGeoAdmin,VersionAdmin):
     list_display = ('display_name', 'route_view_link', 'types', 'start', 'end', 'has_unmapped_stages')
 
     def has_unmapped_stages(self, obj):
