@@ -2,6 +2,7 @@ from django.http import HttpResponse
 
 from models import *
 from django.views.generic.simple import direct_to_template
+from django.contrib.gis.geos import Point
 
 from forms import EditStageForm
 
@@ -11,14 +12,13 @@ def show_stage(request, id):
         if form.is_valid():
             cd = form.cleaned_data
             s = Stage.objects.get(id=id)
-            s.latitude = cd['latitude']
-            s.longitude = cd['longitude']
+            s.location = Point(cd['longitude'], cd['latitude'])
             s.save()
     else:
         s = Stage.objects.get(id=id)
         form = EditStageForm(
-                initial = {'latitude': s.latitude,
-                           'longitude': s.longitude}
+                initial = {'latitude': s.location.y,
+                           'longitude': s.location.x}
                 )
         return direct_to_template(request, 'stages/show_stage.html', {'form':form, 'stage':s})
     return HttpResponse()
@@ -26,11 +26,11 @@ def show_stage(request, id):
     # to store which response and return only that var.
 
 def show_unmapped_stages(request):
-    unmapped = Stage.objects.filter(latitude=None)
+    unmapped = Stage.objects.filter(location=None)
     return direct_to_template(request,"stages/show_unmapped_stages.html", 
             {'unmapped_stages':unmapped})
 
 def show_mapped_stages(request):
-    mapped = Stage.objects.filter(latitude__isnull=False)
+    mapped = Stage.objects.filter(location__isnull=False)
     return direct_to_template(request, "stages/show_mapped_stages.html",
             {'mapped_stages':mapped})

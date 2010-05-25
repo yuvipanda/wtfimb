@@ -33,8 +33,8 @@ def update_graph():
       for adj in Stage.objects.filter(route__in=src.route_set.all()).filter(id__gt=src.id).distinct():
          if not distancegraph.has_key(adj.id):
             distancegraph[adj.id] = {}
-         if src.longitude and src.latitude and adj.longitude and adj.latitude:
-            distancegraph[src.id][adj.id] = distancegraph[adj.id][src.id] = (int)(haversine(src.longitude,src.latitude,adj.longitude,adj.latitude))
+         if src.location and adj.location:
+            distancegraph[src.id][adj.id] = distancegraph[adj.id][src.id] = (int)(haversine(src.location.x,src.location.y,adj.location.x,adj.location.y))
    marshal.dump(distancegraph, open("distancegraph", "wb"))
 
 if __name__ == "__main__":

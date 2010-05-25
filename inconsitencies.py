@@ -39,10 +39,10 @@ if __name__ == '__main__':
         for i in xrange(0, len(stages) - 1):
             if stages[i].location and stages[i+1].location:
                 dist = haversine(
-                        stages[i].location.x, 
-                        stages[i].location.y,
-                        stages[i+1].location.x,
-                        stages[i+1].location.y
+                        stages[i].location.y, 
+                        stages[i].location.x,
+                        stages[i+1].location.y,
+                        stages[i+1].location.x
                         )
                 print dist
                 if dist > MAX_DISTANCE:

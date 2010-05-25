@@ -15,7 +15,7 @@ def show_route(request, name):
 
 
 def show_unmapped_routes(request):
-    unmapped = Route.objects.filter(stages__latitude=None)
+    unmapped = Route.objects.filter(stages__location=None)
     return direct_to_template(request, 'routes/show_unmapped_routes.html',
             {'unmapped_routes':unmapped})
 

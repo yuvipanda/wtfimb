@@ -43,23 +43,23 @@ $(document).ready(function() {
             map.addLayer(layerRoute);
             map.addLayer(layerStages);
             var points = [];
-            {% if start_stage.latitude %}
-                    var tempLat = {{start_stage.latitude}};
-                    var tempLon = {{start_stage.longitude}};
+            {% if start_stage.location %}
+                    var tempLat = {{start_stage.location.y}};
+                    var tempLon = {{start_stage.location.x}};
                     addStage(tempLat, tempLon, {{start_stage.id}},'{{start_stage.display_name}}');
                     points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
             {% endif %}
             {% for co in changeovers %}
-                {% if co.start_stage.latitude %}
-                    var tempLat = {{co.start_stage.latitude}};
-                    var tempLon = {{co.start_stage.longitude}};
+                {% if co.start_stage.location %}
+                    var tempLat = {{co.start_stage.location.y}};
+                    var tempLon = {{co.start_stage.location.x}};
                     addStage(tempLat, tempLon, {{co.start_stage.id}},'{{co.display_name}}');
                     points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
                 {% endif %}
             {% endfor %}
-            {% if end_stage.latitude %}
-                    var tempLat = {{end_stage.latitude}};
-                    var tempLon = {{end_stage.longitude}};
+            {% if end_stage.location %}
+                    var tempLat = {{end_stage.location.y}};
+                    var tempLon = {{end_stage.location.x}};
                     addStage(tempLat, tempLon, {{end_stage.id}},'{{end_stage.display_name}}');
                     points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
             {% endif %}

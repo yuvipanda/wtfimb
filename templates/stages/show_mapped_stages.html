@@ -32,8 +32,8 @@ $(document).ready(function() {
             map.addLayer(layerStages);
             var points = [];
             {% for s in mapped_stages %}
-                var tempLat = {{s.latitude}};
-                var tempLon = {{s.longitude}};
+                var tempLat = {{s.location.y}};
+                var tempLon = {{s.location.x}};
 					addStage(tempLat, tempLon, {{s.id}}, '{{s.display_name}}');
             {% endfor %}
             map.zoomToExtent(layerStages.getDataExtent());            

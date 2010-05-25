@@ -11,8 +11,7 @@ class RouteStageInline(admin.TabularInline):
 class StageAdmin(admin.OSMGeoAdmin,VersionAdmin):
     list_display = ('display_name',
                     'view_stage_link',
-                    'latitude', 
-                    'longitude', 
+                    'location', 
                     )
     def view_stage_link(self, obj):
         return '<a href="/chennai/stage/%s">View</a>' % obj.id

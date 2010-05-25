@@ -12,7 +12,7 @@ class RouteAdmin(admin.OSMGeoAdmin,VersionAdmin):
 
     def has_unmapped_stages(self, obj):
         for s in obj.stages.all():
-            if not s.latitude:
+            if not s.location:
                 return True
         return False
     has_unmapped_stages.boolean = True

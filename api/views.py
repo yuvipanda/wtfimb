@@ -10,8 +10,8 @@ def all_routes(request):
     stages = Stage.objects.all()
     data = dict([ (s.id, 
         {'display_name': s.display_name,
-         'latitude': s.latitude,
-         'longitude': s.longitude}
+         'latitude': s.location.y,
+         'longitude': s.locaton.x}
         ) for s in stages])
     return HttpResponse(simplejson.dumps(data))
 
@@ -21,8 +21,8 @@ def single_route(request, route_name):
             {
             'name': r.display_name,
             'stages': [ { 'name': s.display_name,
-                          'latitude': s.latitude,
-                          'longitude': s.longitude                          
+                          'latitude': s.location.y,
+                          'longitude': s.location.x                          
                         }
                         for s in r.stages.all()]
                         }))
