@@ -116,8 +116,6 @@ INSTALLED_APPS = (
     'wtfimb.home',
     'wtfimb.routes',
     'wtfimb.stages',
-    'wtfimb.routes.admin',
-    'wtfimb.stages.admin',
     'wtfimb.api',
     'wtfimb.janitor',
     
