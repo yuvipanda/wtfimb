@@ -13,7 +13,7 @@ def show_stage(request, id):
             s = Stage.objects.get(id=id)
             s.latitude = cd['latitude']
             s.longitude = cd['longitude']
-            s.save(user=request.user)
+            s.save()
     else:
         s = Stage.objects.get(id=id)
         form = EditStageForm(

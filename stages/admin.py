@@ -24,8 +24,5 @@ class StageAdmin(admin.OSMGeoAdmin,VersionAdmin):
 
     search_fields = ['display_name']
 
-    def save_model(self, request, obj, form, change):
-        obj.save(user=request.user)
-
 
 admin.site.register(Stage, StageAdmin)
