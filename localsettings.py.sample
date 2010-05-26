@@ -23,8 +23,6 @@ DEBUG = False
 
 # Email Settings, for Account Verification
 EMAIL_HOST = 'mail.busroutes.in'
-EMAIL_HOST_USER = 'account-verify@busroutes.in'
-EMAIL_HOST_PASSWORD = ''
 
 #Enter any random key that will be used to salt the passwords.
 SECRET_KEY = '' 
