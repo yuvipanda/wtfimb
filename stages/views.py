@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 
 from models import *
 from django.views.generic.simple import direct_to_template
@@ -14,6 +14,7 @@ def show_stage(request, id):
             s = Stage.objects.get(id=id)
             s.location = Point(cd['longitude'], cd['latitude'])
             s.save()
+        return HttpResponseRedirect('.')
     else:
         s = Stage.objects.get(id=id)
         form = EditStageForm(
@@ -21,9 +22,6 @@ def show_stage(request, id):
                            'longitude': s.location.x}
                 )
         return direct_to_template(request, 'stages/show_stage.html', {'form':form, 'stage':s})
-    return HttpResponse()
-    #Ideally, the above return should be under the else, but django complains, maybe use a variable
-    # to store which response and return only that var.
 
 def show_unmapped_stages(request):
     unmapped = Stage.objects.filter(location=None)

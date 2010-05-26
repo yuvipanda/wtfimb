@@ -106,7 +106,7 @@ Bus Stage: {{ stage.display_name }}
 {% block main %}
 <h1 class="names">Stage: {{ stage.display_name }}</h1>
 {% if user.is_authenticated %}
-<a class="edit" target="_blank" href="http://www.busroutes.in/admin/appmodels/stage/{{ stage.id }}/">Edit</a>
+<a class="edit" target="_blank" href="/admin/stages/stage/{{ stage.id }}/">Edit</a>
 <div id="editForm">
 	<form action="" method="POST">
 		<label for="id_latitude">Latitude:</label>
