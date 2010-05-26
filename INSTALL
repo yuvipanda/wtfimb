@@ -1,0 +1,86 @@
+Pre-requisites
+==============
+   In order to run a local version of 'wtfimb', you need:
+    1. Django (v1.2.1 recommended)
+    2. Postgresql 8.4
+    3. Postgis 1.4
+    4. libgeos-c 3.1
+    5. GDAL 1.6 
+    6. libproj0 (Cartographic projection library)
+    7. Django-south
+    8. Django-registration
+    9. Django_AuthOpenid
+   10. Django-reversion
+
+Download
+========
+   The project folder(wtfimb) can be downloaded from http://github.com/yuvipanda/wtfimb. Alternatively, you can clone the git branch with,
+   $ git clone git://github.com/yuvipanda/wtfimb.git
+   $ cd wtfimb
+
+Setting Up
+==========
+   The following procedure assumes that you are using Ubuntu Operating System. If not, you may have to edit the commands/procedure to match your operating system.
+   
+    1. Setting up the Database:
+    ---------------------------
+       1.1. If you are using postgresql for the first time, you should consider creating an user.
+         $ sudo su postgres
+         % createuser jack --pwprompt
+         % createdb jack
+         % psql -d jack
+         # GRANT ALL privileges on database jack to jack;
+         # alter database jack owner to jack;
+         # \q
+         %
+       1.2. Creating a postgis template
+         % psql template1
+         # \c template1
+         # CREATE DATABASE template_postgis WITH template = template1;
+         # UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis';
+         # \c template_postgis
+         # CREATE LANGUAGE plpgsql;
+         # \i /usr/share/postgresql/8.4/contrib/lwpostgis.sql;
+         # \i /usr/share/postgresql/8.4/contrib/spatial_ref_sys.sql;
+         # GRANT ALL ON geometry_columns TO PUBLIC;
+         # GRANT ALL ON spatial_ref_sys TO PUBLIC;
+         # VACUUM FREEZE;
+         # \q
+         %
+       1.3. Creating wtfimb database as a spatial database
+         % psql
+         # CREATE DATABASE wtfimb WITH template = template_postgis;
+         # GRANT ALL ON wtfimb to jack;
+         # ALTER DATABASE OWNER to jack;
+         # \q
+       1.4. Testing newly created database
+         % psql -U jack -d wtfimb -h localhost
+         > select * from spatial_ref_sys where srid=4326;
+         > \q
+         % logout
+         $
+    2. Configuring Local settings
+    -----------------------------
+       2.1. Copy localsettings.py.sample and rename it as localsettings.py
+         $ cp localsettings.py.sample localsettings.py
+       2.2. Open localsettings.py for editing
+         $ gedit localsettings.py
+       2.3. Fill in the database name as 'wtfimb'
+       2.4. Enter the database user as 'jack'
+       2.5. Enter the database user's password
+    3. Setting up Environment
+    -------------------------
+       3.1. Hack fix to a gdal bug [http://bugs.debian.org/579989]
+         If using GDAL version 1.6.3, you need to perform this step. Otherwise, ignore.
+         Symlink libproj.so.0 to libproj.so in the /usr/lib folder
+         $ sudo ln -s /usr/lib/libproj.so.0 /usr/lib/libproj.so
+       3.2. Sync database with all model tables
+         $ python manage.py syncdb
+       3.3. Do migrations to tables
+         $ python manage.py migrate
+       3.4. Populate database with database dump
+         $ python manage.py loaddata dump20100509_fmt_clean.json
+    4. Running and Testing the Application
+    --------------------------------------
+       4.1. Using Runserver
+         $ python manage.py runserver
