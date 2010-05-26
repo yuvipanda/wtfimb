@@ -1,5 +1,7 @@
 from models import Route, RouteStage
 from django.contrib.gis import admin
+from django.core.urlresolvers import reverse
+
 from reversion.admin import VersionAdmin
 
 class RouteStageInline(admin.TabularInline):
@@ -18,7 +20,7 @@ class RouteAdmin(admin.OSMGeoAdmin,VersionAdmin):
     has_unmapped_stages.boolean = True
 
     def route_view_link(self, obj):
-        return '<a href="/chennai/route/%s">View</a>' % obj.id
+        return "<a href='%s'>View Link</a>" % reverse('show-route', args=[obj.slug])
 
     route_view_link.allow_tags = True
     route_view_link.short_description = "Link to Site"
