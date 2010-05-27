@@ -17,10 +17,13 @@ def show_stage(request, id):
         return HttpResponseRedirect('.')
     else:
         s = Stage.objects.get(id=id)
-        form = EditStageForm(
+        if s.location!=None:
+            form = EditStageForm(
                 initial = {'latitude': s.location.y,
                            'longitude': s.location.x}
-                )
+            )
+        else:
+            form = EditStageForm()
         return direct_to_template(request, 'stages/show_stage.html', {'form':form, 'stage':s})
 
 def show_unmapped_stages(request):

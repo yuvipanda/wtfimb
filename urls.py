@@ -20,7 +20,7 @@ urlpatterns = patterns('',
                        (r'^chennai/api/', include('api.urls')),
                        (r'^chennai/path/', include('routing.urls')),
                        (r'^chennai/janitor/', include('janitor.urls')),
-                       (r'^$', lambda req: redirect_to(req,'/chennai')),
+                       (r'^$', lambda req: redirect_to(req,'/chennai/')),
         
                        (r'^robots.txt$', lambda req: redirect_to(req,'/static/robots.txt')),
                        (r'^admin/', include(admin.site.urls)),
