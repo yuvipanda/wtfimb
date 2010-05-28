@@ -1,71 +1,15 @@
 {% extends "layout.html" %}
 
-{% block style %}
-#searchbar {
-display: none;
-}
-{% endblock %}
-
-{% block script %}
-var stages=Array();
-var data;
-$(document).ready(function(){
-	$.getJSON("{% url api.views.autocomplete_stages %}", function(json){
-		data = json;
-		jQuery.each(json, function(k,v) { stages.push(k); });
-		$("#from").autocomplete(stages,{autoFill:true});
-		$("#to").autocomplete(stages, {autoFill:true});
-	});
-
-   $("#from").keyup( function() {
-      if($(this).val()=="") { 
-         $("#to").attr("disabled","disabled");
-         $("#from").css("background-color","#efe");
-         $("#to").css("background-color","#ddd");
-         $("#submit").attr("disabled", "disabled");
-      }
-      else
-      {
-         $("#from").css("background-color","#fff");
-         $("#to").css("background-color","#efe");
-         $("#to").removeAttr("disabled");       
-         $("#submit").removeAttr("disabled");
-      }
-   });
-   $("#to").keyup( function() {
-      if($(this).val()=="") { 
-         $("#submit").attr("value","Goto Stage!");
-      }
-      else {
-         $("#submit").attr("value","Find Route!");
-      }
-   });
-	$("#submit").click(function(){
-      var fromId = data[$("#from").val()];
-      var toId = data[$("#to").val()];
-      if(fromId==null) {
-		   alert("Invalid Stage Name: \""+$("#from").val()+"\"\nChoose any one of the suggested stage names.");
-		   return;
-      }
-		if (toId==null) {
-		   top.location = "/chennai/stage/" + fromId;
-		   return;
-		}
-		top.location = "/chennai/path/" + fromId + "/" + toId;
-	});
-   $("#from").keyup();
-   $("#to").keyup();
-
-});
-{% endblock %}
-
 {% block title %}
 Home 
 {% endblock %}
 
-{% block main %}
+{% block search_override %}
+<!-- Search bar is not inherited from layout -->
+{% endblock %}
 
-<form id="homeform" action="#">
+{% block main %}
+<form id="homeform" action="javascript: document.homeform.submit.click();">
 	<table>
 		<tbody>
 			<tr>
@@ -73,7 +17,7 @@ Home
 				<td><input type="text" id="from" /> </td>
 				<td>To</td>
 				<td><input type="text" id="to" /> </td>
-				<td><input type="button" id="submit"/></td>
+				<td><input type="submit" id="submit"/></td>
 			</tr>
 		</tbody>
 	</table>

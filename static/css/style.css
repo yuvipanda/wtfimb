@@ -379,7 +379,7 @@ input[type="text"]
 	top:0px;
 	right:0px;
 	float:right;
-/*	background: url(/static/images/searchback.png); */
+   background: url(/static/images/searchback_new.png);
 }
 
 #searchbar desc {
@@ -389,20 +389,22 @@ input[type="text"]
 	border:1px solid gray;
 	background:none;
 }
-#from1{
+#from.search{
 	position:absolute;
 	top:60px;
 	left:40px;
+	width:180px;
 }
-#to1{
+#to.search{
 	position:absolute;
 	top:60px;
-	left:240px;
+	left:295px;
+	width:180px;
 }
-#submit1{
+#submit.search{
 	position:absolute;
-	top:40px;
-	left:540px;
+	top:60px;
+	left:500px;
 }
 #editForm {
     margin-bottom: 10px;

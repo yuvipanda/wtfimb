@@ -17,6 +17,56 @@
 	<script type="text/javascript" src="/static/js/jquery-1.3.2.min.js" > </script>
 	<script type="text/javascript" src="/static/js/OpenStreetMap.js"></script>
 	<script type="text/javascript" src="/static/js/jquery.autocomplete.pack.js"></script>
+   <script type="text/javascript">
+	   var stages=Array();
+      var data;
+      $(document).ready(function(){
+      	$.getJSON("{% url api.views.autocomplete_stages %}", function(json){
+		      data = json;
+      		jQuery.each(json, function(k,v) { stages.push(k); });
+   		   $("#from").autocomplete(stages,{autoFill:true});
+   		   $("#to").autocomplete(stages, {autoFill:true});
+	      });
+         $("#from").keyup( function() {
+            if($(this).val()=="") { 
+               $("#to").attr("disabled","disabled");
+               $("#from").css("background-color","#efe");
+               $("#to").css("background-color","#ddd");
+               $("#submit").attr("disabled", "disabled");
+            }
+            else
+            {
+               $("#from").css("background-color","#fff");
+               $("#to").css("background-color","#efe");
+               $("#to").removeAttr("disabled");       
+               $("#submit").removeAttr("disabled");
+            }
+         });
+         $("#to").keyup( function() {
+            if($(this).val()=="") { 
+               $("#submit").attr("value","Goto Stage!");
+            }
+            else {
+               $("#submit").attr("value","Find Route!");
+            }
+         });
+	      $("#submit").click(function(){
+            var fromId = data[$("#from").val()];
+            var toId = data[$("#to").val()];
+            if(fromId==null) {
+		         alert("Invalid Stage Name: \""+$("#from").val()+"\"\nChoose any one of the suggested stage names.");
+		         return;
+            }
+		      if (toId==null) {
+		         top.location = "/chennai/stage/" + fromId;
+		         return;
+		      }
+		      top.location = "/chennai/path/" + fromId + "/" + toId;
+   	   });
+         $("#from").keyup();
+         $("#to").keyup();
+      });
+   </script>
 	<script type="text/javascript">
 		{% block script %}
 		{% endblock %}
@@ -40,12 +90,15 @@
     <div id="logo"> <a href="/"><img alt="Find Bus Routes in" src="/static/images/header.png" /></a> <span id="location"><a href="/chennai">Chennai!</a></span> </div>
     <div id="LoginBar"> {% if user.is_authenticated %}
       Hi, <strong><a href="/account/settings/">{{ user.username }}</a> | </strong><a href="/account/signout?next={{request.get_full_path}}">Logout</a> {% else %} <a href="/account/signin/?next={{request.get_full_path}}">Log In</a> | <a href="/account/signup/?next={{request.get_full_path}}">Register</a> {% endif %} </div>
-    <form id="search" action="#">
+    {% block search_override %}  
+    <form id="search" action="javascript: document.search.submit.click();">
       <div id="searchbar">
-        <input type="text" id="from1" size="20" />
-        <input type="text" id="to1" size="20"  />
+	     <input type="text" id="from" class="search" />
+        <input type="text" id="to" class="search" />
+        <input type="submit" id="submit" class="search"/>
       </div>
     </form>
+    {% endblock %}
   </div>
   <div id="page"> {% block main %}
     {% endblock %} </div>
