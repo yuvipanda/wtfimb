@@ -87,6 +87,7 @@ $(document).ready(function() {
             var click = new OpenLayers.Control.Click();
             map.addControl(click);
             click.activate()
+            $("#from").attr("value","{{ stage.display_name }}");
     });
 function resetForm() {
     document.getElementById("id_latitude").value = lat;
