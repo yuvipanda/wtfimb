@@ -88,6 +88,7 @@ $(document).ready(function() {
             map.addControl(click);
             click.activate()
             $("#from").attr("value","{{ stage.display_name }}");
+            $("#from").keyup();
     });
 function resetForm() {
     document.getElementById("id_latitude").value = lat;
