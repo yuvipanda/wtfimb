@@ -6,38 +6,20 @@ from routes.models import *
 from django.views.generic.simple import direct_to_template
 
 from math import *
-
-
-def haversine(lon1, lat1, lon2, lat2):
-    # convert to radians 
-    lon1 = radians(lon1)
-    lon2 = radians(lon2)
-    lat1 = radians(lat1)
-    lat2 = radians(lat2)
-    # haversine formula 
-    dlon = lon2 - lon1 
-    dlat = lat2 - lat1
-    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
-    c = 2 * atan2(sqrt(a), sqrt(1-a)) 
-    km = 6367 * c
-    return km 
+import marshal
 
 class Inconsistency():
     pass
 
 def find_inconsistencies(max_distance):
     routes = Route.objects.all()
+    D = marshal.load(open('distancegraph','rb'))
     fixables = []
     for r in routes:
         stages = r.stages.all()
         for i in xrange(0, len(stages) - 1):
             if stages[i].location and stages[i+1].location:
-                dist = haversine(
-                        stages[i].location.x, 
-                        stages[i].location.y,
-                        stages[i+1].location.x,
-                        stages[i+1].location.y
-                        )
+                dist = D[stages[i].id][stages[i+1].id]
                 if dist > max_distance:
                     ic = Inconsistency()
                     ic.route = r

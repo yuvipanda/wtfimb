@@ -4,42 +4,29 @@ import sys
 from datetime import datetime
 from math import *
 
-def haversine(lon1, lat1, lon2, lat2):
-    # convert to radians 
-    lon1 = radians(lon1)
-    lon2 = radians(lon2)
-    lat1 = radians(lat1)
-    lat2 = radians(lat2)
-    # haversine formula 
-    dlon = lon2 - lon1 
-    dlat = lat2 - lat1
-    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
-    c = 2 * atan2(sqrt(a), sqrt(1-a)) 
-    km = 6367 * c
-    return km
-
 def setup_environment():
     pathname = os.path.dirname(sys.argv[0])
     sys.path.append(os.path.abspath(pathname))
     sys.path.append(os.path.normpath(os.path.join(os.path.abspath(pathname), '../')))
     os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
-def update_graph():
+def update_distance_graph():
    distancegraph = {}
    from stages.models import Stage
-   for src in Stage.objects.order_by('id'):
-      if not distancegraph.has_key(src.id):
-         distancegraph[src.id] = {}
-      for adj in Stage.objects.filter(route__in=src.route_set.all()).filter(id__gt=src.id).distinct():
-         if not distancegraph.has_key(adj.id):
-            distancegraph[adj.id] = {}
-         if src.location and adj.location:
-            distancegraph[src.id][adj.id] = distancegraph[adj.id][src.id] = (int)(haversine(src.location.x,src.location.y,adj.location.x,adj.location.y))
+   for stage in Stage.objects.all():
+      distancegraph[stage.id] = {}
+      distancegraph[stage.id][stage.id] = 0
+   for src in Stage.objects.all():
+      if src.location is None:
+         continue
+      for adj in Stage.objects.filter(id__gt = src.id):
+         if adj.location:
+            distancegraph[src.id][adj.id] = distancegraph[adj.id][src.id] = (src.location.distance(adj.location)*111.195101192)# distance in degrees * (pi / 180) * Radius of earth(6371.01)
    marshal.dump(distancegraph, open("distancegraph", "wb"))
 
 if __name__ == "__main__":
     setup_environment()
     starttime = datetime.now()
-    update_graph()
+    update_distance_graph()
     timedelta = datetime.now() - starttime
     print 'Executed in %d seconds'%timedelta.seconds
