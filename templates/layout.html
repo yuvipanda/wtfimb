@@ -58,7 +58,7 @@
 		         return;
             }
 		      if (toId==null) {
-		         top.location = "/chennai/stage/" + fromId;
+               alert("Invalid Stage Name: \""+$("#to").val()+"\"\nChoose any one of the suggested stage names.");
 		         return;
 		      }
 		      top.location = "/chennai/path/" + fromId + "/" + toId;

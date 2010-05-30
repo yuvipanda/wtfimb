@@ -3,4 +3,5 @@
 *.*~
 *.swp
 localsettings.py
-
+adjacencygraph
+distancegraph
