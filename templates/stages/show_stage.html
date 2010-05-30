@@ -62,11 +62,9 @@ $(document).ready(function() {
             } );
             var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Openstreetmap Mapnik");
             var layerOsmarender = new OpenLayers.Layer.OSM.Osmarender("Openstreetmap Osmarender");
-            var layerGmap = new OpenLayers.Layer.Google("Google", {sphericalMercator:true});
 	var layerStages = new OpenLayers.Layer.Markers("Stages");
             map.addLayer(layerMapnik);
             map.addLayer(layerOsmarender);
-            map.addLayer(layerGmap);
             map.addLayer(layerStages);
             var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
             map.setCenter(lonLat,zoom);

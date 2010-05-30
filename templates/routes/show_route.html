@@ -81,12 +81,10 @@ $(document).ready(function() {
                     
             var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Openstreetmap Mapnik");
             var layerOsmarender = new OpenLayers.Layer.OSM.Osmarender("Openstreetmap Osmarender");
-            var layerGmap = new OpenLayers.Layer.Google("Google", {sphericalMercator:true});
             layerStages = new OpenLayers.Layer.Markers("Stages");
             var layerRoute = new OpenLayers.Layer.Vector("Route");
             map.addLayer(layerMapnik);
             map.addLayer(layerOsmarender);
-            map.addLayer(layerGmap);
             map.addLayer(layerRoute);
             map.addLayer(layerStages);
             
