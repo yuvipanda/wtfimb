@@ -57,11 +57,16 @@
 		         alert("Invalid Stage Name: \""+$("#from").val()+"\"\nChoose any one of the suggested stage names.");
 		         return;
             }
-		      if (toId==null) {
+		      if ($("#to").val()== '') {
+   		      top.location = "/chennai/stage/"+fromId+"/";
+            }
+            else if(toId==null) {
                alert("Invalid Stage Name: \""+$("#to").val()+"\"\nChoose any one of the suggested stage names.");
 		         return;
 		      }
-		      top.location = "/chennai/path/" + fromId + "/" + toId;
+		      else {
+   		      top.location = "/chennai/path/" + fromId + "/" + toId;
+		      }
    	   });
          $("#from").keyup();
          $("#to").keyup();
