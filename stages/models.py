@@ -7,6 +7,7 @@ class Stage(models.Model):
     location = models.PointField(null=True, blank=True)
     mtc_name = models.CharField(max_length=255, null=True, blank=True)
     importance = models.FloatField(null=True, blank=True)
+    is_terminus = models.BooleanField(default=False)
     softlinks = models.ManyToManyField('self', null=True, blank=True)
 
     objects = models.GeoManager()

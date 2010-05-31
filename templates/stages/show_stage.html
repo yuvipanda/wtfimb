@@ -66,8 +66,6 @@ $(document).ready(function() {
             map.addLayer(layerMapnik);
             map.addLayer(layerOsmarender);
             map.addLayer(layerStages);
-            var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-            map.setCenter(lonLat,zoom);
             {% if stage.location %}
               lat = {{ stage.location.y }};
               lon = {{ stage.location.x }};      
