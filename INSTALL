@@ -27,12 +27,6 @@ Setting Up
        1.1. If you are using postgresql for the first time, you should consider creating an user.
          $ sudo su postgres
          % createuser jack --pwprompt
-         % createdb jack
-         % psql -d jack
-         # GRANT ALL privileges on database jack to jack;
-         # alter database jack owner to jack;
-         # \q
-         %
        1.2. Creating a postgis template
          % psql template1
          # \c template1
@@ -40,7 +34,7 @@ Setting Up
          # UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis';
          # \c template_postgis
          # CREATE LANGUAGE plpgsql;
-         # \i /usr/share/postgresql/8.4/contrib/lwpostgis.sql;
+         # \i /usr/share/postgresql/8.4/contrib/postgis.sql;
          # \i /usr/share/postgresql/8.4/contrib/spatial_ref_sys.sql;
          # GRANT ALL ON geometry_columns TO PUBLIC;
          # GRANT ALL ON spatial_ref_sys TO PUBLIC;
@@ -48,11 +42,7 @@ Setting Up
          # \q
          %
        1.3. Creating wtfimb database as a spatial database
-         % psql
-         # CREATE DATABASE wtfimb WITH template = template_postgis;
-         # GRANT ALL ON wtfimb to jack;
-         # ALTER DATABASE OWNER to jack;
-         # \q
+         % createdb -T template_postgis -O jack wtfimb
        1.4. Testing newly created database
          % psql -U jack -d wtfimb -h localhost
          > select * from spatial_ref_sys where srid=4326;
