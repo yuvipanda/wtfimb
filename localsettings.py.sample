@@ -30,3 +30,7 @@ SECRET_KEY = ''
 # Caching
 
 CACHE_BACKEND = "dummy:///"
+
+# Secret Key, presumably for Cookies
+
+SECRET_KEY = "blahblahblasdlfk;bhkjfdvgbklsdjfgbklsjkhgljsdfhkgdjfskghjf"
