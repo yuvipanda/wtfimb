@@ -5,10 +5,14 @@ from django.views.generic.simple import direct_to_template
 from django.http import HttpResponse
 import marshal
 
+from django.conf import settings
+import os
+
 from dijkstra import shortestPath
 from a_star import A_star
 
-H = marshal.load(open('distancegraph','rb'))
+H = marshal.load(open(os.path.join(settings.ROOT_DIR, 'distancegraph'),'rb'))
+G = marshal.load(open(os.path.join(settings.ROOT_DIR, 'adjacencygraph'),'rb'))
 
 class ChangeOver:
     def __init__(self, start_stage, end_stage, routes):
@@ -24,11 +28,12 @@ def find_distance(path):
     for i in range(1,len(path)):
         distance = distance + H[path[i-1]][path[i]]
     return distance
+
 def show_shortest_path(request, start, end):
-    path1 = A_star(int(start), int(end))
+    path1 = A_star(int(start), int(end), H, G)
     if not path1:
         return HttpResponse("Path not found")
-    path2 = A_star(int(end), int(start))
+    path2 = A_star(int(end), int(start), H, G)
     path2.reverse()
     d1 = find_distance(path1)
     d2 = find_distance(path2)
