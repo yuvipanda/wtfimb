@@ -19,16 +19,19 @@ def setup_environment():
    
 def get_heuristic(start_stage, end_stage, H, G):
    if H[start_stage].has_key(end_stage):
-      return H[start_stage][end_stage]
+      (dist, importance, route_count) = H[start_stage][end_stage]
+      return dist - pow(importance, 0.5) 
    else:
       return 100000 # Some large value, ideally Infinity
 
-def A_star(start, goal, H, G):
+def A_star(start, goal, H, G, alternatives=3):
    closedset = []                 # The set of nodes already evaluated.     
    openset = [start]              # The set of tentative nodes to be evaluated.
    g_score = {}                   # Distance from start along optimal path.
    h_score = {}                   # Heuristic distance to goal.
    f_score = {}                   # Estimated total distance from start to goal through y.
+   paths = []
+   cur_alt = 0
    g_score[start] = 0 
    h_score[start] = get_heuristic(start,goal, H, G)     
    f_score[start] = h_score[start]
@@ -45,19 +48,23 @@ def A_star(start, goal, H, G):
          while current_node != start:
             path.append(current_node)
             current_node = came_from[current_node]
+         for s in path:
+            H[s]
          path.append(start)
-         path.reverse()
-         return path
+         path.reverse()   
+         paths.append(path)
+         cur_alt = cur_alt + 1
+         if cur_alt >= alternatives:
+            return paths
          
       openset.remove(x)
-      closedset.append(x)
+      if x!= goal:
+         closedset.append(x)
+         
       for y in G[x]:
          if y in closedset:
             continue
-         if y in G[x]:
-            tentative_g_score = g_score[x] + 1 
-         else:
-            tentative_g_score = 10000 # Some large value, ideally Infinity
+         tentative_g_score = g_score[x] + 1 
 
          if y not in openset:
             openset.append(y)
@@ -77,5 +84,8 @@ def A_star(start, goal, H, G):
 if __name__ == "__main__":
    setup_environment()
    from stages.models import Stage
-   path = A_star(int(sys.argv[1]),int(sys.argv[2]), H, G)
-   print [ Stage.objects.filter(id=sid) for sid in path ]
+   G = marshal.load(open('/home/yuvipanda/code/wtfimb/adjacencygraph','rb'))
+   H = marshal.load(open('/home/yuvipanda/code/wtfimb/distancegraph','rb'))
+   paths = A_star(int(sys.argv[1]),int(sys.argv[2]), H, G, 6)
+   for path in paths:
+      print path

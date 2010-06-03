@@ -29,31 +29,30 @@ def find_distance(path):
         distance = distance + H[path[i-1]][path[i]]
     return distance
 
+def sort_route(route):
+    return 
+        
+
 def show_shortest_path(request, start, end):
-    path1 = A_star(int(start), int(end), H, G)
-    if not path1:
+    paths = A_star(int(start), int(end), H, G)
+    if not paths:
         return HttpResponse("Path not found")
-    path2 = A_star(int(end), int(start), H, G)
-    path2.reverse()
-    d1 = find_distance(path1)
-    d2 = find_distance(path2)
-    if d1<d2:
-        path = path1
-    else:
-        path = path2
-    stages = [Stage.objects.get(id=sid) for sid in path]
-    changeovers = []
-    for i in xrange(0,len(stages) - 1):
-        startStage = stages[i]
-        endStage = stages[i+1]
-        rc = ChangeOver(
+    routes = []
+    for path in paths:
+        stages = [Stage.objects.get(id=sid) for sid in path]
+        changeovers = []
+        for i in xrange(0,len(stages) - 1):
+            startStage = stages[i]
+            endStage = stages[i+1]
+            rc = ChangeOver(
                 start_stage = startStage,
                 end_stage = endStage,
                 routes=direct_routes_between(startStage, endStage))
-        changeovers.append(rc)
+            changeovers.append(rc)
+        routes.append({
+                'changeovers':changeovers})
+
     return direct_to_template(request, "show_shortest_path.html",
-            {
-                'changeovers':changeovers,
-                'start_stage':Stage.objects.get(id=start),
-                'end_stage':Stage.objects.get(id=end)
-                })
+                              {'paths': routes,
+                               'start_stage':Stage.objects.get(id=start),
+                               'end_stage':Stage.objects.get(id=end)})
