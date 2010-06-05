@@ -9,9 +9,11 @@ var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
 var iconSize = new OpenLayers.Size(22,22);
 var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
 var icon = new OpenLayers.Icon("/static/images/bus_stop_22.png",iconSize,iconOffset);
+var softlink_stage_icon = new OpenLayers.Icon("/static/images/softlink_stage_22.png",iconSize,iconOffset);
+var near_by_stage_icon = new OpenLayers.Icon("/static/images/near_by_stage_22.png",iconSize,iconOffset);
 var map;
 var marker;
-OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
+OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
                 defaultHandlerOptions: {
                     'single': true,
                     'double': false,
@@ -26,17 +28,17 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
                     );
                     OpenLayers.Control.prototype.initialize.apply(
                         this, arguments
-                    ); 
+                    );
                     this.handler = new OpenLayers.Handler.Click(
                         this, {
                             'click': this.trigger
                         }, this.handlerOptions
                     );
-                }, 
+                },
 
                 trigger: function(e) {
                     marker.display(true);
-                    var ll = map.getLonLatFromViewPortPx(e.xy);
+                    var ll = map.getLonLatFromViewPortPx(e.xy);;
                     var xy = map.getLayerPxFromLonLat(ll);
                     xy.y += 11; //Offset, so that center of the marker is placed where the user clicked
                     marker.moveTo(xy);
@@ -62,63 +64,73 @@ $(document).ready(function() {
             } );
             var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Openstreetmap Mapnik");
             var layerOsmarender = new OpenLayers.Layer.OSM.Osmarender("Openstreetmap Osmarender");
-	var layerStages = new OpenLayers.Layer.Markers("Stages");
+            var layerStages = new OpenLayers.Layer.Markers("Stages");
+            var layerSoftlinks = new OpenLayers.Layer.Markers("Softlinks");
+            var layerNearbyStages = new OpenLayers.Layer.Markers("Near by stages");
             map.addLayer(layerMapnik);
             map.addLayer(layerOsmarender);
+            map.addLayer(layerNearbyStages);
+            map.addLayer(layerSoftlinks);
             map.addLayer(layerStages);
-            var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-            map.setCenter(lonLat,zoom);
             {% if stage.location %}
               lat = {{ stage.location.y }};
-              lon = {{ stage.location.x }};      
+              lon = {{ stage.location.x }};
               lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
               marker = new OpenLayers.Marker(lonLat,icon.clone());
               layerStages.addMarker(marker);
-              zoom = 17;
             {% else %}
               lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
               marker = new OpenLayers.Marker(lonLat,icon.clone());
               layerStages.addMarker(marker);
-              marker.display(false);
             {% endif %}
-            map.setCenter (lonLat, zoom);
+            marker.events.register("mouseover", marker, function(e){
+                 $('#from').attr('value','{{stage.display_name}}');
+		            OpenLayers.Event.stop(e);
+		      });
+            {% for sf in softlinks %}
+               lonlat = new OpenLayers.LonLat({{sf.location.x}},{{sf.location.y}}).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+               marker = new OpenLayers.Marker(lonlat,softlink_stage_icon.clone())
+               layerSoftlinks.addMarker(marker);
+               marker.events.register("mouseover", marker, function(e){
+                  $('#from').attr('value','{{sf.display_name}}');
+		             OpenLayers.Event.stop(e);
+		         });
+            {% endfor %}
+            {% for ns in nearby_stages %}
+               lonlat = new OpenLayers.LonLat({{ns.location.x}},{{ns.location.y}}).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+               var marker = new OpenLayers.Marker(lonlat,near_by_stage_icon.clone())
+               layerNearbyStages.addMarker(marker);
+               marker.events.register("mousedown", marker, function(e){
+                 $('#id_softlink_id').attr('value','{{ns.id}}');
+                 $('#softlink_form').submit();
+		            OpenLayers.Event.stop(e);
+		         });
+		         marker.events.register("mouseover", marker, function(e){
+                 $('#from').attr('value','{{ns.display_name}}');
+		            OpenLayers.Event.stop(e);
+		         });
+            {% endfor %}
+            {% if nearby_stages %}
+               map.zoomToExtent(layerNearbyStages.getDataExtent());
+            {% else %}
+               map.zoomToExtent(layerStages.getDataExtent());
+            {% endif %}
+            /*
             var click = new OpenLayers.Control.Click();
             map.addControl(click);
             click.activate()
+            */
             $("#from").attr("value","{{ stage.display_name }}");
             $("#from").keyup();
     });
-function resetForm() {
-    document.getElementById("id_latitude").value = lat;
-    document.getElementById("id_longitude").value = lon;
-    var ll = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-    var xy = map.getLayerPxFromLonLat(ll);
-    xy.y += 11; //Offset, so that center of the marker is placed where the user clicked
-    marker.moveTo(xy);
-}
-
 {% endblock %}
 
 {% block title %}
-Bus Stage: {{ stage.display_name }} 
+Bus Stage: {{ stage.display_name }}
 {% endblock %}
 
 {% block main %}
 <h1 class="names">Stage: {{ stage.display_name }}</h1>
-{% if user.is_authenticated %}
-<a class="edit" target="_blank" href="/admin/stages/stage/{{ stage.id }}/">Edit</a>
-<div id="editForm">
-	<form action="" method="POST">
-		<label for="id_latitude">Latitude:</label>
-		{{ form.latitude }}
-		<label for="id_longitude">Longitude:</label>
-		{{ form.longitude }}
-		<input type="submit" value="Update" />
-		<input type="button" value="Reset" onclick="resetForm();" />
-	</form>
-</div>
-	{% endif %}
-	<a class="softLinks" href="{% url softlinking_stages stage.id %}">Edit Softlinks! &rarr;</a>
 	<a class="osmLinks" target='_blank' href="http://www.openstreetmap.org/?lat={{ stage.location.y }}&amp;lon={{ stage.location.x }}&amp;zoom=17">Edit the Map! &rarr;</a>
 
 <div id="view">
@@ -126,17 +138,13 @@ Bus Stage: {{ stage.display_name }}
 		<table id="stages">
 			<thead>
 				<tr>
-					<th>Route</th>
-					<th>From</th>
-					<th>To</th>
+					<th>Softlinks</th>
 				</tr>
 			</thead>
             <tbody>
-			{% for r in stage.route_set.all %}
-			<tr class='route_entry'>
-				<td> <a href="{% url show-route r.display_name %}">{{ r.display_name }}</a></td>
-				<td> <a href="{% url show-stage r.start.id %}">{{ r.start.display_name }}</a></td>
-				<td> <a href="{% url show-stage r.end.id %}">{{ r.end.display_name }}</a></td>
+			{% for sf in softlinks %}
+			<tr class='softlinks'>
+				<td> <a href="{% url show-stage sf.id %}">{{ sf.display_name }}</a></td>
 			</tr>
 			{% endfor %}
             </tbody>
@@ -145,4 +153,7 @@ Bus Stage: {{ stage.display_name }}
 	<div id="map" ></div>
 	<div class="clearfloat"></div>
 </div>
+<form method="POST" action="" id="softlink_form">
+{{form.softlink_id}}
+</form>
 {% endblock %}

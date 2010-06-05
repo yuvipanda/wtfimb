@@ -1,9 +1,13 @@
 # Create your views here.
 
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 from routes.models import *
 from django.views.generic.simple import direct_to_template
+from django.contrib.admin.views.decorators import staff_member_required
+from stages.models import *
+from forms import CreateSoftlinkForm
 
 from math import *
 import marshal
@@ -41,3 +45,37 @@ def inconsistent_routes(request, maxdist):
                 'inconsistencies':incs
                 })
 
+@staff_member_required
+def softlinking_stages(request,stage_id):
+
+   if request.method == 'POST':
+      form = CreateSoftlinkForm(request.POST)
+      if form.is_valid():
+         cd = form.cleaned_data
+         newSoftlink = Stage.objects.get(id=cd['softlink_id'])
+         s = Stage.objects.get(id=stage_id)
+         s.softlinks.add(newSoftlink)
+         s.save()
+         for st in s.softlinks.exclude(id=s.id).exclude(id=newSoftlink.id):
+            st.softlinks.add(newSoftlink)
+            st.save()
+      return HttpResponseRedirect(reverse('softlinking_stages', args=(stage_id,)))
+   form = CreateSoftlinkForm()
+   stage = Stage.objects.get(pk=stage_id)
+   if not stage.location:
+      return HttpResponse("Stage doesn't have a location yet")
+   D = marshal.load(open('distancegraph','rb'))
+   softlinks = stage.softlinks.all()
+   nearby_stages = []
+   for st in Stage.objects.exclude(id=stage.id):
+      if st.location and D[stage.id][st.id]<1:
+         nearby_stages.append(st)
+   return direct_to_template (
+      request,'janitor/softlinking.html',
+      {
+         'stage':stage,
+         'softlinks':softlinks,
+         'form':form,
+         'nearby_stages':nearby_stages
+      }
+   )

@@ -426,6 +426,20 @@ input[type="text"]
 	padding:4px;
 	background:#EDDDFF;
 }
+.softLinks{
+	color:black;
+	position:absolute;
+	right:150px;
+	top:0px;
+	font-size:130%;
+	padding:4px;
+	background:#EDDDFF;
+}
+.path_link{
+   color:black;
+   font-size:120%;
+   background:#EDDDFF;
+}
 #helpbar{
 	position:relative;
 	z-index:2000;
