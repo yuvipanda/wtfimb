@@ -11,8 +11,10 @@ if __name__ == "__main__":
    from wtfimb.stages.models import Stage
    from wtfimb.routes.models import Route
    for stage in Stage.objects.all():
-      importance = stage.routelinks.count() * 0.2
-      importance = importance + stage.start_for_routes.count()
-      importance = importance + stage.end_for_routes.count()
+      importance = stage.routelinks.count()
+      importance = importance + stage.start_for_routes.count()*4
+      importance = importance + stage.end_for_routes.count()*4
+      if stage.is_terminus:
+         importance = importance * 2
       stage.importance = importance
       stage.save()
