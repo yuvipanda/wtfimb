@@ -96,9 +96,7 @@ function addStage(lat,lon,id,name) {
 
 <div id="view">
 	<div class="leftCol">
-	  {% for p in paths %}
-	  <div>
-		{% for co in p.changeovers %}
+		{% for co in changeovers %}
 		<h3>
 			From
 			<a href="{% url show-stage co.start_stage.id %}">
@@ -119,9 +117,8 @@ function addStage(lat,lon,id,name) {
 		{% endfor %}
 		{% endfor %}
 		<hr />
-	  </div> endfor %}
 	</div>
-	<div id="map" /></div>
+	<div id="map"></div>
 	<div class="clearfloat"></div>
 </div>
 {% endblock %}

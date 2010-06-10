@@ -435,11 +435,6 @@ input[type="text"]
 	padding:4px;
 	background:#EDDDFF;
 }
-.path_link{
-   color:black;
-   font-size:120%;
-   background:#EDDDFF;
-}
 #helpbar{
 	position:relative;
 	z-index:2000;
