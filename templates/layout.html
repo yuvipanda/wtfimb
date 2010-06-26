@@ -6,6 +6,10 @@
 	<meta name="description" content="Find busroutes in major Indian cities" />
 	<meta name="keywords" content="public transport, bus routes, train routes, bus maps, chennai" />
 	<link rel="icon" type="image/png" href="/static/images/bus_icon_16.png" />
+	<!-- Framework CSS -->
+    <link rel="stylesheet" href="/static/css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/static/css/blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]><link rel="stylesheet" href="/static/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css" />
 	<link rel="stylesheet" href="/static/css/jquery.autocomplete.css" type="text/css" />
 	<style type="text/css">
@@ -27,7 +31,7 @@
    		   $("#from").autocomplete(stages,{autoFill:true});
    		   $("#to").autocomplete(stages, {autoFill:true});
 	      });
-         $("#from").keyup( function() {
+         $("#from").change( function() {
             if($(this).val()=="") { 
                $("#to").attr("disabled","disabled");
                $("#from").css("background-color","#efe");
@@ -42,7 +46,7 @@
                $("#submit").removeAttr("disabled");
             }
          });
-         $("#to").keyup( function() {
+         $("#to").change( function() {
             if($(this).val()=="") { 
                $("#submit").attr("value","Goto Stage!");
             }
@@ -68,8 +72,8 @@
    		      top.location = "/chennai/path/" + fromId + "/" + toId;
 		      }
    	   });
-         $("#from").keyup();
-         $("#to").keyup();
+         $("#from").change();
+         $("#to").change();
       });
    </script>
 	<script type="text/javascript">
@@ -109,7 +113,7 @@
     {% endblock %} </div>
   <div id="footer"> <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/in/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/2.5/in/88x31.png" /></a><br />
     <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" property="dc:title" rel="dc:type">India Bus Route Mapping Project</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="/" property="cc:attributionName" rel="cc:attributionURL">Busroutes.in</a> is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/in/">Creative Commons Attribution-Share Alike 2.5 India License</a>.<br />
-    <a href="http://wiki.github.com/yuvipanda/wtfimb" >Project Wiki</a> | <a href="http://github.com/yuvipanda/wtfimb/issues"> File Bugs </a> | <a href="mailto:me@yuvisense.net" >Contact </a>| <b><a href="http://www.twitter.com/busroutesin">Latest News</a></b><br />
+    <a href="http://wiki.github.com/yuvipanda/wtfimb" >Project Wiki</a> | <a href="http://github.com/yuvipanda/wtfimb/issues"> File Bugs </a> | <a href="mailto:me@yuvisense.net" >Contact </a>| <a href="http://www.twitter.com/busroutesin">Latest News</a><br />
     <a href="http://validator.w3.org/check/referer">XHTML+RDF</a> <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">.</a> </div>
 </div>
 </body>
