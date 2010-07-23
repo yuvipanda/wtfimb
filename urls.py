@@ -10,6 +10,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
                        (r'^static/(?P<path>.*)$', 'django.views.static.serve',
                         {'document_root': settings.MEDIA_ROOT}),
+                       url(r'^account/signup/$', 'registration.views.register', {'backend':'registration.backends.default.DefaultBackend' },
+    name='registration_register'),
                        (r'^account/', include('django_authopenid.urls')),
                        (r'^account/settings','home.views.settings'),
                        (r'^account/password_change/$', 'django.contrib.auth.views.password_change'),
