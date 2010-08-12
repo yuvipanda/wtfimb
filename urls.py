@@ -10,6 +10,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
                        (r'^static/(?P<path>.*)$', 'django.views.static.serve',
                         {'document_root': settings.MEDIA_ROOT}),
+                       (r'^static_mobile/(?P<path>.*)$', 'django.views.static.serve',
+                        {'document_root': settings.MOBILE_MEDIA_ROOT}),
                        url(r'^account/signup/$', 'registration.views.register', {'backend':'registration.backends.default.DefaultBackend' },
     name='registration_register'),
                        (r'^account/', include('django_authopenid.urls')),
@@ -26,5 +28,4 @@ urlpatterns = patterns('',
         
                        (r'^robots.txt$', lambda req: redirect_to(req,'/static/robots.txt')),
                        (r'^admin/', include(admin.site.urls)),
-
 )

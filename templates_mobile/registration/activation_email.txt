@@ -1,0 +1,6 @@
+Hi,
+
+Thank you for your registration. To activate your account follow the link:
+
+http://{{ site }}{% url registration_activate activation_key %}
+

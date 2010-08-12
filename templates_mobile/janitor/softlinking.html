@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+
+{% block script %}
+var lat=13.0456;
+var lon=80.232;
+var zoom=12;
+var iconSize = new OpenLayers.Size(22,22);
+var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
+var iconSize = new OpenLayers.Size(22,22);
+var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
+var icon = new OpenLayers.Icon("/static/images/bus_stop_22.png",iconSize,iconOffset);
+var softlink_stage_icon = new OpenLayers.Icon("/static/images/softlink_stage_22.png",iconSize,iconOffset);
+var near_by_stage_icon = new OpenLayers.Icon("/static/images/near_by_stage_22.png",iconSize,iconOffset);
+var map;
+var marker;
+OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
+                defaultHandlerOptions: {
+                    'single': true,
+                    'double': false,
+                    'pixelTolerance': 0,
+                    'stopSingle': false,
+                    'stopDouble': false
+                },
+
+                initialize: function(options) {
+                    this.handlerOptions = OpenLayers.Util.extend(
+                        {}, this.defaultHandlerOptions
+                    );
+                    OpenLayers.Control.prototype.initialize.apply(
+                        this, arguments
+                    );
+                    this.handler = new OpenLayers.Handler.Click(
+                        this, {
+                            'click': this.trigger
+                        }, this.handlerOptions
+                    );
+                },
+
+                trigger: function(e) {
+                    marker.display(true);
+                    var ll = map.getLonLatFromViewPortPx(e.xy);;
+                    var xy = map.getLayerPxFromLonLat(ll);
+                    xy.y += 11; //Offset, so that center of the marker is placed where the user clicked
+                    marker.moveTo(xy);
+                    ll.transform(map.getProjectionObject(),new OpenLayers.Projection("EPSG:4326"));
+                    document.getElementById("id_latitude").value = ll.lat;
+                    document.getElementById("id_longitude").value = ll.lon;
+                }
+
+            });
+$(document).ready(function() {
+            map = new OpenLayers.Map ("map", {
+                controls:[
+                    new OpenLayers.Control.Navigation(),
+                    new OpenLayers.Control.PanZoomBar(),
+                    new OpenLayers.Control.Attribution(),
+                    new OpenLayers.Control.LayerSwitcher()],
+                maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
+                maxResolution: 156543.0399,
+                numZoomLevels: 19,
+                units: 'm',
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection: new OpenLayers.Projection("EPSG:4326")
+            } );
+            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Openstreetmap Mapnik");
+            var layerOsmarender = new OpenLayers.Layer.OSM.Osmarender("Openstreetmap Osmarender");
+            var layerStages = new OpenLayers.Layer.Markers("Stages");
+            var layerSoftlinks = new OpenLayers.Layer.Markers("Softlinks");
+            var layerNearbyStages = new OpenLayers.Layer.Markers("Near by stages");
+            map.addLayer(layerMapnik);
+            map.addLayer(layerOsmarender);
+            map.addLayer(layerNearbyStages);
+            map.addLayer(layerSoftlinks);
+            map.addLayer(layerStages);
+            {% if stage.location %}
+              lat = {{ stage.location.y }};
+              lon = {{ stage.location.x }};
+              lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+              marker = new OpenLayers.Marker(lonLat,icon.clone());
+              layerStages.addMarker(marker);
+            {% else %}
+              lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+              marker = new OpenLayers.Marker(lonLat,icon.clone());
+              layerStages.addMarker(marker);
+            {% endif %}
+            marker.events.register("mouseover", marker, function(e){
+                 $('#from').attr('value','{{stage.display_name}}');
+		            OpenLayers.Event.stop(e);
+		      });
+            {% for sf in softlinks %}
+               lonlat = new OpenLayers.LonLat({{sf.location.x}},{{sf.location.y}}).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+               marker = new OpenLayers.Marker(lonlat,softlink_stage_icon.clone())
+               layerSoftlinks.addMarker(marker);
+               marker.events.register("mouseover", marker, function(e){
+                  $('#from').attr('value','{{sf.display_name}}');
+		             OpenLayers.Event.stop(e);
+		         });
+            {% endfor %}
+            {% for ns in nearby_stages %}
+               lonlat = new OpenLayers.LonLat({{ns.location.x}},{{ns.location.y}}).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+               var marker = new OpenLayers.Marker(lonlat,near_by_stage_icon.clone())
+               layerNearbyStages.addMarker(marker);
+               marker.events.register("mousedown", marker, function(e){
+                 $('#id_softlink_id').attr('value','{{ns.id}}');
+                 $('#softlink_form').submit();
+		            OpenLayers.Event.stop(e);
+		         });
+		         marker.events.register("mouseover", marker, function(e){
+                 $('#from').attr('value','{{ns.display_name}}');
+		            OpenLayers.Event.stop(e);
+		         });
+            {% endfor %}
+            {% if nearby_stages %}
+               map.zoomToExtent(layerNearbyStages.getDataExtent());
+            {% else %}
+               map.zoomToExtent(layerStages.getDataExtent());
+            {% endif %}
+            /*
+            var click = new OpenLayers.Control.Click();
+            map.addControl(click);
+            click.activate()
+            */
+            $("#from").attr("value","{{ stage.display_name }}");
+            $("#from").keyup();
+    });
+{% endblock %}
+
+{% block title %}
+Bus Stage: {{ stage.display_name }}
+{% endblock %}
+
+{% block main %}
+<h1 class="names">Stage: {{ stage.display_name }}</h1>
+	<a class="osmLinks" target='_blank' href="http://www.openstreetmap.org/?lat={{ stage.location.y }}&amp;lon={{ stage.location.x }}&amp;zoom=17">Edit the Map! &rarr;</a>
+
+<div id="view">
+	<div class="leftCol">
+		<table id="stages">
+			<thead>
+				<tr>
+					<th>Softlinks</th>
+				</tr>
+			</thead>
+            <tbody>
+			{% for sf in softlinks %}
+			<tr class='softlinks'>
+				<td> <a href="{% url show-stage sf.id %}">{{ sf.display_name }}</a></td>
+			</tr>
+			{% endfor %}
+            </tbody>
+		</table>
+	</div>
+	<div id="map" ></div>
+	<div class="clearfloat"></div>
+</div>
+<form method="POST" action="" id="softlink_form">
+{{form.softlink_id}}
+</form>
+{% endblock %}

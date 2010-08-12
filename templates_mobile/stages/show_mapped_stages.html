@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block script %}
+var lat=13.0456
+var lon=80.232
+var zoom=12
+var iconSize = new OpenLayers.Size(22,22);
+var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
+var icon = new OpenLayers.Icon("/static/images/bus_stop_22.png",iconSize,iconOffset);
+var spl_icon = new OpenLayers.Icon("/static/images/bus_special_22.png",iconSize,iconOffset);
+var terminus_icon = new OpenLayers.Icon("/static/images/bus_terminus_22.png",iconSize,iconOffset);
+var map;
+var layerStages;
+var layerSplStages;
+var layerTerminus;
+
+$(document).ready(function() {
+            map = new OpenLayers.Map ("map", {
+                controls:[
+                    new OpenLayers.Control.Navigation(),
+                    new OpenLayers.Control.PanZoomBar(),
+                    new OpenLayers.Control.Attribution(),
+                    new OpenLayers.Control.LayerSwitcher()],
+                maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
+                maxResolution: 156543.0399,
+                numZoomLevels: 19,
+                units: 'm',
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection: new OpenLayers.Projection("EPSG:4326")
+            } );
+            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Chennai");
+            layerStages = new OpenLayers.Layer.Markers("Other Stages");
+            layerSplStages = new OpenLayers.Layer.Markers("Other Important Stages");
+            layerTerminus = new OpenLayers.Layer.Markers("Terminus");
+            map.addLayer(layerMapnik);
+            map.addLayer(layerStages);
+            map.addLayer(layerSplStages);
+            map.addLayer(layerTerminus);
+            var points = [];
+            {% for s in mapped_stages %}
+                addStage({{s.location.y}}, {{s.location.x}}, {{s.id}}, '{{s.display_name}}', {{s.importance}}, '{{s.is_terminus}}');
+	         {% endfor %}
+            map.zoomToExtent(layerStages.getDataExtent());            
+    });
+
+function addStage(lat,lon,id,name,importance,is_terminus) {
+     if(is_terminus=='True') {
+        var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), terminus_icon.clone());
+     }
+     else if(importance > 20) {
+        var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), spl_icon.clone());
+     }
+     else {
+        var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), icon.clone());
+     }
+     marker.events.register("mouseover", marker, function(e){
+		window.status = name;
+		OpenLayers.Event.stop(e);
+		});
+		marker.events.register("mouseout", marker, function(e){
+		window.status = ' ';
+		OpenLayers.Event.stop(e);
+		});
+	marker.events.register("mousedown", marker, function(e){
+		window.location = "/chennai/stage/" + id;
+		OpenLayers.Event.stop(e);
+		});
+    if(is_terminus=='True') {
+      layerTerminus.addMarker(marker);
+    }
+    else if(importance > 20) {
+      layerSplStages.addMarker(marker);
+    }
+    else {
+      layerStages.addMarker(marker);
+    }
+}
+
+{% endblock %}
+
+{% block title %}
+Currently Mapped: {{ unmapped_stages.count }} Stages
+{% endblock %}
+
+{% block main %}
+<h1>List of Mapped Stages</h1>
+<div id="view">
+	<div class="leftCol">
+		<table id="stages">
+			<thead>
+				<tr>
+					<th>Stage</th>
+				</tr>
+			</thead>
+			{% for s in mapped_stages %}
+			<tr class='route_entry'>
+				<td>
+					<a href="{% url show-stage s.id %}">{{s.display_name}}</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	<div id="map"></div>
+	<div class="clearfloat"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+
+{% block script %}
+var lat=13.0456
+var lon=80.232
+var zoom=12
+var iconSize = new OpenLayers.Size(22,22);
+var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
+var iconSize = new OpenLayers.Size(22,22);
+var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
+var icon = new OpenLayers.Icon("/static/images/bus_stop_22.png",iconSize,iconOffset);
+var map;
+var layerStages;
+
+// Change info below to style the route line
+var style_black = {
+    strokeColor: "#000000",
+    strokeOpacity: 0.5,
+    strokeWidth: 4,
+    strokeDashstyle: "solid",
+    pointRadius: 15,
+    pointerEvents: "visiblePainted"
+                };
+
+$(document).ready(function() {
+            map = new OpenLayers.Map ("map", {
+                controls:[
+                    new OpenLayers.Control.Navigation(),
+                    new OpenLayers.Control.PanZoomBar(),
+                    new OpenLayers.Control.Attribution(),
+                    new OpenLayers.Control.LayerSwitcher()],
+                maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
+                maxResolution: 156543.0399,
+                numZoomLevels: 19,
+                units: 'm',
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection: new OpenLayers.Projection("EPSG:4326")
+            } );
+            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Chennai");
+            layerStages = new OpenLayers.Layer.Markers("Stages");
+            var layerRoute = new OpenLayers.Layer.Vector("Route");
+            map.addLayer(layerMapnik);
+            map.addLayer(layerRoute);
+            map.addLayer(layerStages);
+            var points = [];
+            {% if start_stage.location %}
+                    var tempLat = {{start_stage.location.y}};
+                    var tempLon = {{start_stage.location.x}};
+                    addStage(tempLat, tempLon, {{start_stage.id}},'{{start_stage.display_name}}');
+                    points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
+            {% endif %}
+            {% for co in changeovers %}
+                {% if co.start_stage.location %}
+                    var tempLat = {{co.start_stage.location.y}};
+                    var tempLon = {{co.start_stage.location.x}};
+                    addStage(tempLat, tempLon, {{co.start_stage.id}},'{{co.display_name}}');
+                    points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
+                {% endif %}
+            {% endfor %}
+            {% if end_stage.location %}
+                    var tempLat = {{end_stage.location.y}};
+                    var tempLon = {{end_stage.location.x}};
+                    addStage(tempLat, tempLon, {{end_stage.id}},'{{end_stage.display_name}}');
+                    points.push(new OpenLayers.Geometry.Point(tempLon, tempLat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()));
+            {% endif %}
+            layerRoute.addFeatures(new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(points),null,style_black));
+            map.zoomToExtent(layerRoute.getDataExtent());
+            var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+    });
+
+function addStage(lat,lon,id,name) {
+    var marker = new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()), icon.clone());
+    marker.events.register("mouseover", marker, function(e){
+		window.status = name;
+		OpenLayers.Event.stop(e);
+		});
+		marker.events.register("mouseout", marker, function(e){
+		window.status = ' ';
+		OpenLayers.Event.stop(e);
+		});
+	marker.events.register("mousedown", marker, function(e){
+		window.location = "/chennai/stage/" + id;
+		OpenLayers.Event.stop(e);
+		});
+    layerStages.addMarker(marker);
+}
+
+{% endblock %}
+
+{% block title %}
+{{start_stage.display_name}} to {{ end_stage.display_name }}
+{% endblock %}
+
+{% block main %}
+<h1>Route from {{ start_stage.display_name }} to {{ end_stage.display_name }}</h1>
+
+<div id="view">
+	<div class="leftCol">
+		{% for co in changeovers %}
+		<h3>
+			From:
+			<a href="{% url show-stage co.start_stage.id %}">
+				{{ co.start_stage.display_name }}
+			</a>
+			<br />
+			To:
+			<a href="{% url show-stage co.end_stage.id %}">
+				{{ co.end_stage.display_name }}
+			</a>
+		</h3>
+		<br />
+		Take:
+		{% for r in co.routes %}
+		<span class="box bus">
+		  <a href="{% url show-route r.display_name %}">
+				{{ r.display_name }}
+				</a> <br />
+		</span>
+		{% endfor %}
+		<hr />
+		{% endfor %}
+		<hr />
+	</div>
+	<div id="map"></div>
+	<div class="clearfloat"></div>
+</div>
+{% endblock %}

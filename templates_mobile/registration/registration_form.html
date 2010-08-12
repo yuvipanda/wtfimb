@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} Sign Up {% endblock %}
+
+{% block content %}
+{% if form.errors %}
+    <div class="errors">
+        <p>Error while submitting form</p>
+        
+    </div>
+    <br>
+{% endif %}
+<h1>Join</h1>
+<a href="{% url user_signin %}">Click Here</a> to sign up with OpenID.
+<br/>
+<p>Or, Fill in the details below... </p>
+<form action="" method="post">
+    <fieldset>
+	    <legend>{% trans "Create a new account" %}</legend>
+	    <table>
+		    {{ form.as_table }}
+	    </table>
+	    <p><input type="submit" name="bsignup'" value="{% trans "Sign up" %}"> </p>
+	 </fieldset>
+</form>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+<style type="text/css" media="screen">
+	dt, dd { padding:0 0 0.35em 0; }
+	dt { float: left; width: 21ex;  }
+	dd { margin-left: 23ex;  }
+	
+	#settings-options, #settings-intro { padding: 4em 1.5em;}
+	#settings-options { min-height: 300px; border-left: 1px solid #333;}
+	
+	#settings-options h5 { font-weight: bold;}
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="settings-intro">
+	
+
+
+    <h4><strong>{{ user.username }}</strong>'s {% trans "Settings" %}</h4>
+    {% blocktrans %}
+    <p>This is where you can make changes to your account.</p>
+
+    {% endblocktrans %}
+</div>
+<div id="settings-options">
+	{% if msg %}
+		<p class="error">{{ msg }}</p>
+	{% endif %}
+    <h3>{% trans "Account" %}</h3>
+	<dl>
+        <dt>» <a href="/account/password_change/">{% trans "Change password" %}</a></dt>
+        <dd>{% trans "Give your  account a new password." %}</dd>
+        <dt>» <a href="/account/associate">{% trans "Associate openid url" %}</a></dt>
+        <dd>{% trans "Associate an OpenID to your account" %}</dd>
+        <dt>» <a href="/account/dissociate">{% trans "Dissociate openid url" %}</a></dt>
+        <dd>{% trans "Dissociate an OpenID from your account" %}</dd>
+	</dl>
+</div>
+<br/>
+<p><a href="/">Back to Home</a></p>
+{% endblock %}

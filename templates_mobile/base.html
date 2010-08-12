@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>{% block title %}Authentication Page template{% endblock %} | Chennai Bus Routes | Busroutes.in </title>
+        {% if request.is_secure %}
+        <meta http-equiv="X-XRDS-Location" content="https://{{ request.get_host }}{% url oid_xrdf %}" />
+        {% else %}
+        <meta http-equiv="X-XRDS-Location" content="http://{{ request.get_host }}{% url oid_xrdf %}" />  
+        {% endif %}
+        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/Authentication/base.css" />
+        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/Authentication/openid.css" />
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+        This is the base template for all authentication pages used by Django_AuthopenID and Registration modules. All the inherited pages must override this block.
+        {% endblock %}
+    </body>
+</html>

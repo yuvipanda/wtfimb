@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.1//EN"
+  "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+	<meta name="description" content="Find busroutes in major Indian cities" />
+	<meta name="keywords" content="public transport, bus routes, train routes, bus maps, chennai" />
+	<link rel="icon" type="image/png" href="/static/images/bus_icon_16.png" />
+    <title>{% block title %} {% endblock %} | Chennai Bus Routes | Busroutes.in </title>
+    <style type="text/css">
+        body, h1, p{border:0; margin:0; padding:0;}
+        body{font-family:Arial, Helvetica, sans-serif; font-size:12px;}
+        #header{
+            padding:6px;
+        }
+        #page{min-height:200px; padding:10px;}
+        td{text-align:center;}
+        h1{font-size:14px; font-weight:bold;}
+        h1 a:link, a:visited{color:#0033CC;}
+        #footer{
+            padding:6px;
+            border-top:solid 1px #DEDEDE;
+            color:#999999;
+            font-size:11px;
+            text-align:center;
+        }
+        #footer a:link, #footer a:visited{
+            color:#666666;
+        }
+    </style>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <div id="header">
+        <a href="/chennai"><img src="/static_mobile/images/logo.png" alt="Busroutes.in Home" /></a>
+    </div>
+    <div id="page">
+    {% block main %}
+    {% endblock %}
+    </div>
+    <div id="footer"> <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/in/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/2.5/in/88x31.png" /></a><br />
+    <span>India Bus Route Mapping Project</span> by Busroutes.in is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/in/">Creative Commons Attribution-Share Alike 2.5 India License</a>.<br />
+    <a href="http://wiki.github.com/yuvipanda/wtfimb" >Project Wiki</a> | <a href="http://github.com/yuvipanda/wtfimb/issues"> File Bugs </a> | <a href="mailto:me@yuvisense.net" >Contact </a>| <a href="http://www.twitter.com/busroutesin">Latest News</a><br /></div>
+</body>
+</html>
