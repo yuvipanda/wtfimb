@@ -4,7 +4,6 @@ Bus Route: {{ route.display_name }}
 {% endblock %}
 {% block main %}
 <h1>Route: {{ route.display_name }} </h1>
-<a target="_blank" href="http://mtcbus.org/Routes.asp?cboRouteCode={{ route.mtc_name }}&amp;submit=Search">Check Official Site</a>
 <div id="view">
     <h2>Stops At:</h2>
 	{% for s in stages %}
