@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.1//EN"
+  "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
-        <meta charset="utf-8"/>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
         <title>{% block title %}Authentication Page template{% endblock %} | Chennai Bus Routes | Busroutes.in </title>
-        {% if request.is_secure %}
-        <meta http-equiv="X-XRDS-Location" content="https://{{ request.get_host }}{% url oid_xrdf %}" />
-        {% else %}
-        <meta http-equiv="X-XRDS-Location" content="http://{{ request.get_host }}{% url oid_xrdf %}" />  
-        {% endif %}
-        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/Authentication/base.css" />
-        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/Authentication/openid.css" />
+    	<link rel="icon" type="image/png" href="/static/images/bus_icon_16.png" />
         {% block head %}
         {% endblock %}
     </head>

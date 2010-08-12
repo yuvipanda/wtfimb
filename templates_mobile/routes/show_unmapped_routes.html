@@ -7,25 +7,8 @@ Routes with unmapped stages: {{ unmapped_routes.count }} Routes
 {% block main %}
 <h1>List of Routes with unmapped Stages</h1>
 <div id="view">
-	<div class="leftCol">
-		<table id="stages">
-			<thead>
-				<tr>
-					<th>Routes</th>
-				</tr>
-			</thead>
-			{% for ur in unmapped_routes %}
-			<tr class='route_entry'>
-				<td>
-					<a href="{% url show-route ur.display_name %}">
-						{{ur.display_name}}
-					</a>
-				</td>
-			</tr>
-			{% endfor %}
-		</table>
-	</div>
-	<div id="map"></div>
-	<div class="clearfloat"></div>
+	{% for ur in unmapped_routes %}
+	<a href="{% url show-route ur.display_name %}">{{ur.display_name}}</a><br/>
+	{% endfor %}
 </div>
 {% endblock %}
