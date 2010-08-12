@@ -150,7 +150,7 @@ form {
 	margin: 0;
 	padding: 0;
 }
-#page, #header, #footer {
+#page, #header{
 	padding: 0.7em;
 }
 #page {
@@ -162,7 +162,6 @@ form {
 	color: #bbb;
 	/*border-top: 1px solid #069;
 	background-color: #efefff;*/
-	margin-top:5%;
 	text-align:center;
 }
 .hilite {

@@ -8,7 +8,15 @@ Bus Route: {{ route.display_name }}
 <div id="view">
     <h2>Stops At:</h2>
 	{% for s in stages %}
+	{% if forloop.first %}
+	<b><a href="{% url show-stage s.id %}">{{ s.display_name }}</a></b><br/>
+	{% else %}
+	{% if forloop.last %}
+	<b><a href="{% url show-stage s.id %}">{{ s.display_name }}</a></b><br/>
+	{% else %}
 	<a href="{% url show-stage s.id %}">{{ s.display_name }}</a><br/>
+	{% endif %}
+	{% endif %}
 	{% endfor %}
 </div>
 {% endblock %}
