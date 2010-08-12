@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from models import *
 from django.views.generic.simple import direct_to_template
 from django.contrib.gis.geos import Point
+from django.shortcuts import get_object_or_404
 
 from forms import EditStageForm
 
@@ -16,7 +17,7 @@ def show_stage(request, id):
             s.save()
         return HttpResponseRedirect('.')
     else:
-        s = Stage.objects.get(id=id)
+        s = get_object_or_404(Stage, id=id)
         if s.location!=None:
             form = EditStageForm(
                 initial = {'latitude': s.location.y,

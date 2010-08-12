@@ -12,5 +12,7 @@ class Stage(models.Model):
 
     objects = models.GeoManager()
     
+    class Meta:
+        ordering = ['display_name',]
     def __unicode__(self):
         return self.display_name

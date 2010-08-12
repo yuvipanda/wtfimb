@@ -1,10 +1,10 @@
 from django.http import HttpResponse
 from routes.models import *
 from django.views.generic.simple import direct_to_template
-
+from django.shortcuts import get_object_or_404
 
 def show_route(request, name):
-    r = Route.objects.get(slug__iexact=name)
+    r = get_object_or_404(Route,slug__iexact=name)
     return direct_to_template   (
             request, 
             'routes/show_route.html', 
@@ -15,7 +15,7 @@ def show_route(request, name):
 
 
 def show_unmapped_routes(request):
-    unmapped = Route.objects.filter(stages__location=None)
+    unmapped = Route.objects.filter(stages__location=None).distinct()
     return direct_to_template(request, 'routes/show_unmapped_routes.html',
             {'unmapped_routes':unmapped})
 
