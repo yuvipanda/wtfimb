@@ -3,14 +3,15 @@ Pre-requisites
    In order to run a local version of 'wtfimb', you need:
     1. Django (v1.2.1 recommended)
     2. Postgresql 8.4
-    3. Postgis 1.4
-    4. libgeos-c 3.1
-    5. GDAL 1.6 
+    3. python-psycopg2
+	4. postgresql-8.4-postgis 
+    5. libgdal1-1.6.0 (GDAL 1.6)
     6. libproj0 (Cartographic projection library)
-    7. Django-south
+    7. south (Django-south)
     8. Django-registration
     9. Django_AuthOpenid
    10. Django-reversion
+   11. libgeos-c1 (Version 3.1)
 
 Download
 ========
@@ -44,7 +45,7 @@ Setting Up
        1.3. Creating wtfimb database as a spatial database
          % createdb -T template_postgis -O jack wtfimb
        1.4. Testing newly created database
-         % psql -U jack -d wtfimb -h localhost
+         % psql -U <user> -d wtfimb -h localhost
          > select * from spatial_ref_sys where srid=4326;
          > \q
          % logout
@@ -70,7 +71,14 @@ Setting Up
          $ python manage.py migrate
        3.4. Populate database with database dump
          $ python manage.py loaddata dump20100509_fmt_clean.json
+	   3.5. Run maintenance commands
+		 $ python calculateimportance.py
+		 $ python updatedistancegraph.py 
+		 $ python updateadjacencygraph.py 			
     4. Running and Testing the Application
     --------------------------------------
        4.1. Using Runserver
          $ python manage.py runserver
+	   
+
+
