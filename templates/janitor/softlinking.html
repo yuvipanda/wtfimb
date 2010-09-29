@@ -144,7 +144,7 @@ Bus Stage: {{ stage.display_name }}
             <tbody>
 			{% for sf in softlinks %}
 			<tr class='softlinks'>
-				<td> <a href="{% url show-stage sf.id %}">{{ sf.display_name }}</a></td>
+				<td> <a href="{% url show-stage city sf.id %}">{{ sf.display_name }}</a></td>
 			</tr>
 			{% endfor %}
             </tbody>

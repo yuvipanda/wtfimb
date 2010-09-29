@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block style %}
+   .city {
+      width: 450px;
+      height: 332px;
+      text-align: center;
+      font-size: xx-large;
+   }
+{% endblock %}
+{% block title %}
+Choose City
+{% endblock %}
+
+{% block search_override %}
+<!-- Search bar is not inherited from layout -->
+{% endblock %}
+
+{% block main %}
+<div>
+<h2>Select a City</h2>
+<table>
+   <tr>
+   <td>
+   <div class="city"><a href="/chennai/">Chennai<img src="/static/images/brt-chennai.jpg" alt="Chennai"/></a></div>
+   </td>
+   <td>
+   <div class="city"><a href="/delhi/">Delhi<img src="/static/images/brt-delhi.jpg" alt="Delhi"/></a></div>
+   </td>
+   </tr>
+</table>
+</div>
+{% endblock %}

@@ -118,7 +118,7 @@ Bus Stage: {{ stage.display_name }}
 	</form>
 </div>
 	{% endif %}
-	<a class="softLinks" href="{% url softlinking_stages stage.id %}">Edit Softlinks! &rarr;</a>
+	<a class="softLinks" href="{% url softlinking_stages city stage.id %}">Edit Softlinks! &rarr;</a>
 	<a class="osmLinks" target='_blank' href="http://www.openstreetmap.org/?lat={{ stage.location.y }}&amp;lon={{ stage.location.x }}&amp;zoom=17">Edit the Map! &rarr;</a>
 
 <div id="view">
@@ -134,9 +134,9 @@ Bus Stage: {{ stage.display_name }}
             <tbody>
 			{% for r in stage.route_set.all %}
 			<tr class='route_entry'>
-				<td> <a href="{% url show-route r.display_name %}">{{ r.display_name }}</a></td>
-				<td> <a href="{% url show-stage r.start.id %}">{{ r.start.display_name }}</a></td>
-				<td> <a href="{% url show-stage r.end.id %}">{{ r.end.display_name }}</a></td>
+				<td> <a href="{% url show-route city r.display_name %}">{{ r.display_name }}</a></td>
+				<td> <a href="{% url show-stage city r.start.id %}">{{ r.start.display_name }}</a></td>
+				<td> <a href="{% url show-stage city r.end.id %}">{{ r.end.display_name }}</a></td>
 			</tr>
 			{% endfor %}
             </tbody>

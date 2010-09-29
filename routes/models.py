@@ -17,7 +17,10 @@ class Route(models.Model):
     time = models.FloatField()
     fare = models.FloatField()
     type = models.CharField(max_length=1, choices=ROUTE_TYPE_CHOICES, default='B')
+    city = models.CharField(max_length=255)
 
+    class Meta:
+       ordering = ['slug',]
     def __unicode__(self):
         return self.display_name
 

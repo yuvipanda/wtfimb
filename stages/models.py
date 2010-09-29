@@ -8,8 +8,9 @@ class Stage(models.Model):
     mtc_name = models.CharField(max_length=255, null=True, blank=True)
     importance = models.FloatField(null=True, blank=True)
     is_terminus = models.BooleanField(default=False)
-    softlinks = models.ManyToManyField('self', null=True, blank=True)
-
+    softlinks = models.ManyToManyField('stages.Stage', null=True, blank=True)
+    city = models.CharField(max_length=255)
+    
     objects = models.GeoManager()
     
     class Meta:

@@ -95,7 +95,7 @@ Currently Mapped: {{ unmapped_stages.count }} Stages
 			{% for s in mapped_stages %}
 			<tr class='route_entry'>
 				<td>
-					<a href="{% url show-stage s.id %}">{{s.display_name}}</a>
+					<a href="{% url show-stage city s.id %}">{{s.display_name}}</a>
 				</td>
 			</tr>
 			{% endfor %}

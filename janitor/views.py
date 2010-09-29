@@ -11,13 +11,14 @@ from forms import CreateSoftlinkForm
 
 from math import *
 import marshal
-
+import os
+CUR_DIR = os.path.dirname(__file__)
 class Inconsistency():
     pass
 
-def find_inconsistencies(max_distance):
-    routes = Route.objects.all()
-    D = marshal.load(open('distancegraph','rb'))
+def find_inconsistencies(max_distance, city):
+    routes = Route.objects.filter(city=city)
+    D = marshal.load(open(os.path.abspath(os.path.join(CUR_DIR, '../distancegraph')),'rb'))
     fixables = []
     for r in routes:
         stages = r.stages.all()
@@ -33,20 +34,21 @@ def find_inconsistencies(max_distance):
                     break
     return fixables
 
-def inconsistent_routes(request, maxdist):
+def inconsistent_routes(request, maxdist, city):
     if not maxdist:
         maxdist = 5
-    incs = find_inconsistencies(int(maxdist))
+    incs = find_inconsistencies(int(maxdist),city)
     incs.sort(key=lambda x: x.distance,reverse=True)
     return direct_to_template   (
             request, 
             'janitor/routes.html', 
             {
-                'inconsistencies':incs
+                'inconsistencies':incs,
+                'city': city
                 })
 
 @staff_member_required
-def softlinking_stages(request,stage_id):
+def softlinking_stages(request, city, stage_id):
 
    if request.method == 'POST':
       form = CreateSoftlinkForm(request.POST)
@@ -59,21 +61,22 @@ def softlinking_stages(request,stage_id):
          for st in s.softlinks.exclude(id=s.id).exclude(id=newSoftlink.id):
             st.softlinks.add(newSoftlink)
             st.save()
-      return HttpResponseRedirect(reverse('softlinking_stages', args=(stage_id,)))
+      return HttpResponseRedirect(reverse('softlinking_stages', args=(city, stage_id,)))
    form = CreateSoftlinkForm()
    stage = Stage.objects.get(pk=stage_id)
    if not stage.location:
       return HttpResponse("Stage doesn't have a location yet")
-   D = marshal.load(open('distancegraph','rb'))
+   D = marshal.load(open(os.path.abspath(os.path.join(CUR_DIR, '../distancegraph')),'rb'))
    softlinks = stage.softlinks.all()
    nearby_stages = []
-   for st in Stage.objects.exclude(id=stage.id):
+   for st in Stage.objects.filter(city=city).exclude(id=stage.id):
       if st.location and D[stage.id][st.id]<1:
          nearby_stages.append(st)
    return direct_to_template (
       request,'janitor/softlinking.html',
       {
          'stage':stage,
+         'city': city, 
          'softlinks':softlinks,
          'form':form,
          'nearby_stages':nearby_stages
