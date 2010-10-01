@@ -1,33 +1,6 @@
-{% extends "layout.html" %}
+{% extends "city_home.html" %}
 
-{% block title %}
-Home 
-{% endblock %}
-
-{% block search_override %}
-<!-- Search bar is not inherited from layout -->
-{% endblock %}
-
-{% block main %}
-<form id="homeform" action="javascript: document.homeform.submit.click();">
-	<table>
-		<tbody>
-			<tr>
-				<td>From</td>
-				<td><input type="text" id="from" /> </td>
-				<td>To</td>
-				<td><input type="text" id="to" /> </td>
-				<td><input type="submit" id="submit"/></td>
-			</tr>
-		</tbody>
-	</table>
-</form>
-<div class="links"> 
-	<h3>Important Locations</h3> 
-
-</div> 
-<div class="links"> 
-	<h3>Special Routes</h3> 
+{% block SpecialRoutes %}
 	<a class="box bus" href="/delhi/routes/type/AC/">AC Volvo Routes</a> 
 	<a class="box bus" href="/delhi/routes/type/D/">Deluxe Routes</a> 
 	<a class="box bus" href="/delhi/routes/type/X/">Express Routes</a> 
@@ -35,12 +8,11 @@ Home
 	<a class="box bus" href="/delhi/routes/type/M/">M Routes</a> 
 	<a class="box bus" href="/delhi/routes/type/O/">Ordinary Routes</a> 
 	<a class="box bus" href="/delhi/routes/type/N/">24hr Night Routes </a> 
-	</div> 
-<div class="links">
-	<h3>Contribute</h3>
+{% endblock %}
+
+{% block Contribute %}
 	<a class="box page" href="/delhi/mapped/stages">Mapped Stages</a>
 	<a class="box page" href="/delhi/unmapped/stages">Unmapped Stages</a>
 	<a class="box page" href="/delhi/unmapped/routes">Unmapped Routes</a>
 	<a class="box page" href="/delhi/janitor/inconsistent/routes/4">Erroneous Routes</a>
-</div>
 {% endblock %}
