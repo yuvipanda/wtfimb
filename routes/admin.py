@@ -20,7 +20,7 @@ class RouteAdmin(admin.OSMGeoAdmin,VersionAdmin):
     has_unmapped_stages.boolean = True
 
     def route_view_link(self, obj):
-        return "<a href='%s'>View Link</a>" % reverse('show-route', args=[obj.slug])
+        return "<a href='%s'>View Link</a>" % reverse('show-route', args=[obj.city, obj.slug])
 
     route_view_link.allow_tags = True
     route_view_link.short_description = "Link to Site"
