@@ -4,8 +4,8 @@ from django.views.generic.simple import direct_to_template
 from django.shortcuts import get_object_or_404
 
 def show_route(request, city, name):
-    try:
-       r = Route.objects.filter(city=city).get(slug__iexact=name)
+    try:									
+       r = Route.objects.filter(city=city).get(slug=slugify(name))
     except Route.DoesNotExist:
        raise Http404
     return direct_to_template   (
