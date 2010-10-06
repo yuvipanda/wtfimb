@@ -1,18 +1,18 @@
 {% extends "city_home.html" %}
 
 {% block SpecialRoutes %}
-	<a class="box bus" href="/delhi/routes/type/AC/">AC Volvo Routes</a> 
-	<a class="box bus" href="/delhi/routes/type/D/">Deluxe Routes</a> 
-	<a class="box bus" href="/delhi/routes/type/X/">Express Routes</a> 
-	<a class="box bus" href="/delhi/routes/type/LSS/">LSS Routes</a> 
-	<a class="box bus" href="/delhi/routes/type/M/">M Routes</a> 
-	<a class="box bus" href="/delhi/routes/type/O/">Ordinary Routes</a> 
-	<a class="box bus" href="/delhi/routes/type/N/">24hr Night Routes </a> 
+	<a class="box bus" href="/{{ city }}/routes/type/AC/">AC Volvo Routes</a> 
+	<a class="box bus" href="/{{ city }}/routes/type/D/">Deluxe Routes</a> 
+	<a class="box bus" href="/{{ city }}/routes/type/X/">Express Routes</a> 
+	<a class="box bus" href="/{{ city }}/routes/type/LSS/">LSS Routes</a> 
+	<a class="box bus" href="/{{ city }}/routes/type/M/">M Routes</a> 
+	<a class="box bus" href="/{{ city }}/routes/type/O/">Ordinary Routes</a> 
+	<a class="box bus" href="/{{ city }}/routes/type/N/">24hr Night Routes </a> 
 {% endblock %}
 
 {% block Contribute %}
-	<a class="box page" href="/delhi/mapped/stages">Mapped Stages</a>
-	<a class="box page" href="/delhi/unmapped/stages">Unmapped Stages</a>
-	<a class="box page" href="/delhi/unmapped/routes">Unmapped Routes</a>
-	<a class="box page" href="/delhi/janitor/inconsistent/routes/4">Erroneous Routes</a>
+	<a class="box page" href="/{{ city }}/mapped/stages">Mapped Stages</a>
+	<a class="box page" href="/{{ city }}/unmapped/stages">Unmapped Stages</a>
+	<a class="box page" href="/{{ city }}/unmapped/routes">Unmapped Routes</a>
+	<a class="box page" href="/{{ city }}/janitor/inconsistent/routes/4">Erroneous Routes</a>
 {% endblock %}

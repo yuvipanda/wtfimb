@@ -31,6 +31,9 @@ ROUTE_TYPE_MAPPING = {
         'M': 'M Service',
         'O': 'Ordinary',
         'LSS': 'Limited Stop Service',
+        'V': 'Vajra',
+        'BIAS': 'BIAS - Vayu Vajra',
+        'B10': 'Big 10',
         }
 def show_routes_with_type(request, city, type):
     routes = Route.objects.filter(city=city).filter(types__contains=type)
