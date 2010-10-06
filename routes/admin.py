@@ -10,7 +10,8 @@ class RouteStageInline(admin.TabularInline):
     ordering = ['stage__display_name']
 
 class RouteAdmin(admin.OSMGeoAdmin,VersionAdmin):
-    list_display = ('display_name', 'route_view_link', 'types', 'start', 'end', 'has_unmapped_stages')
+    ordering = ['city','display_name']
+    list_display = ('display_name', 'route_view_link', 'types', 'city',  'start', 'end', 'has_unmapped_stages')
 
     def has_unmapped_stages(self, obj):
         for s in obj.stages.all():
