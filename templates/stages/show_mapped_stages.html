@@ -38,7 +38,8 @@ $(document).ready(function() {
             map.addLayer(layerTerminus);
             var points = [];
             {% for s in mapped_stages %}
-                addStage({{s.location.y}}, {{s.location.x}}, {{s.id}}, '{{s.display_name}}', {{s.importance}}, '{{s.is_terminus}}');
+                addStage({{s.location.y}}, {{s.location.x}}, {{s.id}}, '{{s.display_name}}', 
+                {% if s.importance %}{{s.importance}}{% else %}0{% endif %}, '{{s.is_terminus}}');
 	         {% endfor %}
             map.zoomToExtent(layerStages.getDataExtent());            
     });
