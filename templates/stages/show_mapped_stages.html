@@ -28,7 +28,7 @@ $(document).ready(function() {
                 projection: new OpenLayers.Projection("EPSG:900913"),
                 displayProjection: new OpenLayers.Projection("EPSG:4326")
             } );
-            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Chennai");
+            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Base Map");
             layerStages = new OpenLayers.Layer.Markers("Other Stages");
             layerSplStages = new OpenLayers.Layer.Markers("Other Important Stages");
             layerTerminus = new OpenLayers.Layer.Markers("Terminus");
@@ -62,7 +62,7 @@ function addStage(lat,lon,id,name,importance,is_terminus) {
 		OpenLayers.Event.stop(e);
 		});
 	marker.events.register("mousedown", marker, function(e){
-		window.location = "/chennai/stage/" + id;
+		window.location = "/{{city}}/stage/" + id;
 		OpenLayers.Event.stop(e);
 		});
     if(is_terminus=='True') {
