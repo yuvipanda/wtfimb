@@ -33,8 +33,14 @@
       		jQuery.each(json, function(k,v) { stages.push(k); });
    		   $("#from").autocomplete(stages,{autoFill:true});
    		   $("#to").autocomplete(stages, {autoFill:true});
+            if($("#from").val()=="") { 
+               $("#from").focus();
+            }
+            else {
+               $("#to").focus();
+            }
 	      });
-         $("#from").change( function() {
+         $("#from").keydown( function() {
             if($(this).val()=="") { 
                $("#to").attr("disabled","disabled");
                $("#from").css("background-color","#efe");
@@ -49,7 +55,7 @@
                $("#submit").removeAttr("disabled");
             }
          });
-         $("#to").change( function() {
+         $("#to").keydown( function() {
             if($(this).val()=="") { 
                $("#submit").attr("value","Goto Stage!");
             }
@@ -75,8 +81,8 @@
    		      top.location = "/chennai/path/" + fromId + "/" + toId;
 		      }
    	   });
-         $("#from").change();
-         $("#to").change();
+         $("#from").keydown();
+         $("#to").keydown();
       });
    </script>
 	<script type="text/javascript">
