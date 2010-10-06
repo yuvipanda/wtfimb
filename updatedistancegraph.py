@@ -29,6 +29,7 @@ def update_distance_graph():
 if __name__ == "__main__":
     setup_environment()
     starttime = datetime.now()
+    print 'Updatedistancegraph started at', starttime
     update_distance_graph()
     timedelta = datetime.now() - starttime
     print 'Executed in %d seconds'%timedelta.seconds
