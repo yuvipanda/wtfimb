@@ -5,7 +5,19 @@ ROUTE_TYPE_CHOICES = (
     ('T', 'Train'),
     ('B', 'Bus'),
     )
-
+    
+ROUTE_TYPE_MAPPING = {
+        'DLX': 'Deluxe',
+        'AC': 'Air Conditioned',
+        'EXP': 'Express',
+        'NGT': 'Night Service',
+        'MSVC': 'M Service',
+        'ORD': 'Ordinary',
+        'LSS': 'Limited Stop Service',
+        'VAJ': 'Vajra',
+        'BIAS': 'BIAS - Vayu Vajra',
+        'B10': 'Big 10',
+        }
 class Route(models.Model):
     display_name = models.CharField(max_length=64)
     slug = models.SlugField(max_length=64, default='')
