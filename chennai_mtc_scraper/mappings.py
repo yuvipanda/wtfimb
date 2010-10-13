@@ -8,7 +8,7 @@ PREFIX_LIST = ['M', # M-Route
 
 SUFFIX_LIST = ['EXT','EX','ET','XT','EXN','X', # Extension
                'CUT','CU','CT','CUNS', # Cut Service
-               'NS','NH','N', # Night Service
+               'NS','NH', # Night Service
                'FS']
 
 #Prefixes and suffixes that should not be removed from display name
