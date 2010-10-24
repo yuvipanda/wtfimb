@@ -60,11 +60,16 @@ def main():
    from routes.models import Route, RouteStage, ROUTE_TYPE_MAPPING
    from stages.models import Stage
    
+   for r in Route.objects.filter(city=CITY):
+      r.city = CITY + '_old'
+      r.save()
+
    # For every route number in the dictionary
    for mtc_name in rds:
       display_name, slug = resolve_route_name(mtc_name)
       rd = rds[mtc_name]
       if rd["source"] is None or rd["destination"] is None or len(rd["stages"]) == 0:
+         #print "Route %s skipped (Reason: Incomplete)" % mtc_name
          continue # Skipping Incomplete routes
       service_type = rd["service_type"]
       s_type = MTC_TYPE_REVERSE_MAP[service_type]
