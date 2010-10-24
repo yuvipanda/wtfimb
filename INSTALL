@@ -12,6 +12,7 @@ Pre-requisites
     9. Django_AuthOpenid
    10. Django-reversion
    11. libgeos-c1 (Version 3.1)
+   12. Django_extensions
 
 Download
 ========

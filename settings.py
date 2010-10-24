@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'django_authopenid',
     'south',
     'reversion',
+    'django_extensions',
 )
 
 GRAPH_CACHE = os.path.join(ROOT_DIR, 'distancegraph')
