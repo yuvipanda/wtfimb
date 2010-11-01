@@ -1,0 +1,23 @@
+{% extends "city_home.html" %}
+
+{% block ImportantLocations %}
+   <a class="box stop" href="/bangalore/stage/3861">Majestic / KBS</a>
+	<a class="box stop" href="/bangalore/stage/3862">Shivaji Nagar</a> 
+	<a class="box stop" href="/bangalore/stage/3863">Shanti Nagar</a> 
+	<a class="box stop" href="/bangalore/stage/3864">Silkboard</a> 
+	<a class="box stop" href="/bangalore/stage/3865">BIAL</a> 
+{% endblock %}
+
+{% block SpecialRoutes %}
+	<a class="box bus" href="/{{ city }}/routes/type/BIAS/">BIAS - Vayu Vajra</a> 
+	<a class="box bus" href="/{{ city }}/routes/type/VAJ/">Vajra</a> 
+	<a class="box bus" href="/{{ city }}/routes/type/B10/">BIG 10</a> 
+	<a class="box bus" href="/{{ city }}/routes/type/ORD/">Ordinary Routes</a> 
+{% endblock %}
+
+{% block Contribute %}
+	<a class="box page" href="/{{ city }}/mapped/stages">Mapped Stages</a>
+	<a class="box page" href="/{{ city }}/unmapped/stages">Unmapped Stages</a>
+	<a class="box page" href="/{{ city }}/unmapped/routes">Unmapped Routes</a>
+	<a class="box page" href="/{{ city }}/janitor/inconsistent/routes/4">Erroneous Routes</a>
+{% endblock %}

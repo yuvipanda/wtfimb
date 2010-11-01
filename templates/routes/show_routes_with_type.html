@@ -17,7 +17,7 @@
 			{% for r in routes %}
 			<tr class='route_entry'>
 				<td>
-					<a href="{% url show-route r.display_name %}">
+					<a href="{% url show-route city r.slug %}">
 						{{r.display_name}}
 					</a>
 				</td>

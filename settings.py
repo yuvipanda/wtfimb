@@ -120,8 +120,8 @@ INSTALLED_APPS = (
 
     'wtfimb.routing',
     'wtfimb.home',
-    'wtfimb.routes',
     'wtfimb.stages',
+    'wtfimb.routes',
     'wtfimb.api',
     'wtfimb.janitor',
     
@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'django_authopenid',
     'south',
     'reversion',
+    'django_extensions',
 )
 
 GRAPH_CACHE = os.path.join(ROOT_DIR, 'distancegraph')

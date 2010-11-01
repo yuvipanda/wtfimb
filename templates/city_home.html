@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block search_override %}
+<!-- Search bar is not inherited from layout -->
+{% endblock %}
+
+{% block main %}
+<form id="homeform" action="javascript: document.homeform.submit.click();">
+	<table>
+		<tbody>
+			<tr>
+				<td>From</td>
+				<td><input type="text" id="from" /> </td>
+				<td>To</td>
+				<td><input type="text" id="to" /> </td>
+				<td><input type="submit" id="submit"/></td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+<div class="links">
+	<h3>Important Locations</h3>
+	{% block ImportantLocations %}
+	<!-- Example
+	<a class="box stop" href="/chennai/stage/2083">C.M.B.T.</a>
+	<a class="box stop" href="/chennai/stage/1921">Broadway</a> 
+	<a class="box stop" href="/chennai/stage/1885">Central</a> 
+	<a class="box stop" href="/chennai/stage/1884">Thiruvanmiyur</a> 
+	<a class="box stop" href="/chennai/stage/1939">T Nagar</a> 
+	<a class="box stop" href="/chennai/stage/2036">Egmore</a> 
+	-->
+   {% endblock %}
+</div> 
+<div class="links"> 
+	<h3>Special Routes</h3>
+	{% block SpecialRoutes %}
+	<!-- Example
+	<a class="box bus" href="/chennai/routes/type/AC/">AC Volvo Routes</a> 
+	<a class="box bus" href="/chennai/routes/type/D/">Deluxe Routes</a> 
+	<a class="box bus" href="/chennai/routes/type/X/">Express Routes</a> 
+	<a class="box bus" href="/chennai/routes/type/LSS/">LSS Routes</a> 
+	<a class="box bus" href="/chennai/routes/type/M/">M Routes</a> 
+	<a class="box bus" href="/chennai/routes/type/O/">Ordinary Routes</a> 
+	<a class="box bus" href="/chennai/routes/type/N/">24hr Night Routes </a> 
+	-->
+	{% endblock %}
+</div> 
+<div class="links">
+	<h3>Contribute</h3>
+	{% block Contribute %}
+	<!-- Example
+	<a class="box page" href="/chennai/mapped/stages">Mapped Stages</a>
+	<a class="box page" href="/chennai/unmapped/stages">Unmapped Stages</a>
+	<a class="box page" href="/chennai/unmapped/routes">Unmapped Routes</a>
+	<a class="box page" href="/chennai/janitor/inconsistent/routes/4">Erroneous Routes</a>
+	-->
+	{% endblock %}
+</div>
+{% endblock %}

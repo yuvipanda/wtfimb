@@ -10,7 +10,8 @@ class RouteStageInline(admin.TabularInline):
     ordering = ['stage__display_name']
 
 class RouteAdmin(admin.OSMGeoAdmin,VersionAdmin):
-    list_display = ('display_name', 'route_view_link', 'types', 'start', 'end', 'has_unmapped_stages')
+    ordering = ['city','display_name']
+    list_display = ('display_name', 'route_view_link', 'types', 'city',  'start', 'end', 'has_unmapped_stages')
 
     def has_unmapped_stages(self, obj):
         for s in obj.stages.all():
@@ -20,7 +21,7 @@ class RouteAdmin(admin.OSMGeoAdmin,VersionAdmin):
     has_unmapped_stages.boolean = True
 
     def route_view_link(self, obj):
-        return "<a href='%s'>View Link</a>" % reverse('show-route', args=[obj.slug])
+        return "<a href='%s'>View Link</a>" % reverse('show-route', args=[obj.city, obj.slug])
 
     route_view_link.allow_tags = True
     route_view_link.short_description = "Link to Site"

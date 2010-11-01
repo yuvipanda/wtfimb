@@ -1,0 +1,190 @@
+# Routes that have the same mtc_name in both old and new data but has different routestages.
+>>> count = 0
+>>> for ro in Route.objects.filter(city='chennai_old'):
+...    rn = Route.objects.filter(city='chennai').filter(mtc_name=ro.mtc_name)
+...    if len(rn) == 0:
+...       continue
+...    rn = rn[0]
+...    rso = ro.routestage_set.order_by('sequence')
+...    rsn = rn.routestage_set.order_by('sequence')
+...    if len(rso) == len(rsn):
+...       for i in xrange(0, len(rsn)):
+...          if rso[i].stage.mtc_name != rsn[i].stage.mtc_name:
+...             count += 1
+...             print ro.mtc_name
+...             break
+...    else:
+...       count += 1
+...       print ro.mtc_name
+... 
+11
+S11A
+12
+S13
+15
+L151
+X152B
+S154A
+15BEXN
+15G
+X17D
+X17E
+S17M
+18
+18ANS
+L18D
+18E
+18P
+W19BV
+L19E
+S19G
+S1A
+L1C
+L1D
+X1G
+21D
+21E
+S21G
+S21L
+L21LEX
+23A
+X23C
+L24A
+S25G
+S27B
+S27C
+28
+28C
+X29N
+L29NE
+L37D
+S41D
+44A
+45B
+S47
+S47A
+X47D
+S500
+51N
+S515
+S517
+S519
+L51D
+52
+S538
+X54
+S549
+S54F
+L54FEX
+54M
+L54T
+L54TCU
+X551
+X551A
+X555
+X555M
+S557A
+X558B
+S563
+S566
+S566A
+X579
+S579A
+S583A
+S587
+S588
+S589
+S591
+S591A
+S592
+X593
+S597
+W599V
+5C
+5K
+5T
+L60C
+L60E
+L60G
+L65A
+L70G
+L71D
+L7E
+S7M
+L88CCU
+L88CET
+8B
+SA18
+LA45B
+LA47
+XA51
+LB29N
+LB51
+SB51EX
+XD51
+XE18
+XE51
+SG18
+LG54
+K18
+M11
+M11A
+M12
+M12B
+M12BEX
+M14
+M147A
+M147B
+M147CE
+M147S
+M15
+M15D
+M170B
+M17A
+M18C
+M18T
+M19A
+M19B
+M20
+M20P
+M21G
+M29B
+M38C
+M45
+M45AEX
+M45E
+M46ACT
+M46B
+M47D
+M47DEX
+M51
+M51B
+M51C
+M51D
+M51P
+M52
+M52B
+M52D
+M52GFS
+M55B
+M56
+M57
+M60
+M61DEX
+M64P
+M65D
+M7
+SM70
+M70K
+M79
+M7K
+M88A
+M9M
+M9MEXT
+SPP21
+SPP49
+PP51
+LT1
+SV51
+>>> print 'Count is:', count
+Count is: 169

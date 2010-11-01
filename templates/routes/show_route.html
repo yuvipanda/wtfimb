@@ -176,7 +176,7 @@ Bus Route: {{ route.display_name }}
 			<tbody>
 				{% for s in stages %}
 				<tr class='stageentry'>
-					<td><a href="{% url show-stage s.id %}">{{ s.display_name }}</a> {% if not s.location %} <span id = "{{ s.id }}" ><a class="mapthis" href="#" onclick="return editStage({{ s.id }});" >Mark this Stage!</a></span> {% endif %} </td>
+					<td><a href="{% url show-stage city s.id %}">{{ s.display_name }}</a> {% if not s.location %} <span id = "{{ s.id }}" ><a class="mapthis" href="#" onclick="return editStage({{ s.id }});" >Mark this Stage!</a></span> {% endif %} </td>
 				</tr>
 				{% endfor %}
 			</tbody>

@@ -36,7 +36,7 @@ $(document).ready(function() {
                 projection: new OpenLayers.Projection("EPSG:900913"),
                 displayProjection: new OpenLayers.Projection("EPSG:4326")
             } );
-            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Chennai");
+            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("basemap");
             layerStages = new OpenLayers.Layer.Markers("Stages");
             var layerRoute = new OpenLayers.Layer.Vector("Route");
             map.addLayer(layerMapnik);
@@ -79,7 +79,7 @@ function addStage(lat,lon,id,name) {
 		OpenLayers.Event.stop(e);
 		});
 	marker.events.register("mousedown", marker, function(e){
-		window.location = "/chennai/stage/" + id;
+		window.location = "/{{city}}/stage/" + id;
 		OpenLayers.Event.stop(e);
 		});
     layerStages.addMarker(marker);
@@ -99,12 +99,12 @@ function addStage(lat,lon,id,name) {
 		{% for co in changeovers %}
 		<h3>
 			From:
-			<a href="{% url show-stage co.start_stage.id %}">
+			<a href="{% url show-stage city co.start_stage.id %}">
 				{{ co.start_stage.display_name }}
 			</a>
 			<br />
 			To:
-			<a href="{% url show-stage co.end_stage.id %}">
+			<a href="{% url show-stage city co.end_stage.id %}">
 				{{ co.end_stage.display_name }}
 			</a>
 		</h3>
@@ -112,7 +112,7 @@ function addStage(lat,lon,id,name) {
 		Take:
 		{% for r in co.routes %}
 		<span class="box bus">
-		  <a href="{% url show-route r.display_name %}">
+		  <a href="{% url show-route city r.slug %}">
 				{{ r.display_name }}
 				</a> <br />
 		</span>

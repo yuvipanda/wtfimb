@@ -28,7 +28,7 @@ $(document).ready(function() {
                 projection: new OpenLayers.Projection("EPSG:900913"),
                 displayProjection: new OpenLayers.Projection("EPSG:4326")
             } );
-            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Chennai");
+            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Base Map");
             layerStages = new OpenLayers.Layer.Markers("Other Stages");
             layerSplStages = new OpenLayers.Layer.Markers("Other Important Stages");
             layerTerminus = new OpenLayers.Layer.Markers("Terminus");
@@ -38,7 +38,8 @@ $(document).ready(function() {
             map.addLayer(layerTerminus);
             var points = [];
             {% for s in mapped_stages %}
-                addStage({{s.location.y}}, {{s.location.x}}, {{s.id}}, '{{s.display_name}}', {{s.importance}}, '{{s.is_terminus}}');
+                addStage({{s.location.y}}, {{s.location.x}}, {{s.id}}, '{{s.display_name}}', 
+                {% if s.importance %}{{s.importance}}{% else %}0{% endif %}, '{{s.is_terminus}}');
 	         {% endfor %}
             map.zoomToExtent(layerStages.getDataExtent());            
     });
@@ -62,7 +63,7 @@ function addStage(lat,lon,id,name,importance,is_terminus) {
 		OpenLayers.Event.stop(e);
 		});
 	marker.events.register("mousedown", marker, function(e){
-		window.location = "/chennai/stage/" + id;
+		window.location = "/{{city}}/stage/" + id;
 		OpenLayers.Event.stop(e);
 		});
     if(is_terminus=='True') {
@@ -95,7 +96,7 @@ Currently Mapped: {{ unmapped_stages.count }} Stages
 			{% for s in mapped_stages %}
 			<tr class='route_entry'>
 				<td>
-					<a href="{% url show-stage s.id %}">{{s.display_name}}</a>
+					<a href="{% url show-stage city s.id %}">{{s.display_name}}</a>
 				</td>
 			</tr>
 			{% endfor %}

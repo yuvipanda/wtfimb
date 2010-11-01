@@ -31,7 +31,7 @@ def sort_route(route):
     return 
         
 
-def show_shortest_path(request, start, end):
+def show_shortest_path(request, city, start, end):
     path = A_star(int(start), int(end))
     if not path:
         return HttpResponse("Path not found")
@@ -48,5 +48,6 @@ def show_shortest_path(request, start, end):
 
     return direct_to_template(request, "show_shortest_path.html",
                               {'changeovers': changeovers,
+                               'city': city, 
                                'start_stage':Stage.objects.get(id=start),
                                'end_stage':Stage.objects.get(id=end)})
