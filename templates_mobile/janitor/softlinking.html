@@ -1,12 +1,14 @@
 {% extends "layout.html" %}
+
 {% block title %}
 Bus Stage: {{ stage.display_name }}
 {% endblock %}
+
 {% block main %}
 <h1>Stage: {{ stage.display_name }}</h1>
 <div id="view">
-	{% for sf in softlinks %}
-	<a href="{% url show-stage sf.id %}">{{ sf.display_name }}</a><br/>
-    {% endfor %}
+   {% for sf in softlinks %}
+   <a href="{% url show-stage city sf.id %}">{{ sf.display_name }}</a><br/>
+			{% endfor %}
 </div>
 {% endblock %}

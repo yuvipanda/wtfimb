@@ -8,7 +8,7 @@
 <h1>List of Routes with {{ type }} buses</h1>
 <div id="view">
 	{% for r in routes %}
-	<a href="{% url show-route r.display_name %}">{{r.display_name}}</a><br>
+	<a href="{% url show-route city r.slug %}">{{r.display_name}}</a><br>
 	{% endfor %}
 </div>
 {% endblock %}

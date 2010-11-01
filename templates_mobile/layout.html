@@ -7,7 +7,7 @@
 	<meta name="description" content="Find busroutes in major Indian cities" />
 	<meta name="keywords" content="public transport, bus routes, train routes, bus maps, chennai" />
 	<link rel="icon" type="image/png" href="/static/images/bus_icon_16.png" />
-    <title>{% block title %} {% endblock %} | Chennai Bus Routes | Busroutes.in </title>
+    <title>{% block title %} {% endblock %} | {{ city }} Bus Routes | Busroutes.in </title>
     <style type="text/css">
         body, h1, p{border:0; margin:0; padding:0;}
         body{font-family:Arial, Helvetica, sans-serif; font-size:12px;}
@@ -38,7 +38,7 @@
 <body>
     <div id="header">
     <a href="/"><img src="/static_mobile/images/logo.png" alt="Busroutes.in Home" /></a>
-    <a href="/chennai">Chennai</a><br/>
+    <a href="/{{ city }}">{{ city|capfirst }}!</a><br/>
         <span style="font-size:xx-small;">Cause driving in traffic sucks!</span>
     </div>
     <div id="page">
@@ -48,6 +48,6 @@
     <div id="twin_sites">Mobile | <a href="http://busroutes.in/">HTML</a></div>
     <hr />
     <div id="footer"> <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/in/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/2.5/in/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/in/">Creative Commons Attribution-ShareAlike 2.5 India License</a>.<br />
-    <a href="http://wiki.github.com/yuvipanda/wtfimb" >Project Wiki</a> | <a href="http://github.com/yuvipanda/wtfimb/issues"> File Bugs </a> | <a href="mailto:me@yuvisense.net" >Contact </a>| <a href="http://www.twitter.com/busroutesin">Latest News</a><br /></div>
+    <a href="http://wiki.github.com/yuvipanda/wtfimb" >Project Wiki</a> | <a href="http://github.com/yuvipanda/wtfimb/issues"> File Bugs </a> | <a href="mailto:busroutesin@gmail.com" >Contact </a>| <a href="http://www.twitter.com/busroutesin">Latest News</a><br /></div>
 </body>
 </html>

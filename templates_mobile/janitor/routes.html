@@ -14,16 +14,19 @@ Inconsistent Routes
 Total Inconsistencies found: {{ inconsistencies|length }}
 <table>
 	<thead>
-		<tr><<th>Route</th><th>Erroneous Stage</th><th>Error (Km)</th>
+		<tr><th>Admin</th><th>Route</th><th>Erroneous Stage</th><th>Error (Km)</th>
 		</tr>
 	</thead>
 {% for ic in inconsistencies %}
     <tr>
-        <td>
-            <a href="{% url show-route ic.route.display_name %}">{{ic.route.display_name}}</a>
+    	<td>
+            <a href="/admin/routes/route/{{ic.route.id}}">Edit</a>
         </td>
         <td>
-            <a href="{% url show-stage ic.stage.id %}">{{ic.stage.display_name}}</a>
+            <a href="{% url show-route city ic.route.display_name %}">{{ic.route.display_name}}</a>
+        </td>
+        <td>
+            <a href="{% url show-stage city ic.stage.id %}">{{ic.stage.display_name}}</a>
         </td>
         <td>
         	{{ic.distance}}

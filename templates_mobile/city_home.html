@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+<form id="homeform" action="">
+	<table>
+		<tr>
+			<td>From</td>
+			<td><input type="text" disabled="disabled" id="from" value="under construction" /> </td>
+        </tr>
+        <tr>
+			<td>To</td>
+			<td><input type="text" disabled="disabled" id="to" value="check back soon" /> </td>
+		</tr>
+            <tr>
+    		<td colspan="2"><input type="submit" disabled="disabled" id="submit"/></td>
+		</tr>
+	</table>
+</form>
+<div class="links">
+	<h3>Important Locations</h3>
+	{% block ImportantLocations %}
+	<!-- Example
+	<a class="box stop" href="/chennai/stage/2083">C.M.B.T.</a><br/>
+	<a class="box stop" href="/chennai/stage/1921">Broadway</a> <br/>
+	<a class="box stop" href="/chennai/stage/1885">Central</a> <br/>
+	<a class="box stop" href="/chennai/stage/1884">Thiruvanmiyur</a> <br/>
+	<a class="box stop" href="/chennai/stage/1939">T Nagar</a> <br/>
+	<a class="box stop" href="/chennai/stage/2036">Egmore</a> <br/>
+	-->
+   {% endblock %}
+</div> 
+<div class="links"> 
+	<h3>Special Routes</h3>
+	{% block SpecialRoutes %}
+	<!-- Example
+	<a class="box bus" href="/chennai/routes/type/AC/">AC Volvo Routes</a> <br/>
+	<a class="box bus" href="/chennai/routes/type/D/">Deluxe Routes</a> <br/>
+	<a class="box bus" href="/chennai/routes/type/X/">Express Routes</a> <br/>
+	<a class="box bus" href="/chennai/routes/type/LSS/">LSS Routes</a> <br/>
+	<a class="box bus" href="/chennai/routes/type/M/">M Routes</a> <br/>
+	<a class="box bus" href="/chennai/routes/type/O/">Ordinary Routes</a> <br/>
+	<a class="box bus" href="/chennai/routes/type/N/">24hr Night Routes </a> <br/>
+	-->
+	{% endblock %}
+</div> 
+<div class="links">
+	<h3>Contribute</h3>
+	{% block Contribute %}
+	<!-- Example
+	<a class="box page" href="/chennai/mapped/stages">Mapped Stages</a><br/>
+	<a class="box page" href="/chennai/unmapped/stages">Unmapped Stages</a><br/>
+	<a class="box page" href="/chennai/unmapped/routes">Unmapped Routes</a><br/>
+	<a class="box page" href="/chennai/janitor/inconsistent/routes/4">Erroneous Routes</a><br/>
+	-->
+	{% endblock %}
+</div>
+{% endblock %}

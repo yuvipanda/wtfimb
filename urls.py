@@ -26,6 +26,7 @@ urlpatterns = patterns('',
                        (r'^(?P<city>\w+)/', include('stages.urls')),
                        (r'^(?P<city>\w+)/', include('routes.urls')),
                        (r'^(?P<city>\w+)/$', include('home.urls')),
-                       (r'^$', 'home.views.select_city'),
+                       (r'^$', lambda req: redirect_to(req,'/chennai'))
+                       #(r'^$', 'home.views.select_city'),
         
 )
