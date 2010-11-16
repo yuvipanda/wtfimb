@@ -1,0 +1,125 @@
+<! DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>Install | Busroutes.in</title>
+      <style type="text/css">
+         header {
+            display: block;
+            padding-bottom: 10px;
+            font-family: arial, sans-serif;
+         }
+         article > header {
+            font-size: 3em;
+         }
+         section > header {
+            font-size: 2em;
+         }
+         pre {
+            display: block;
+            padding: 10px;
+            background-color: #ffe;
+            max-width: 800px;
+            opacity: .6;
+         }
+         pre:hover {
+            opacity: 1;
+         }
+         li {
+            margin-bottom: 10px;
+         }
+         pre.postgres {
+            background-color: #fef;
+         }
+         pre.root {
+            background-color: #fee;
+         }
+         pre.psql {
+            background-color: #efe;
+         }
+      </style>
+   </head>
+   <body>
+      <article>
+         <header>Install</header>
+         <section>
+            <header>Pre-requisites</header>
+            <ul>
+               <li><a href="http://www.djangoproject.com/download/" target="_blank">Django 1.2.x</a>
+               <pre><code>sudo easy_install django</code></pre></li>
+               <li>Django Extensions
+               <pre><code>sudo easy_install django-extensions</code></pre></li>
+               <li><a href="http://south.aeracode.org/docs/installation.html">Django South 0.7.1</a>
+               <pre><code>sudo easy_install south</code></pre></li>
+               <li>Django Reversion
+               <pre><code>sudo easy_install django-reversion</code></pre></li>
+               <li><a href="http://www.postgresql.org/download/" target="_blank">Postgresql 8.4</a>
+               <pre><code>sudo apt-get install postgresql-8.4</code></pre></li>
+               <li>Postgis ( GIS support for Postgresql )
+               <pre><code>sudo apt-get install postgresql-8.4-postgis</code></pre></li>
+               <li>Python Psycopg2 ( Database driver for Postgresql )
+               <pre><code>sudo easy_install psycopg2</code></pre></li>
+               <li>GDAL 1.6 ( Geospatial Data Abstraction Library )
+               <pre><code>sudo apt-get install libgdal1-1.6.0</code></pre></li>
+               <li>Cartographic projection library
+               <pre><code>sudo apt-get install libproj0</code></pre></li>
+               <li>GEOS 3.1( Geometry Engine - Open Source )
+               <pre><code>sudo apt-get install libgeos-c1</code></pre></li>
+            </ul>
+         </section>
+         <section>
+            <header>Setting Up (for Ubuntu 10.04 )</header>
+            <ol>
+               <li>Setting up the Database
+                  <ul>
+                     <li>If you are using postgresql for the first time, you should consider creating an user.
+                     <pre><code>sudo su postgres</code></pre>
+                     <pre class="postgres"><code>createuser foo --pwprompt</code></pre></li>
+                     <li>Creating a postgis template
+                     <pre class="postgres"><code>psql template1</code></pre>
+                     <pre class="root"><code>\c template1<br>CREATE DATABASE template_postgis WITH template = template1;<br>UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis';<br>\c template_postgis<br>CREATE LANGUAGE plpgsql;<br>\i /usr/share/postgresql/8.4/contrib/postgis.sql;<br>\i /usr/share/postgresql/8.4/contrib/spatial_ref_sys.sql;<br>GRANT ALL ON geometry_columns TO PUBLIC;<br>GRANT ALL ON spatial_ref_sys TO PUBLIC;<br>VACUUM FREEZE;<br>\q</code></pre></li>
+                     <li>Creating wtfimb database as a spatial database
+                     <pre class="postgres"><code>createdb -T template_postgis -O foo wtfimb</code></pre></li>
+                     <li>Testing newly created database</li>
+                     <pre class="postgres"><code>psql -U foo -d wtfimb -h localhost</code></pre>
+                     <pre class="psql"><code>select * from spatial_ref_sys where srid=4326;<br>\q</code></pre>
+                     <pre class="postgres"><code>logout</code></pre></li>
+                  </ul>
+               </li>
+               <li>Configuring Local settings
+                  <ul>
+                     <li>Copy localsettings.py.sample and rename it as localsettings.py
+                     <pre><code>cp localsettings.py.sample localsettings.py</code></pre></li>
+                     <li>Open localsettings.py for editing
+                     <pre><code>gedit localsettings.py</code></pre></li>
+                     <li>Fill in the database name as 'wtfimb'</li>
+                     <li>Enter the database user as 'foo'</li>
+                     <li>Enter the database user's password</li>
+                  </ul>
+               </li>
+               <li>Setting up Environment
+                  <ul>
+                     <li>Hack fix to a gdal bug [<a href="http://bugs.debian.org/579989" target="_blank">#579989</a>]
+                     <p>If using GDAL version 1.6.3, you need to perform this step. Otherwise, ignore. Symlink libproj.so.0 to libproj.so in the /usr/lib folder</p>
+                     <pre><code>sudo ln -s /usr/lib/libproj.so.0 /usr/lib/libproj.so</code></pre></li>
+                     <li>Sync database with all model tables with migration
+                     <pre><code>python manage.py syncdb --migrate</code></pre></li>
+                     <li>Populate database with database dump
+                     <pre><code>python manage.py loaddata stages.dump.json<br>python manage.py loaddata routes.dump.json</code></pre></li>
+                     <li>Run maintenance commands
+                     <pre><code>python scripts/calculateimportance.py<br>python scripts/updatedistancegraph.py<br>python scripts/updateadjacencygraph.py</code></pre></li>
+                  </ul>
+               </li>
+               <li>Running and Testing the Application
+                  <ul>
+                     <li>Using Runserver
+                     <pre><code>python manage.py runserver</code></pre></li>
+                  </ul>
+            </ol>
+         </section>
+      </article>
+   </body>
+</html>
+	   
+
+
