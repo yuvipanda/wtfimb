@@ -61,6 +61,9 @@ if __name__ == "__main__":
       if stage.location:
          ws_stages.write(i, 2, stage.location.y)
          ws_stages.write(i, 3, stage.location.x)
+      else:
+         ws_stages.write(i, 2, 0)
+         ws_stages.write(i, 3, 0)
       ws_stages.write(i, 4, stage.start_for_routes.count() + stage.end_for_routes.count())
       ws_stages.write(i, 5, stage.total_services)
 
@@ -104,8 +107,8 @@ if __name__ == "__main__":
          i += 1
          ws_segments.write(i, 0, i)
          ws_segments.write(i, 1, "%s - %s" % (src_stage.display_name, dest_stage.display_name))
-         ws_segments.write(i, 2, src_stage.display_name)
-         ws_segments.write(i, 3, dest_stage.display_name)
+         ws_segments.write(i, 2, src)
+         ws_segments.write(i, 3, dest)
          ws_segments.write(i, 4, src_stage.start_for_routes.count() + src_stage.end_for_routes.count())
          ws_segments.write(i, 5, dest_stage.start_for_routes.count() + dest_stage.end_for_routes.count())
          j = 5
