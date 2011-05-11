@@ -1,115 +1,131 @@
 {% extends "layout.html" %}
 
 {% block script %}
-if('{{city}}' == 'chennai')
-{
-   var lat=13.0456;
-   var lon=80.232;
-}
-else if('{{city}}' == 'delhi')
-{
-   var lat=28.6038;
-   var lon=77.2134;
-}
-else if('{{city}}' == 'bangalore')
-{
-   var lat=12.9832;
-   var lon=77.5915;
-}
-var zoom=12;
 var iconSize = new OpenLayers.Size(22,22);
 var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
-var iconSize = new OpenLayers.Size(22,22);
-var iconOffset = new OpenLayers.Pixel(-(iconSize.w/2), -iconSize.h);
-var icon = new OpenLayers.Icon("/static/images/bus_stop_22.png",iconSize,iconOffset);
+var icon = new OpenLayers.Icon("/static/images/bus_stop_22.png", iconSize, iconOffset);
+var icon_nearby = new OpenLayers.Icon("/static/images/near_by_stage_22.png", iconSize, iconOffset);
 var map;
 var marker;
 OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
-                defaultHandlerOptions: {
-                    'single': true,
-                    'double': false,
-                    'pixelTolerance': 0,
-                    'stopSingle': false,
-                    'stopDouble': false
-                },
+    defaultHandlerOptions: {
+        'single': true,
+        'double': false,
+        'pixelTolerance': 0,
+        'stopSingle': false,
+        'stopDouble': false
+    },
 
-                initialize: function(options) {
-                    this.handlerOptions = OpenLayers.Util.extend(
-                        {}, this.defaultHandlerOptions
-                    );
-                    OpenLayers.Control.prototype.initialize.apply(
-                        this, arguments
-                    ); 
-                    this.handler = new OpenLayers.Handler.Click(
-                        this, {
-                            'click': this.trigger
-                        }, this.handlerOptions
-                    );
-                }, 
+    initialize: function(options) {
+        this.handlerOptions = OpenLayers.Util.extend(
+            {}, this.defaultHandlerOptions
+        );
+        OpenLayers.Control.prototype.initialize.apply(
+            this, arguments
+        );
+        this.handler = new OpenLayers.Handler.Click(
+            this, {
+                'click': this.trigger
+            }, this.handlerOptions
+        );
+    },
 
-                trigger: function(e) {
-                    marker.display(true);
-                    var ll = map.getLonLatFromViewPortPx(e.xy);
-                    var xy = map.getLayerPxFromLonLat(ll);
-                    xy.y += 11; //Offset, so that center of the marker is placed where the user clicked
-                    marker.moveTo(xy);
-                    ll.transform(map.getProjectionObject(),new OpenLayers.Projection("EPSG:4326"));
-                    document.getElementById("id_latitude").value = ll.lat;
-                    document.getElementById("id_longitude").value = ll.lon;
-                }
+    trigger: function(e) {
+        marker.display(true);
+        var ll = map.getLonLatFromViewPortPx(e.xy);
+        var xy = map.getLayerPxFromLonLat(ll);
+        xy.y += 11; //Offset, so that center of the marker is placed where the user clicked
+        marker.moveTo(xy);
+        ll.transform(map.getProjectionObject(),new OpenLayers.Projection("EPSG:4326"));
+        document.getElementById("id_latitude").value = ll.lat;
+        document.getElementById("id_longitude").value = ll.lon;
+    }
+});
 
-            });
 $(document).ready(function() {
-            map = new OpenLayers.Map ("map", {
-                controls:[
-                    new OpenLayers.Control.Navigation(),
-                    new OpenLayers.Control.PanZoomBar(),
-                    new OpenLayers.Control.Attribution(),
-                    new OpenLayers.Control.LayerSwitcher()],
-                maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
-                maxResolution: 156543.0399,
-                numZoomLevels: 19,
-                units: 'm',
-                projection: new OpenLayers.Projection("EPSG:900913"),
-                displayProjection: new OpenLayers.Projection("EPSG:4326")
-            } );
-            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Openstreetmap Mapnik");
-            var layerOsmarender = new OpenLayers.Layer.OSM.Osmarender("Openstreetmap Osmarender");
-	var layerStages = new OpenLayers.Layer.Markers("Stages");
-            map.addLayer(layerMapnik);
-            map.addLayer(layerOsmarender);
-            map.addLayer(layerStages);
-            var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-            map.setCenter(lonLat,zoom);
-            {% if stage.location %}
-              lat = {{ stage.location.y }};
-              lon = {{ stage.location.x }};      
-              lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-              marker = new OpenLayers.Marker(lonLat,icon.clone());
-              layerStages.addMarker(marker);
-              zoom = 17;
-            {% else %}
-              lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-              marker = new OpenLayers.Marker(lonLat,icon.clone());
-              layerStages.addMarker(marker);
-              marker.display(false);
-            {% endif %}
-            map.setCenter (lonLat, zoom);
-            var click = new OpenLayers.Control.Click();
-            map.addControl(click);
-            click.activate()
-            $("#from").attr("value","{{ stage.display_name }}");
-            $("#from").keydown();
+    map = new OpenLayers.Map ("map", {
+        controls:[
+            new OpenLayers.Control.Navigation(),
+            new OpenLayers.Control.PanZoomBar(),
+            new OpenLayers.Control.Attribution(),
+            new OpenLayers.Control.LayerSwitcher()
+        ],
+        maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
+        maxResolution: 156543.0399,
+        numZoomLevels: 19,
+        units: 'm',
+        projection: new OpenLayers.Projection("EPSG:900913"),
+        displayProjection: new OpenLayers.Projection("EPSG:4326")
     });
+    var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Openstreetmap Mapnik");
+    var layerOsmarender = new OpenLayers.Layer.OSM.Osmarender("Openstreetmap Osmarender");
+    var layerStages = new OpenLayers.Layer.Markers("Stages");
+    var layerNearbyStages = new OpenLayers.Layer.Markers("Nearby Stages");
+    map.addLayer(layerMapnik);
+    map.addLayer(layerOsmarender);
+    map.addLayer(layerStages);
+    map.addLayer(layerNearbyStages);
+
+    var lonLat = new OpenLayers.LonLat(lon, lat).transform(
+        new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()
+    );
+    map.setCenter(lonLat,zoom);
+    {% if stage.location %}
+    var lat = {{ stage.location.y }};
+    var lon = {{ stage.location.x }};
+    lonLat = new OpenLayers.LonLat(lon, lat).transform(
+        new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()
+    );
+    marker = new OpenLayers.Marker(lonLat,icon.clone());
+    layerStages.addMarker(marker);
+    var zoom = 17;
+    {% for nearby_stage in nearby_stages %}
+    var nearbyLat = {{ nearby_stage.location.y }};
+    var nearbyLon = {{ nearby_stage.location.x }};
+    var nearbyLonLat = new OpenLayers.LonLat(nearbyLon, nearbyLat).transform(
+        new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()
+    );
+    var marker2 = new OpenLayers.Marker(nearbyLonLat, icon_nearby.clone());
+    layerNearbyStages.addMarker(marker2);
+    marker2.events.register("mouseover", marker2, function(e){
+        OpenLayers.Event.stop(e);
+    });
+    marker2.events.register("mouseout", marker2, function(e){
+        OpenLayers.Event.stop(e);
+    });
+    marker2.events.register("mousedown", marker2, function(e){
+        window.location = "/{{city}}/stage/{{ nearby_stage.id }}";
+        OpenLayers.Event.stop(e);
+    });
+    {% endfor %}
+    {% else %}
+    var lon = {{ default_map.lon }};
+    var lat = {{ default_map.lat }};
+    var zoom = {{ default_map.zoom }};
+    lonLat = new OpenLayers.LonLat(lon, lat).transform(
+        new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()
+    );
+    marker = new OpenLayers.Marker(lonLat,icon.clone());
+    layerStages.addMarker(marker);
+    marker.display(false);
+    {% endif %}
+    map.setCenter (lonLat, zoom);
+    var click = new OpenLayers.Control.Click();
+    map.addControl(click);
+    click.activate()
+    $("#from").attr("value","{{ stage.display_name }}");
+    $("#from").keydown();
+});
 function resetForm() {
     document.getElementById("id_latitude").value = lat;
     document.getElementById("id_longitude").value = lon;
-    var ll = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+    var ll = new OpenLayers.LonLat(lon, lat).transform(
+        new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()
+    );
     var xy = map.getLayerPxFromLonLat(ll);
     xy.y += 11; //Offset, so that center of the marker is placed where the user clicked
     marker.moveTo(xy);
 }
-
 {% endblock %}
 
 {% block title %}
@@ -121,62 +137,62 @@ Bus Stage: {{ stage.display_name }}
 {% if user.is_authenticated %}
 <a class="edit" target="_blank" href="/admin/stages/stage/{{ stage.id }}/">Edit</a>
 <div id="editForm">
-	<form action="" method="POST">
-		<label for="id_latitude">Latitude:</label>
-		{{ form.latitude }}
-		<label for="id_longitude">Longitude:</label>
-		{{ form.longitude }}
-		<input type="submit" value="Update" />
-		<input type="button" value="Reset" onclick="resetForm();" />
-	</form>
+    <form action="" method="POST">
+        <label for="id_latitude">Latitude:</label>
+        {{ form.latitude }}
+        <label for="id_longitude">Longitude:</label>
+        {{ form.longitude }}
+        <input type="submit" value="Update" />
+        <input type="button" value="Reset" onclick="resetForm();" />
+    </form>
 </div>
-	{% endif %}
-	<a class="softLinks" href="{% url softlinking_stages city stage.id %}">Edit Softlinks! &rarr;</a>
-	<a class="osmLinks" target='_blank' href="http://www.openstreetmap.org/?lat={{ stage.location.y }}&amp;lon={{ stage.location.x }}&amp;zoom=17">Edit the Map! &rarr;</a>
+{% endif %}
+<a class="softLinks" href="{% url softlinking_stages city stage.id %}">Edit Softlinks! &rarr;</a>
+<a class="osmLinks" target='_blank' href="http://www.openstreetmap.org/?lat={{ stage.location.y }}&amp;lon={{ stage.location.x }}&amp;zoom=17">Edit the Map! &rarr;</a>
 
 <div id="view">
-	<div class="leftCol">
-		<table id="stages">
-			<thead>
-				<tr>
-					<th>Route</th>
-					<th>From</th>
-					<th>To</th>
-				</tr>
-			</thead>
+    <div class="leftCol">
+        <table id="stages">
+            <thead>
+                <tr>
+                    <th>Route</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+            </thead>
             <tbody>
-			{% for r in stage.route_set.all %}
-			<tr class='route_entry'>
-				<td> <a href="{% url show-route city r.slug %}">{{ r.display_name }}</a></td>
-				<td> <a href="{% url show-stage city r.start.id %}">{{ r.start.display_name }}</a></td>
-				<td> <a href="{% url show-stage city r.end.id %}">{{ r.end.display_name }}</a></td>
-			</tr>
-			{% endfor %}
+            {% for r in stage.route_set.all %}
+            <tr class='route_entry'>
+                <td> <a href="{% url show-route city r.slug %}">{{ r.display_name }}</a></td>
+                <td> <a href="{% url show-stage city r.start.id %}">{{ r.start.display_name }}</a></td>
+                <td> <a href="{% url show-stage city r.end.id %}">{{ r.end.display_name }}</a></td>
+            </tr>
+            {% endfor %}
             </tbody>
-		</table>
-	</div>
-	<div id="map" ></div>
-	<div class="clearfloat"></div>
-	<div id="disqus_thread"></div>
-	<script type="text/javascript">
-	  /**
-	    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
-	    */
-	  (function() {
-	   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	   dsq.src = 'http://busroutesin.disqus.com/embed.js';
-	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	  })();
-	</script>
-	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=busroutesin">comments powered by Disqus.</a></noscript>
-	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </table>
+    </div>
+    <div id="map" ></div>
+    <div class="clearfloat"></div>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      /**
+        * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+        */
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = 'http://busroutesin.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=busroutesin">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
 <script type="text/javascript">
-	var disqus_shortname = 'busroutesin';
-	(function () {
-  	var s = document.createElement('script'); s.async = true;
-  	s.src = 'http://disqus.com/forums/busroutesin/count.js';
-  	(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-	}());
+    var disqus_shortname = 'busroutesin';
+    (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.src = 'http://disqus.com/forums/busroutesin/count.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
 </script>
 {% endblock %}
